@@ -49,8 +49,8 @@ public class EnemySpawn : MonoBehaviour {
 		float temp = (float)spawnTimes[nextNote];//retrieve time to check agaisnt
 		if(levelTime > temp)//check for time passing
 		{
-			GameObject clone; //if the time of the spawn has passed spawns an enemy from prefab
-			clone = Instantiate(prefab, transform.position, transform.rotation) as GameObject;
+			GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
+			clone = Instantiate(prefab, new Vector3(-19.06279f,-6.54228f,0), transform.rotation) as GameObject;
 			nextNote++;// incriment index for next spawn check
 		}
 	

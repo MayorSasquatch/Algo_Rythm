@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyAI : MonoBehaviour {
 	
 	public int moveSpeed;
-
+	public string deathGesture;
 	private Transform myTransform;
 
 	void Awake(){
@@ -20,7 +20,8 @@ public class EnemyAI : MonoBehaviour {
 	void Update () {
 
 		// Move towards target
-		myTransform.position -= myTransform.right * moveSpeed * Time.deltaTime;
+		//myTransform.position -= myTransform.right * moveSpeed * Time.deltaTime;
+		this.rigidbody2D.AddForce(new Vector2(-moveSpeed,0));
 
 		//if(Input.GetMouseButtonUp(KeyCode.Mouse0))
 	}
