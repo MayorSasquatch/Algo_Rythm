@@ -6,8 +6,8 @@ using System.IO;
 
 public class EnemySpawn : MonoBehaviour {
 	public string fileName; //name of text file to be read
-	public GameObject prefab; //prefab of enemy to be instantiated
 	public float levelTime; //create a timer to track time across level
+	public GameObject[] enemies; //array of enemy prefabs
 	ArrayList spawnTimes; //arraylists for dynamic storing of spawning data such at time to spawn
 	ArrayList spawnTypes; // and what type of enemy to spawn
 	int nextNote = 0;// incrimentor for the spawn check
@@ -50,7 +50,7 @@ public class EnemySpawn : MonoBehaviour {
 		if(levelTime > temp)//check for time passing
 		{
 			GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
-			clone = Instantiate(prefab, new Vector3(-19.06279f,-6.54228f,0), transform.rotation) as GameObject;
+			clone = Instantiate(enemies[(int)spawnTypes[nextNote]], new Vector3(-19.06279f,-6.54228f,0), transform.rotation) as GameObject;
 			nextNote++;// incriment index for next spawn check
 		}
 	

@@ -42,6 +42,8 @@ public class Deathbox : MonoBehaviour {
 			}
 		}
 	*/
+		directionChosen = false;
+
 		if(Input.GetMouseButtonDown(0)){
 			startPos = (Vector2)Input.mousePosition;
 			Debug.Log("Pressed left click.");
@@ -53,15 +55,15 @@ public class Deathbox : MonoBehaviour {
 			directionChosen = true;
 			Debug.Log("lifted left click.");
 			if(direction.x == 0 && direction.y == 0){gesture = "tap";}
-			else if(direction.x > 10 && direction.y == 0){gesture = "right swipe";}
-			else if(direction.x == 0 && direction.y < 10){gesture = "down swipe";}
+			else if(direction.x > 10){gesture = "right swipe";}
+			else if(direction.y < 10){gesture = "down swipe";}
 			else {gesture = "none";}
 		}
 	}
 	void OnTriggerStay2D(Collider2D enemy){
 		Debug.Log("collision!!!!!!!!!!!!!!");
 		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture)) {
-			Destroy(enemy);
+			Destroy(enemy.gameObject);
 				}
 
 		}

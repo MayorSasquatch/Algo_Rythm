@@ -24,5 +24,7 @@ public class EnemyAI : MonoBehaviour {
 		this.rigidbody2D.AddForce(new Vector2(-moveSpeed,0));
 
 		//if(Input.GetMouseButtonUp(KeyCode.Mouse0))
+
+		if(myTransform.position.x < -40) Destroy(gameObject); // Destroys the enemy after it goes beyond the screen to the left
 	}
 }
