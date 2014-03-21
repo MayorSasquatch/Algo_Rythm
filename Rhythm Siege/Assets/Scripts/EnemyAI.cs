@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		this.rigidbody2D.AddForce(new Vector2(-moveSpeed,0));
 	}
 	
 	// Update is called once per frame
@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour {
 
 		// Move towards target
 		//myTransform.position -= myTransform.right * moveSpeed * Time.deltaTime;
-		this.rigidbody2D.AddForce(new Vector2(-moveSpeed,0));
+
 
 		//if(Input.GetMouseButtonUp(KeyCode.Mouse0))
 

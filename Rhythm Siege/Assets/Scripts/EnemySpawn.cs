@@ -5,7 +5,8 @@ using System.IO;
 
 
 public class EnemySpawn : MonoBehaviour {
-	public string fileName; //name of text file to be read
+	 //name of text file to be read
+	public TextAsset file;
 	public float levelTime; //create a timer to track time across level
 	public GameObject[] enemies; //array of enemy prefabs
 	ArrayList spawnTimes; //arraylists for dynamic storing of spawning data such at time to spawn
@@ -22,7 +23,8 @@ public class EnemySpawn : MonoBehaviour {
 		spawnTypes = new ArrayList();
 
 		string line; // begin reading in text file to parse
-		StreamReader noteReader = new StreamReader(fileName, Encoding.Default);
+		StringReader noteReader = new StringReader(file.text);
+
 		using (noteReader)
 		{
 			// While there's lines left in the text file, do this:
@@ -42,16 +44,19 @@ public class EnemySpawn : MonoBehaviour {
 			noteReader.Close();// end file io
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		levelTime += Time.deltaTime; //incriment timer to current time
-		float temp = (float)spawnTimes[nextNote];//retrieve time to check agaisnt
-		if(levelTime > temp)//check for time passing
+		//float temp = (float)spawnTimes[nextNote];//retrieve time to check agaisnt
+		if(nextNote < spawnTimes.Count)
 		{
-			GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
-			clone = Instantiate(enemies[(int)spawnTypes[nextNote]], new Vector3(-19.06279f,-6.54228f,0), transform.rotation) as GameObject;
-			nextNote++;// incriment index for next spawn check
+			if(levelTime > (float)spawnTimes[nextNote])//check for time passing
+			{
+				GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
+				clone = Instantiate(enemies[(int)spawnTypes[nextNote]], enemies[(int)spawnTypes[nextNote]].transform.position ,transform.rotation) as GameObject;
+				nextNote++;// incriment index for next spawn check
+			}
 		}
 	
 	}
