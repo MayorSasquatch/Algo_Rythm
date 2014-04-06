@@ -51,9 +51,6 @@
      <Compile Include="Assets\Scripts\EnemySpawn.cs" />
      <Compile Include="Assets\Scripts\KnightHealth.cs" />
      <Compile Include="Assets\Scripts\SongAnalyze.cs" />
-     <None Include="Assets\epic.txt" />
-     <None Include="Assets\level1.txt" />
-     <None Include="Assets\Kalimba.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
