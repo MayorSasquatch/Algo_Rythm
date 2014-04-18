@@ -14,6 +14,8 @@ public class EnemySpawn : MonoBehaviour {
 	int nextNote = 0;// incrimentor for the spawn check
 
 
+	WWW www ;
+	AudioClip myAudioClip;
 	//analysis variables
 	static int THRESHOLD_WINDOW_SIZE = 10;
 	static float MULTIPLIER = 1.5f;
@@ -29,6 +31,12 @@ public class EnemySpawn : MonoBehaviour {
 	void Start () {
 		levelTime = 0f; 
 
+		www = new WWW ("file://" + SongSelect.path);
+		myAudioClip= www.audioClip;
+		while (!myAudioClip.isReadyToPlay)
+
+		gameObject.GetComponent<AudioSource> ().audio.clip = myAudioClip;
+		this.audio.Play ();
 	}
 
 	// Update is called once per frame
