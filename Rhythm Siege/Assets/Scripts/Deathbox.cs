@@ -54,9 +54,9 @@ public class Deathbox : MonoBehaviour {
 		if (Input.GetMouseButtonUp(0)) {
 			directionChosen = true;
 			Debug.Log("lifted left click.");
-			if(direction.x == 0 && direction.y == 0){gesture = "tap";}
-			else if(direction.x > 10){gesture = "right swipe";}
-			else if(direction.y < 10){gesture = "down swipe";}
+			if(Mathf.Abs(direction.x) < Screen.width/20 && Mathf.Abs(direction.y) < Screen.height/20){gesture = "tap";}
+			else if(direction.x > Screen.width/3){gesture = "right swipe";}
+			else if(direction.y > Screen.height/3){gesture = "down swipe";}
 			else {gesture = "none";}
 		}
 	}

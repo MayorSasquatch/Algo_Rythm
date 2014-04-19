@@ -15,8 +15,12 @@ public class SongSelect : MonoBehaviour {
 
 	void OnGUI (){
 		GUI.skin = customSkin;
+		GUI.skin.verticalScrollbar.fixedWidth = (Screen.width * .05f);
+		GUI.skin.button.fontSize = (int)(Screen.width/40);
+		GUI.skin.label.fontSize = (int)(Screen.width/40);
+		GUI.skin.customStyles[0].fontSize = (int)(Screen.width/15);
 		if (songBrowser != null) {
-				songBrowser.OnGUI ();		
+				songBrowser.OnGUI ();
 		} else {
 				OnGUIMain();
 		}
@@ -24,7 +28,7 @@ public class SongSelect : MonoBehaviour {
 	void OnGUIMain()
 	{
 
-		if (GUI.Button(new Rect(Screen.width/2 -50,Screen.height/2 -25,100,50),"Custom Song")) {
+		if (GUI.Button(new Rect(Screen.width/2 -75,Screen.height/2 -25,150,50),"Custom Song")) {
 			songBrowser = new FileBrowser(
 				new Rect(0, 0, Screen.width, Screen.height),
 				"Choose mp3 File",
@@ -172,7 +176,7 @@ public class FileBrowser {
 		SetNewDirectory(Directory.GetCurrentDirectory());
 		SwitchDirectoryNow();
 	}
-	
+
 	protected void SetNewDirectory(string directory) {
 		m_newDirectory = directory;
 	}
@@ -287,8 +291,8 @@ public class FileBrowser {
 		GUILayout.BeginHorizontal();
 		for (int parentIndex = 0; parentIndex < m_currentDirectoryParts.Length; ++parentIndex) {
 			if (parentIndex == m_currentDirectoryParts.Length - 1) {
-				GUILayout.Label(m_currentDirectoryParts[parentIndex], CentredText);
-			} else if (GUILayout.Button(m_currentDirectoryParts[parentIndex])) {
+				GUILayout.Label(m_currentDirectoryParts[parentIndex], CentredText,GUILayout.Width(Screen.width*.1f),GUILayout.Height(Screen.height*.1f));
+			} else if (GUILayout.Button(m_currentDirectoryParts[parentIndex],GUILayout.Width(Screen.width*.1f),GUILayout.Height(Screen.height*.1f))) {
 				string parentDirectoryName = m_currentDirectory;
 				for (int i = m_currentDirectoryParts.Length - 1; i > parentIndex; --i) {
 					parentDirectoryName = Path.GetDirectoryName(parentDirectoryName);
@@ -341,7 +345,7 @@ public class FileBrowser {
 		GUILayout.EndScrollView();
 		GUILayout.BeginHorizontal();
 		GUILayout.FlexibleSpace();
-		if (GUILayout.Button("Cancel", GUILayout.Width(50))) {
+		if (GUILayout.Button("Cancel", GUILayout.Width(Screen.width*.4f),GUILayout.Height(Screen.height*.1f))) {
 			m_callback(null);
 		}
 		if (BrowserType == FileBrowserType.File) {
@@ -358,7 +362,7 @@ public class FileBrowser {
 						);
 			}
 		}
-		if (GUILayout.Button("Select", GUILayout.Width(50))) {
+		if (GUILayout.Button("Select", GUILayout.Width(Screen.width*.4f),GUILayout.Height(Screen.height*.1f))) {
 			if (BrowserType == FileBrowserType.File) {
 				m_callback(Path.Combine(m_currentDirectory, m_files[m_selectedFile]));
 			} else {
