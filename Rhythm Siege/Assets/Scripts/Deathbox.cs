@@ -61,7 +61,7 @@ public class Deathbox : MonoBehaviour {
 		}
 	}
 	void OnTriggerStay2D(Collider2D enemy){
-		Debug.Log("collision!!!!!!!!!!!!!!");
+
 		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture)) {
 			Destroy(enemy.gameObject);
 				}

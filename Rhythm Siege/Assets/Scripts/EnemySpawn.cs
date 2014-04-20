@@ -27,6 +27,7 @@ public class EnemySpawn : MonoBehaviour {
 	ArrayList prunnedSpectralFlux = new ArrayList();
 	ArrayList peaks = new ArrayList();
 	int fluxIndex, thresholdIndex, prunnedIndex, peaksIndex = 0;
+	int fluxindexlast = 0;
 	// Use this for initialization
 	void Start () {
 		levelTime = 0f; 
@@ -43,7 +44,7 @@ public class EnemySpawn : MonoBehaviour {
 	void Update () {
 		levelTime += Time.deltaTime; //incriment timer to current time
 		//start analysis code
-		if (this.audio.isPlaying)
+		if (levelTime < this.audio.clip.length)
 		{
 			spectrum.CopyTo(lastSpectrum, 0);
 			this.audio.GetSpectrumData (spectrum, 0, FFTWindow.Hamming);
@@ -59,15 +60,16 @@ public class EnemySpawn : MonoBehaviour {
 				float value = (spectrum[i] - lastSpectrum[i]);
 				flux[1] += value < 0? 0: value;
 			}
-			for( int i = 93; i < spectrum.Length; i++ )	
+			for( int i = 93; i < 512; i++ )	
 			{
 				float value = (spectrum[i] - lastSpectrum[i]);
 				flux[2] += value < 0? 0: value;
 			}
 			spectralFlux.Add(flux);
 
-			if(levelTime >= 5)
+			if(spectralFlux.Count - fluxindexlast >= 10)
 			{
+				fluxindexlast = spectralFlux.Count;
 				for( ; fluxIndex < spectralFlux.Count; fluxIndex++ )
 				{
 					float[] mean = {0,0,0};
@@ -115,18 +117,20 @@ public class EnemySpawn : MonoBehaviour {
 				}
 				for( ; peaksIndex < peaks.Count; peaksIndex ++)
 				{
-					float rate = 1024f/44100f;
+					float rate = 1024f/AudioSettings.outputSampleRate;
 					float time = (float)peaksIndex * rate;
 					float[] temp = (float[])peaks[peaksIndex];
 
-					if((temp[0] != 0 || temp[1] != 0 || temp[2] != 0)&& (levelTime - tempTime > .50))
+					if((temp[0] != 0 || temp[1] != 0 || temp[2] != 0) && (time - tempTime > 1) && time <= audio.clip.length)
 					{
 						spawnTimes.Add(time);
+						Debug.Log (peaksIndex);
+						Debug.Log (time);
 						//noteWriter.WriteLine((float)peaks[i]);
 						if(temp[0]>= temp[1] && temp[0]>= temp[2] ){spawnTypes.Add (0);}
 						else if(temp[1]>= temp[0] && temp[1]>= temp[2] ){spawnTypes.Add (1);}
 						else if(temp[2]>= temp[1] && temp[2]>= temp[0] ){spawnTypes.Add (2);}
-						tempTime = levelTime;
+						tempTime = time;
 					}
 				
 				}
@@ -138,15 +142,14 @@ public class EnemySpawn : MonoBehaviour {
 		if(levelTime >= 5){
 
 			//float temp = (float)spawnTimes[nextNote];//retrieve time to check agaisnt
-			if(nextNote < spawnTimes.Count)
+
+			if(levelTime - 5 >= (float)spawnTimes[nextNote])//check for time passing
 			{
-				if(levelTime > (float)spawnTimes[nextNote])//check for time passing
-				{
-					GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
-					clone = Instantiate(enemies[(int)spawnTypes[nextNote]], enemies[(int)spawnTypes[nextNote]].transform.position ,transform.rotation) as GameObject;
-					nextNote++;// incriment index for next spawn check
-				}
+				GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
+				clone = Instantiate(enemies[(int)spawnTypes[nextNote]], enemies[(int)spawnTypes[nextNote]].transform.position ,transform.rotation) as GameObject;
+				nextNote++;// incriment index for next spawn check
 			}
+			
 		}
 	}
 }
