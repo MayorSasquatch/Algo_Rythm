@@ -13,7 +13,7 @@ public class SongAnalyze : MonoBehaviour {
 		while (!myAudioClip.isReadyToPlay)
 		gameObject.GetComponent<AudioSource> ().audio.clip = myAudioClip;
 
-		this.audio.PlayDelayed(12.377057f);
+		this.audio.PlayDelayed(8f);
 	}
 	
 	// Update is called once per frame

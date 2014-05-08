@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
 	
-	public int moveSpeed;
+	public float moveSpeed;
 	public string deathGesture;
 	private Transform myTransform;
 

@@ -26,8 +26,8 @@ public class EnemySpawn : MonoBehaviour {
 	ArrayList threshold = new ArrayList( );
 	ArrayList prunnedSpectralFlux = new ArrayList();
 	ArrayList peaks = new ArrayList();
-	int fluxIndex, thresholdIndex, prunnedIndex, peaksIndex = 0;
-	int fluxindexlast = 0;
+	int fluxIndex, thresholdIndex, prunnedIndex, peaksIndex, timeIndex = 0;
+	int lowCount, midCount = 0;
 	// Use this for initialization
 	void Start () {
 		levelTime = 0f; 
@@ -67,79 +67,22 @@ public class EnemySpawn : MonoBehaviour {
 			}
 			spectralFlux.Add(flux);
 
-			if(spectralFlux.Count - fluxindexlast >= 10)
+			if(spectralFlux.Count >= 21)
 			{
-				fluxindexlast = spectralFlux.Count;
-				for( ; fluxIndex < spectralFlux.Count; fluxIndex++ )
-				{
-					float[] mean = {0,0,0};
-					for(int a = 0; a<3; a++)
-					{
-						int start = Mathf.Max( 0, fluxIndex - THRESHOLD_WINDOW_SIZE );
-						int end = Mathf.Min( spectralFlux.Count - 1, fluxIndex + THRESHOLD_WINDOW_SIZE );
-						for( int j = start; j <= end; j++ ){
-							float[]temp = (float[])spectralFlux[j];
-							mean[a] +=  temp[a];}
-						mean[a] /= (end - start);
-						mean[a] *=  MULTIPLIER;
-					}
-					threshold.Add(mean);
+				Threshold();
 
-				}
-				for( ; thresholdIndex < threshold.Count; thresholdIndex++ )
-				{
-					float[] temp3 = {0,0,0};
-					for(int a = 0; a<3; a++){
-						float[] temp1 = (float[])threshold[thresholdIndex];
-						float[] temp2 = (float[])spectralFlux[thresholdIndex];
-						
-						if( temp1[a] <=  temp2[a]){
-							temp3[a] = ( temp2[a] - temp1[a] );
-						}
-						else{
-							temp3[a] = ( (float)0 );
-						}
-					}
-					prunnedSpectralFlux.Add(temp3);
-				}
-				for( ; prunnedIndex < prunnedSpectralFlux.Count - 1; prunnedIndex++ )
-				{
-					float[] temp3 = {0,0,0};
-					for(int a = 0; a<3; a++){
-						float[] temp1 = (float[])prunnedSpectralFlux[prunnedIndex];
-						float[] temp2 = (float[])prunnedSpectralFlux[prunnedIndex+1];
-						if( temp1[a] > temp2[a] ){
-							temp3[a] = ( temp1[a]);}
-						else {
-							temp3[a]=( (float)0 );	}	
-					}
-					peaks.Add(temp3);
-				}
-				for( ; peaksIndex < peaks.Count; peaksIndex ++)
-				{
-					float rate = 1024f/AudioSettings.outputSampleRate;
-					float time = (float)peaksIndex * rate;
-					float[] temp = (float[])peaks[peaksIndex];
+				PruneFlux();
 
-					if((temp[0] != 0 || temp[1] != 0 || temp[2] != 0) && (time - tempTime > 1) && time <= audio.clip.length)
-					{
-						spawnTimes.Add(time);
-						Debug.Log (peaksIndex);
-						Debug.Log (time);
-						//noteWriter.WriteLine((float)peaks[i]);
-						if(temp[0]>= temp[1] && temp[0]>= temp[2] ){spawnTypes.Add (0);}
-						else if(temp[1]>= temp[0] && temp[1]>= temp[2] ){spawnTypes.Add (1);}
-						else if(temp[2]>= temp[1] && temp[2]>= temp[0] ){spawnTypes.Add (2);}
-						tempTime = time;
-					}
-				
-				}
+				Peaks();
+
+				WriteNotes();
 			}
+			//Debug.Log (spectralFlux.Count+" "+ threshold.Count+" "+prunnedSpectralFlux.Count+" "+peaks.Count);
 			
 		}
 		// end analysis code
 		//start spawn code
-		if(levelTime >= 5){
+		if(levelTime >= 5 && nextNote < spawnTimes.Count){
 
 			//float temp = (float)spawnTimes[nextNote];//retrieve time to check agaisnt
 
@@ -151,5 +94,84 @@ public class EnemySpawn : MonoBehaviour {
 			}
 			
 		}
+	}
+
+	void Threshold(){
+		for( ; fluxIndex < 11; fluxIndex++ )
+		{
+			float[] mean = {0,0,0};
+			for(int a = 0; a<3; a++)
+			{
+				int start = Mathf.Max( 0, fluxIndex - THRESHOLD_WINDOW_SIZE );
+				int end = Mathf.Min( spectralFlux.Count - 1, fluxIndex + THRESHOLD_WINDOW_SIZE );
+				for( int j = start; j <= end; j++ ){
+					float[]temp = (float[])spectralFlux[j];
+					mean[a] +=  temp[a];}
+				mean[a] /= (end - start);
+				mean[a] *=  MULTIPLIER;
+			}
+			threshold.Add(mean);
+		}
+		fluxIndex--;
+	}
+
+	void PruneFlux(){
+		for( ; thresholdIndex < threshold.Count; thresholdIndex++ )
+		{
+			float[] temp3 = {0,0,0};
+			for(int a = 0; a<3; a++){
+				float[] temp1 = (float[])threshold[thresholdIndex];
+				float[] temp2 = (float[])spectralFlux[thresholdIndex];
+				
+				if( temp1[a] <=  temp2[a]){
+					temp3[a] = ( temp2[a] - temp1[a] );
+				}
+				else{
+					temp3[a] = ( (float)0 );
+				}
+			}
+			prunnedSpectralFlux.Add(temp3);
+		}
+		thresholdIndex--;
+		threshold.RemoveAt(0);
+		spectralFlux.RemoveAt(0);
+	}
+	void Peaks(){
+		for( ; prunnedIndex < prunnedSpectralFlux.Count - 1; prunnedIndex++ )
+		{
+			float[] temp3 = {0,0,0};
+			for(int a = 0; a<3; a++){
+				float[] temp1 = (float[])prunnedSpectralFlux[prunnedIndex];
+				float[] temp2 = (float[])prunnedSpectralFlux[prunnedIndex+1];
+				if( temp1[a] > temp2[a] ){
+					temp3[a] = ( temp1[a]);}
+				else {
+					temp3[a]=( (float)0 );	}	
+			}
+			peaks.Add(temp3);
+		}
+		prunnedIndex--;
+		prunnedSpectralFlux.RemoveAt (0);
+	}
+	void WriteNotes(){
+		for( ; peaksIndex < peaks.Count; peaksIndex ++)
+		{
+			float rate = 1024f/AudioSettings.outputSampleRate;
+			float time = (float)timeIndex * rate;
+			float[] temp = (float[])peaks[peaksIndex];
+			
+			if((temp[0] != 0 || temp[1] != 0 || temp[2] != 0) && (time - tempTime > .5f) && time <= audio.clip.length)
+			{
+				spawnTimes.Add(time);
+				//noteWriter.WriteLine((float)peaks[i]);
+				if((temp[2]>= temp[1] && temp[2]>= temp[0])&& lowCount < 4 ){spawnTypes.Add (2); lowCount++; midCount =  0;}
+				else if((temp[1]>= temp[0])&& midCount < 4 ){spawnTypes.Add (1); midCount++; lowCount =  0;}
+				else {spawnTypes.Add (0); lowCount = midCount = 0;}
+				tempTime = time;
+			}
+			timeIndex++;
+		}
+		peaksIndex--;
+		peaks.RemoveAt(0);
 	}
 }
