@@ -63,7 +63,8 @@ public class Deathbox : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D enemy){
 
 		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture)) {
-			Destroy(enemy.gameObject);
+			enemy.rigidbody2D.velocity = new Vector2(0,0);
+			enemy.transform.position = enemy.GetComponent<EnemyAI>().startPos;
 				}
 
 		}

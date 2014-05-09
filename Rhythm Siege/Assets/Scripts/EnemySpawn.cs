@@ -9,6 +9,7 @@ public class EnemySpawn : MonoBehaviour {
 	public float levelTime; //create a timer to track time across level
 	float tempTime = 0;
 	public GameObject[] enemies; //array of enemy prefabs
+	GameObject[,] enemyCache = new GameObject[3,6];
 	ArrayList spawnTimes = new ArrayList() ; //arraylists for dynamic storing of spawning data such at time to spawn
 	ArrayList spawnTypes = new ArrayList(); // and what type of enemy to spawn
 	int nextNote = 0;// incrimentor for the spawn check
@@ -31,6 +32,12 @@ public class EnemySpawn : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		levelTime = 0f; 
+
+		for(int b= 0; b<6;b++){
+			enemyCache[0,b] = Instantiate(enemies[0], enemies[0].transform.position + new Vector3(30*b,0,0),transform.rotation) as GameObject;
+			enemyCache[1,b] = Instantiate(enemies[1], enemies[1].transform.position + new Vector3(30*b,0,0),transform.rotation) as GameObject;
+			enemyCache[2,b] = Instantiate(enemies[2], enemies[2].transform.position + new Vector3(30*b,0,0),transform.rotation) as GameObject;
+		}
 
 		www = new WWW ("file://" + SongSelect.path);
 		myAudioClip= www.audioClip;
@@ -88,8 +95,9 @@ public class EnemySpawn : MonoBehaviour {
 
 			if(levelTime - 5 >= (float)spawnTimes[nextNote])//check for time passing
 			{
-				GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
-				clone = Instantiate(enemies[(int)spawnTypes[nextNote]], enemies[(int)spawnTypes[nextNote]].transform.position ,transform.rotation) as GameObject;
+				Spawn();
+				//GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
+				//clone = Instantiate(enemies[(int)spawnTypes[nextNote]], enemies[(int)spawnTypes[nextNote]].transform.position ,transform.rotation) as GameObject;
 				nextNote++;// incriment index for next spawn check
 			}
 			
@@ -173,5 +181,15 @@ public class EnemySpawn : MonoBehaviour {
 		}
 		peaksIndex--;
 		peaks.RemoveAt(0);
+	}
+
+	void Spawn(){
+		for (int a = 0; a<6; a++) {
+			if(enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.velocity == new Vector2(0,0)){
+				enemyCache[(int)spawnTypes[nextNote],a].transform.position = enemies[(int)spawnTypes[nextNote]].transform.position;
+				enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.AddForce(new Vector2(-708.3333f,0));
+				return;
+			}
+		}
 	}
 }
