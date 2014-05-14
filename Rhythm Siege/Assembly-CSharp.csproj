@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MenuWeather.cs" />
      <Compile Include="Assets\Scripts\OptionsDifficulty.cs" />
+     <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\SongAnalyze.cs" />
      <Compile Include="Assets\Scripts\SongSelect.cs" />
   </ItemGroup>

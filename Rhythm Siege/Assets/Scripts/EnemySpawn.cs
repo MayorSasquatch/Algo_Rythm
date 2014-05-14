@@ -51,7 +51,7 @@ public class EnemySpawn : MonoBehaviour {
 	void Update () {
 		levelTime += Time.deltaTime; //incriment timer to current time
 		//start analysis code
-		if (levelTime < this.audio.clip.length)
+		if (levelTime < this.audio.clip.length && Time.timeScale != 0)
 		{
 			spectrum.CopyTo(lastSpectrum, 0);
 			this.audio.GetSpectrumData (spectrum, 0, FFTWindow.Hamming);
