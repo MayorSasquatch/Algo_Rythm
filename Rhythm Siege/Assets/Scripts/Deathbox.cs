@@ -6,13 +6,16 @@ public class Deathbox : MonoBehaviour {
 	Vector2 direction;
 	bool directionChosen;
 	string gesture;
+	public int score, multi;
 	// Use this for initialization
 	void Start () {
-	
+		score = 0;
+		multi = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		GameObject.Find("Score").guiText.text = (score.ToString().PadLeft(8,'0')+" x"+ multi.ToString());
 		/*  // code for touch functionaltiy
 		if (Input.touchCount > 0) {
 			var touch = Input.GetTouch(0);
@@ -65,6 +68,9 @@ public class Deathbox : MonoBehaviour {
 		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture)) {
 			enemy.rigidbody2D.velocity = new Vector2(0,0);
 			enemy.transform.position = enemy.GetComponent<EnemyAI>().startPos;
+			multi++;
+			score += 100*multi;
+			if(multi%10 == 0) GameObject.Find("Knight").GetComponent<KnightHealth>().AdjustHealth(1f);
 				}
 
 		}

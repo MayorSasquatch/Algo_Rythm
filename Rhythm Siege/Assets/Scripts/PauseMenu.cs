@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PauseMenu : MonoBehaviour {
 
-	public Object audio1, audio2;
+
 	float time, deltatime, clock;
 	bool resume; 
 	// Use this for initialization
@@ -18,9 +18,9 @@ public class PauseMenu : MonoBehaviour {
 		if(resume){
 			clock += deltatime;
 			if(clock >= 3){
-				Time.timeScale = 1;
 				GameObject.Find("audioanalyser").audio.Play();
 				GameObject.Find("Floor").audio.Play();
+				Time.timeScale = 1;
 				Destroy(GameObject.Find ("MainMenuButton(Clone)"));
 				Destroy(GameObject.Find ("Countdown(Clone)"));
 				Destroy(GameObject.Find ("ResumeButton(Clone)"));
@@ -38,8 +38,8 @@ public class PauseMenu : MonoBehaviour {
 			Time.timeScale = 0;
 			GameObject.Find("audioanalyser").audio.Pause();
 			GameObject.Find("Floor").audio.Pause();
-			Instantiate(audio1);
-			Instantiate(audio2);
+			Instantiate(Resources.Load("ResumeButton"));
+			Instantiate(Resources.Load("MainMenuButton"));
 		}
 		else if(this.name == "MainMenuButton(Clone)"){
 			SongSelect.path = null;
@@ -49,7 +49,7 @@ public class PauseMenu : MonoBehaviour {
 		else if(this.name == "ResumeButton(Clone)"){
 			resume = true;
 			clock = 0f;
-			Instantiate(audio1);
+			Instantiate(Resources.Load("Countdown"));
 
 		}
 	}
