@@ -13,7 +13,8 @@ public class EnemySpawn : MonoBehaviour {
 	ArrayList spawnTimes = new ArrayList() ; //arraylists for dynamic storing of spawning data such at time to spawn
 	ArrayList spawnTypes = new ArrayList(); // and what type of enemy to spawn
 	int nextNote = 0;// incrimentor for the spawn check
-
+	float[] Wiztimes = new float[]{10f, 20f, 40f, 60f, 90f, 120f};
+	int wizIndex = 0;
 
 	WWW www ;
 	AudioClip myAudioClip;
@@ -38,7 +39,7 @@ public class EnemySpawn : MonoBehaviour {
 			enemyCache[1,b] = Instantiate(enemies[1], enemies[1].transform.position + new Vector3(30*b,0,0),transform.rotation) as GameObject;
 			enemyCache[2,b] = Instantiate(enemies[2], enemies[2].transform.position + new Vector3(30*b,0,0),transform.rotation) as GameObject;
 		}
-
+		if (MainMenu.boss) {Instantiate(Resources.Load("Wizard"));}
 		www = new WWW ("file://" + SongSelect.path);
 		myAudioClip= www.audioClip;
 		while (!myAudioClip.isReadyToPlay)
@@ -95,7 +96,11 @@ public class EnemySpawn : MonoBehaviour {
 
 			if(levelTime - 5 >= (float)spawnTimes[nextNote])//check for time passing
 			{
-				Spawn();
+				if(MainMenu.boss && levelTime - 5 >= Wiztimes[wizIndex]){
+					GameObject.Find ("Wizard(Clone)").GetComponent<EnemyAI>().state  = 2;
+					wizIndex++;
+				}
+				//else {Spawn();}
 				//GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
 				//clone = Instantiate(enemies[(int)spawnTypes[nextNote]], enemies[(int)spawnTypes[nextNote]].transform.position ,transform.rotation) as GameObject;
 				nextNote++;// incriment index for next spawn check

@@ -66,8 +66,16 @@ public class Deathbox : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D enemy){
 
 		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture)) {
-			enemy.rigidbody2D.velocity = new Vector2(0,0);
-			enemy.transform.position = enemy.GetComponent<EnemyAI>().startPos;
+
+			if(enemy.name == "Wizard(Clone)"){
+				enemy.rigidbody2D.velocity = new Vector2(0,enemy.rigidbody2D.velocity.y);
+				enemy.rigidbody2D.AddForce(new Vector2(300,0));
+				enemy.GetComponent<EnemyAI>().state = 3;
+			}
+			else{
+				enemy.rigidbody2D.velocity = new Vector2(0,0);
+				enemy.transform.position = enemy.GetComponent<EnemyAI>().startPos;
+			}
 			multi++;
 			score += 100*multi;
 			if(multi%10 == 0) GameObject.Find("Knight").GetComponent<KnightHealth>().AdjustHealth(1f);

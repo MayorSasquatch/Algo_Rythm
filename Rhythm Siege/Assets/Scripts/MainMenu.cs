@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 	public static int curency;
+	public static bool boss;
 	public int menu;
 	public GameObject[] buttons;
 
@@ -16,6 +17,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	void Start(){
+		boss = true;
 		if (!PlayerPrefs.HasKey ("Currency")) {
 						PlayerPrefs.SetInt ("Currency", 0);		
 				} else {
