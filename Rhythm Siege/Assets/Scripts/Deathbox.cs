@@ -7,6 +7,7 @@ public class Deathbox : MonoBehaviour {
 	bool directionChosen;
 	string gesture;
 	public int score, multi;
+	Collider2D enemy;
 	// Use this for initialization
 	void Start () {
 		score = 0;
@@ -53,7 +54,10 @@ public class Deathbox : MonoBehaviour {
 			directionChosen = false;
 		}
 		if(Input.GetMouseButton(0)){
-			direction = (Vector2)Input.mousePosition - startPos; Debug.Log("held left click.");}
+			direction = (Vector2)Input.mousePosition - startPos; Debug.Log("held left click.");
+			if(direction.x > Screen.width/3){gesture = "right swipe";directionChosen = true;}
+			else if(direction.y > Screen.height/3){gesture = "down swipe";directionChosen = true;}}
+
 		if (Input.GetMouseButtonUp(0)) {
 			directionChosen = true;
 			Debug.Log("lifted left click.");
@@ -62,24 +66,34 @@ public class Deathbox : MonoBehaviour {
 			else if(direction.y > Screen.height/3){gesture = "down swipe";}
 			else {gesture = "none";}
 		}
-	}
-	void OnTriggerStay2D(Collider2D enemy){
 
 		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture)) {
-
+			
 			if(enemy.name == "Wizard(Clone)"){
 				enemy.rigidbody2D.velocity = new Vector2(0,enemy.rigidbody2D.velocity.y);
 				enemy.rigidbody2D.AddForce(new Vector2(300,0));
 				enemy.GetComponent<EnemyAI>().state = 3;
 			}
 			else{
-				enemy.rigidbody2D.velocity = new Vector2(0,0);
+				enemy.rigidbody2D.velocity = new Vector2(0,enemy.rigidbody2D.velocity.y);
 				enemy.transform.position = enemy.GetComponent<EnemyAI>().startPos;
 			}
 			multi++;
 			score += 100*multi;
 			if(multi%10 == 0) GameObject.Find("Knight").GetComponent<KnightHealth>().AdjustHealth(1f);
-				}
+			if(MainMenu.tutorial){
+				GameObject.Find("audioanalyser").audio.Play();
+				GameObject.Find("Floor").audio.Play();
+				Time.timeScale = 1;
+				Destroy(GameObject.Find ("Hand(Clone)"));
+				GameObject.Find ("TutorialText(Clone)").guiText.text = "";
+			}
+			enemy = null;
+		}
+	}
+	void OnTriggerStay2D(Collider2D enemys){
+		Debug.Log ("gauhyahahahahahhuj");
+		enemy = enemys;
 
 		}
 }

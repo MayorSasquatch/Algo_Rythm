@@ -10,6 +10,6 @@ public class NewBehaviourScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		renderer.material.mainTextureOffset = new Vector2(Time.time * speed, 0f);
+		renderer.material.mainTextureOffset += new Vector2(speed/2/2/2/2, 0f);
 	}
 }

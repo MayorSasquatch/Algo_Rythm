@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: 1fdde2006f49a6c40b4d85220e75bb65
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Drake_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 2375
+        width: 568
+        height: 326
+      alignment: 9
+      pivot: {x: .326489955, y: .0306209251}
+    - name: Drake_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 2327
+        width: 667
+        height: 377
+      alignment: 9
+      pivot: {x: .235593319, y: .0459619015}
+    - name: Drake_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1877
+        width: 281
+        height: 324
+      alignment: 9
+      pivot: {x: .784275472, y: .582181931}
+    - name: Drake_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 1863
+        width: 480
+        height: 270
+      alignment: 9
+      pivot: {x: .315089285, y: .0616929792}
+    - name: Drake_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 1852
+        width: 560
+        height: 281
+      alignment: 9
+      pivot: {x: .172443718, y: .0893793628}
+    - name: Drake_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 1554
+        width: 208
+        height: 191
+      alignment: 9
+      pivot: {x: .713358343, y: .887247324}
+    - name: Drake_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 1489
+        width: 661
+        height: 186
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Drake_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 1208
+        width: 300
+        height: 366
+      alignment: 9
+      pivot: {x: .056214191, y: .879925489}
+    - name: Drake_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1011
+        width: 510
+        height: 219
+      alignment: 9
+      pivot: {x: .307545692, y: .123527907}
+    - name: Drake_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 994
+        width: 546
+        height: 242
+      alignment: 9
+      pivot: {x: .111707523, y: .110638075}
+    - name: Drake_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 319
+        width: 129
+        height: 318
+      alignment: 2
+      pivot: {x: .5, y: 1}
+    - name: Drake_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 319
+        width: 115
+        height: 279
+      alignment: 2
+      pivot: {x: .5, y: 1}
+    - name: Drake_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 1261
+        y: 297
+        width: 135
+        height: 365
+      alignment: 9
+      pivot: {x: .307887554, y: .92633158}
+    - name: Drake_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 342
+        width: 157
+        height: 422
+      alignment: 9
+      pivot: {x: .301769465, y: .942496061}
+  spritePackingTag: 
+  userData: 

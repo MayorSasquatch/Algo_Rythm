@@ -21,7 +21,7 @@ public class KnightHealth : MonoBehaviour {
 	void Update () {
 		GameObject.Find ("Health").transform.localScale = new Vector3(1.812499f,3f*curHealth,1f);
 
-		deltatime = Time.realtimeSinceStartup - time;
+		//deltatime = Time.realtimeSinceStartup - time;
 		time = Time.realtimeSinceStartup; 
 		if(curHealth <= 0){
 			clock += deltatime;
@@ -58,7 +58,10 @@ public class KnightHealth : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D hit){
 		//Debug.Log("Hit");
-		if(hit.gameObject.tag == "Enemy") AdjustHealth(-1); // If the player is hit by an enemy, lose health
-		GameObject.Find ("Deathbox").GetComponent<Deathbox> ().multi = 1;
+		if(hit.gameObject.tag == "Enemy"){ 
+			AdjustHealth(-1); // If the player is hit by an enemy, lose health
+			GameObject.Find ("Deathbox").GetComponent<Deathbox> ().multi = 1;
+			hit.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Attack");
+		}
 	}
 }

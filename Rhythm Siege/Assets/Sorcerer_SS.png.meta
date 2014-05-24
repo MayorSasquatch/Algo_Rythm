@@ -1,0 +1,126 @@
+fileFormatVersion: 2
+guid: 5a7d094c441e92a49a308661b0e2ff17
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Sorcerer_SS_0
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 2479
+        width: 384
+        height: 532
+      alignment: 9
+      pivot: {x: .666635275, y: .910360456}
+    - name: Sorcerer_SS_1
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 2663
+        width: 459
+        height: 518
+      alignment: 9
+      pivot: {x: .34419173, y: .0494832508}
+    - name: Sorcerer_SS_2
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 1074
+        width: 273
+        height: 854
+      alignment: 9
+      pivot: {x: .284504533, y: .936290145}
+    - name: Sorcerer_SS_3
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 979
+        width: 329
+        height: 949
+      alignment: 9
+      pivot: {x: .253064573, y: .945751011}
+    - name: Sorcerer_SS_4
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 1039
+        width: 646
+        height: 1317
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Sorcerer_SS_5
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 271
+        width: 282
+        height: 392
+      alignment: 9
+      pivot: {x: .805381835, y: .96906358}
+    - name: Sorcerer_SS_6
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 52
+        width: 193
+        height: 579
+      alignment: 9
+      pivot: {x: .668834627, y: .958265424}
+    - name: Sorcerer_SS_7
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 97
+        width: 225
+        height: 468
+      alignment: 9
+      pivot: {x: .275147557, y: .962437153}
+    - name: Sorcerer_SS_8
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 112
+        width: 387
+        height: 427
+      alignment: 9
+      pivot: {x: .0134006077, y: .875193059}
+  spritePackingTag: 
+  userData: 

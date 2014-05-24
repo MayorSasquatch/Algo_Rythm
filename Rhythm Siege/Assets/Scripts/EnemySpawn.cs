@@ -40,6 +40,17 @@ public class EnemySpawn : MonoBehaviour {
 			enemyCache[2,b] = Instantiate(enemies[2], enemies[2].transform.position + new Vector3(30*b,0,0),transform.rotation) as GameObject;
 		}
 		if (MainMenu.boss) {Instantiate(Resources.Load("Wizard"));}
+		if(MainMenu.tutorial){
+			Instantiate(Resources.Load("TutorialText"));
+			spawnTimes.Add(4f);
+			spawnTypes.Add(0);
+
+			spawnTimes.Add(8f);
+			spawnTypes.Add(1);
+
+			spawnTimes.Add(12f);
+			spawnTypes.Add(2);
+		}
 		www = new WWW ("file://" + SongSelect.path);
 		myAudioClip= www.audioClip;
 		while (!myAudioClip.isReadyToPlay)
@@ -52,7 +63,7 @@ public class EnemySpawn : MonoBehaviour {
 	void Update () {
 		levelTime += Time.deltaTime; //incriment timer to current time
 		//start analysis code
-		if (levelTime < this.audio.clip.length && Time.timeScale != 0)
+		if (levelTime < this.audio.clip.length && Time.timeScale != 0 && !MainMenu.tutorial)
 		{
 			spectrum.CopyTo(lastSpectrum, 0);
 			this.audio.GetSpectrumData (spectrum, 0, FFTWindow.Hamming);
@@ -100,7 +111,7 @@ public class EnemySpawn : MonoBehaviour {
 					GameObject.Find ("Wizard(Clone)").GetComponent<EnemyAI>().state  = 2;
 					wizIndex++;
 				}
-				//else {Spawn();}
+				else {Spawn();}
 				//GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab
 				//clone = Instantiate(enemies[(int)spawnTypes[nextNote]], enemies[(int)spawnTypes[nextNote]].transform.position ,transform.rotation) as GameObject;
 				nextNote++;// incriment index for next spawn check
@@ -173,7 +184,7 @@ public class EnemySpawn : MonoBehaviour {
 			float time = (float)timeIndex * rate;
 			float[] temp = (float[])peaks[peaksIndex];
 			
-			if((temp[0] != 0 || temp[1] != 0 || temp[2] != 0) && (time - tempTime > .5f) && time <= audio.clip.length)
+			if((temp[0] != 0 || temp[1] != 0 || temp[2] != 0) && (time - tempTime > 1f) && time <= audio.clip.length)
 			{
 				spawnTimes.Add(time);
 				//noteWriter.WriteLine((float)peaks[i]);
@@ -190,11 +201,12 @@ public class EnemySpawn : MonoBehaviour {
 
 	void Spawn(){
 		for (int a = 0; a<6; a++) {
-			if(enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.velocity == new Vector2(0,0)){
+			if(enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.velocity.x == 0f){
 				enemyCache[(int)spawnTypes[nextNote],a].transform.position = enemies[(int)spawnTypes[nextNote]].transform.position;
 				enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.AddForce(new Vector2(-708.3333f,0));
 				return;
 			}
 		}
 	}
+
 }

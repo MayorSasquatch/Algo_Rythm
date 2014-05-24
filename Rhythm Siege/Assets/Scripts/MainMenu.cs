@@ -4,20 +4,15 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 	public static int curency;
 	public static bool boss;
+	public static bool tutorial;
 	public int menu;
 	public GameObject[] buttons;
 
-	void OnMouseDown(){
 
-		for(int i = 0; i < buttons.Length; i++){
-			Instantiate(buttons[i], buttons[i].transform.position, Quaternion.identity);
-		}
-
-		Destroy(gameObject);
-	}
 
 	void Start(){
-		boss = true;
+		boss = false;
+		tutorial  = true;
 		if (!PlayerPrefs.HasKey ("Currency")) {
 						PlayerPrefs.SetInt ("Currency", 0);		
 				} else {
