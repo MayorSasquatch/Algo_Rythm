@@ -11,6 +11,10 @@ public class Buttons : MonoBehaviour {
 	public GameObject creditsStuff;
 	public GameObject titleStuff;
 	public GameObject playStuff;
+	public GameObject mainMenuStuff;
+	public GameObject playMenuStuff;
+	public GameObject SelectionScreenStuff;
+
 	// Use this for initialization
 	void Start () {
 
@@ -25,8 +29,11 @@ public class Buttons : MonoBehaviour {
 			//state = true;
 			stateString = "Play";
 			titleStuff.SetActive(false);
+			mainMenuStuff.SetActive(false);
+
 
 			playStuff.SetActive(true);
+			playMenuStuff.SetActive(true);
 		}
 		else if(colliderTag == "OptionsButton")
 		{
@@ -48,6 +55,30 @@ public class Buttons : MonoBehaviour {
 
 
 			creditsStuff.SetActive(true);
+		}
+		else if(colliderTag == "Level1Button")
+		{
+			/*
+			 * change text displayed in selection screen
+			 * */
+			print ("level1");
+			playMenuStuff.SetActive(false);
+			SelectionScreenStuff.SetActive(true);
+		}
+		else if(colliderTag == "Level2Button")
+		{
+			playMenuStuff.SetActive(false);
+			SelectionScreenStuff.SetActive(true);
+		}
+		else if(colliderTag == "Level3Button")
+		{
+			playMenuStuff.SetActive(false);
+			SelectionScreenStuff.SetActive(true);
+		}
+		else if(colliderTag == "CustomSongButton")
+		{
+			playMenuStuff.SetActive(false);
+			SelectionScreenStuff.SetActive(true);
 		}
 
 
