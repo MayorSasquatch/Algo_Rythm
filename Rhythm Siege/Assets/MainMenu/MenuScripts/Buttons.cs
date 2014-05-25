@@ -16,8 +16,17 @@ public class Buttons : MonoBehaviour {
 	public GameObject SelectionScreenStuff;
 
 	// Use this for initialization
-	void Start () {
-
+	void Update () {
+		if (MainMenu.song != null && this.name == "Back_Button") {
+						GameObject.Find ("SongName").guiText.text = MainMenu.songName;
+						if (PlayerPrefs.HasKey (MainMenu.song.name + "capitanamerica")) {
+								GameObject.Find ("HighScoreText").guiText.text = PlayerPrefs.GetInt (MainMenu.song.name + "capitanamerica").ToString();
+								GameObject.Find ("HighComboText").guiText.text = PlayerPrefs.GetInt (MainMenu.song.name + "capitanamerica").ToString();
+						} else {
+								GameObject.Find ("HighScoreText").guiText.text = " ";
+								GameObject.Find ("HighComboText").guiText.text = " ";
+						}
+				}
 	}
 
 	void OnMouseDown() {
@@ -75,10 +84,22 @@ public class Buttons : MonoBehaviour {
 			playMenuStuff.SetActive(false);
 			SelectionScreenStuff.SetActive(true);
 		}
-		else if(colliderTag == "CustomSongButton")
+		else if(this.name == "Back_Button")
 		{
-			playMenuStuff.SetActive(false);
-			SelectionScreenStuff.SetActive(true);
+			playMenuStuff.SetActive(true);
+			SelectionScreenStuff.SetActive(false);
+		}
+		else if(this.name == "Start_Button")
+		{
+			Debug.Log ("working");
+			playMenuStuff.SetActive(true);
+			GameObject temp = (GameObject) playMenuStuff.transform.GetChild(4).gameObject;
+			temp.SetActive(false);
+			temp = (GameObject)playMenuStuff.transform.GetChild(3).gameObject;
+			temp.SetActive(true);
+			SelectionScreenStuff.SetActive(false);
+			DontDestroyOnLoad( GameObject.Find("PlayMenu"));
+			Application.LoadLevel("scene");
 		}
 
 

@@ -5,30 +5,36 @@ using System.IO;
 using System.Collections.Generic;
 
 public class SongSelect : MonoBehaviour {
-
+	public GameObject playMenuStuff;
+	public GameObject SelectionScreenStuff;
 	public GUISkin customSkin;
 	static public string path;
 	FileBrowser songBrowser;
 
 	protected Texture2D	directoryImage,
 	fileImage;
+	bool swtch = false;
 
-	void OnGUI (){
+	void OnMouseDown(){
+		swtch = true;
+	}
+	void OnGUI(){
+
 		GUI.skin = customSkin;
 		GUI.skin.verticalScrollbar.fixedWidth = (Screen.width * .05f);
 		GUI.skin.button.fontSize = (int)(Screen.width/40);
 		GUI.skin.label.fontSize = (int)(Screen.width/40);
 		GUI.skin.customStyles[0].fontSize = (int)(Screen.width/15);
-		if (songBrowser != null) {
+	
+		if (songBrowser != null && swtch) {
 				songBrowser.OnGUI ();
-		} else {
-				OnGUIMain();
+		} else if(swtch){
+				OnGUImain();
 		}
 	}
-	void OnGUIMain()
+	void OnGUImain()
 	{
 
-		if (GUI.Button(new Rect(Screen.width/2 -75,Screen.height/2 -25,150,50),"Custom Song")) {
 			songBrowser = new FileBrowser(
 				new Rect(0, 0, Screen.width, Screen.height),
 				"Choose mp3 File",
@@ -37,18 +43,26 @@ public class SongSelect : MonoBehaviour {
 			songBrowser.SelectionPattern = "*.mp3";
 			songBrowser.DirectoryImage = directoryImage;
 			songBrowser.FileImage = fileImage;
-		}
+		
 
 	}
 
 	protected void FileSelectedCallback(string spath) {
 		songBrowser = null;
 		path = spath;
+		swtch = false;
 	}
 
 	void Update(){
 		if(path != null){
-			Application.LoadLevel("scene");
+			WWW www = new WWW ("file://" + SongSelect.path);
+			MainMenu.songName =  Path.GetFileNameWithoutExtension(SongSelect.path);
+			AudioClip myAudioClip= www.audioClip;
+			while (!myAudioClip.isReadyToPlay)
+				MainMenu.song = myAudioClip;
+			playMenuStuff.SetActive(false);
+			SelectionScreenStuff.SetActive(true);
+			path = null;
 		}
 	}
 }

@@ -5,6 +5,8 @@ public class MainMenu : MonoBehaviour {
 	public static int curency;
 	public static bool boss;
 	public static bool tutorial;
+	public static AudioClip song;
+	public static string songName;
 	public int menu;
 	public GameObject[] buttons;
 
@@ -12,7 +14,7 @@ public class MainMenu : MonoBehaviour {
 
 	void Start(){
 		boss = false;
-		tutorial  = true;
+		tutorial  = false;
 		if (!PlayerPrefs.HasKey ("Currency")) {
 						PlayerPrefs.SetInt ("Currency", 0);		
 				} else {

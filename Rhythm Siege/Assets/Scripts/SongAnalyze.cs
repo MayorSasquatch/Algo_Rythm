@@ -12,11 +12,8 @@ public class SongAnalyze : MonoBehaviour {
 		levelTime = -8f;
 		delaytime = 0;
 		time = Time.realtimeSinceStartup;
-		WWW www = new WWW ("file://" + SongSelect.path);
-		
-		AudioClip myAudioClip= www.audioClip;
-		while (!myAudioClip.isReadyToPlay)
-		gameObject.GetComponent<AudioSource> ().audio.clip = myAudioClip;
+
+		gameObject.GetComponent<AudioSource> ().audio.clip = MainMenu.song;
 		go = true;
 		tut = new bool[10];
 		for(int i = 0; i<tut.Length; i++){tut[i] = false;}

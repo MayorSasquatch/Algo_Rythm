@@ -51,11 +51,8 @@ public class EnemySpawn : MonoBehaviour {
 			spawnTimes.Add(12f);
 			spawnTypes.Add(2);
 		}
-		www = new WWW ("file://" + SongSelect.path);
-		myAudioClip= www.audioClip;
-		while (!myAudioClip.isReadyToPlay)
 
-		gameObject.GetComponent<AudioSource> ().audio.clip = myAudioClip;
+		gameObject.GetComponent<AudioSource> ().audio.clip = MainMenu.song;
 		this.audio.Play ();
 	}
 
@@ -101,10 +98,9 @@ public class EnemySpawn : MonoBehaviour {
 		}
 		// end analysis code
 		//start spawn code
+		if(levelTime >= 5 && GameObject.Find("PlayMenu") != null){ Destroy(GameObject.Find("PlayMenu"));}
 		if(levelTime >= 5 && nextNote < spawnTimes.Count){
-
 			//float temp = (float)spawnTimes[nextNote];//retrieve time to check agaisnt
-
 			if(levelTime - 5 >= (float)spawnTimes[nextNote])//check for time passing
 			{
 				if(MainMenu.boss && levelTime - 5 >= Wiztimes[wizIndex]){
