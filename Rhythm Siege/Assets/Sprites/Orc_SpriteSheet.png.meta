@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: 36e88570287038d42a6e4d41f2542905
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Orc_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1331
+        width: 197
+        height: 269
+      alignment: 9
+      pivot: {x: .517712414, y: .0913920924}
+    - name: Orc_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 1331
+        width: 198
+        height: 269
+      alignment: 9
+      pivot: {x: .508811593, y: .104363762}
+    - name: Orc_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 1331
+        width: 197
+        height: 269
+      alignment: 9
+      pivot: {x: .544281483, y: .0913920924}
+    - name: Orc_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 814
+        width: 116
+        height: 163
+      alignment: 9
+      pivot: {x: .876010478, y: .810404599}
+    - name: Orc_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 671
+        width: 292
+        height: 540
+      alignment: 9
+      pivot: {x: .794084549, y: .158490449}
+    - name: Orc_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 562
+        width: 170
+        height: 479
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Orc_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 867
+        width: 135
+        height: 179
+      alignment: 9
+      pivot: {x: .422458231, y: .792405784}
+    - name: Orc_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 624
+        width: 158
+        height: 123
+      alignment: 9
+      pivot: {x: .709804893, y: .72695154}
+    - name: Orc_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 396
+        width: 76
+        height: 112
+      alignment: 9
+      pivot: {x: .706607223, y: .827129364}
+    - name: Orc_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 431
+        width: 59
+        height: 104
+      alignment: 9
+      pivot: {x: .3225739, y: .768413842}
+    - name: Orc_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 283
+        width: 58
+        height: 91
+      alignment: 2
+      pivot: {x: .5, y: 1}
+    - name: Orc_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 302
+        width: 95
+        height: 50
+      alignment: 4
+      pivot: {x: 0, y: .5}
+    - name: Orc_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 117
+        width: 138
+        height: 94
+      alignment: 9
+      pivot: {x: .790781677, y: .778407335}
+    - name: Orc_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 115
+        width: 138
+        height: 86
+      alignment: 9
+      pivot: {x: .828709245, y: .723158181}
+    - name: Orc_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 639
+        width: 93
+        height: 64
+      alignment: 9
+      pivot: {x: .256118596, y: .772607803}
+  spritePackingTag: 
+  userData: 

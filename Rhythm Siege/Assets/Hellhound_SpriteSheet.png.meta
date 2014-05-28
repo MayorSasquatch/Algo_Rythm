@@ -1,0 +1,225 @@
+fileFormatVersion: 2
+guid: 6401ba87753c9b049a2438598d05e1f0
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Hellhound_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 955
+        width: 328
+        height: 288
+      alignment: 9
+      pivot: {x: .905175745, y: .54538852}
+    - name: Hellhound_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 826
+        width: 747
+        height: 345
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Hellhound_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1719
+        y: 958
+        width: 55
+        height: 46
+      alignment: 9
+      pivot: {x: .112468928, y: .276904553}
+    - name: Hellhound_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1812
+        y: 1002
+        width: 44
+        height: 34
+      alignment: 9
+      pivot: {x: .154993236, y: .326367557}
+    - name: Hellhound_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1607
+        y: 936
+        width: 71
+        height: 55
+      alignment: 9
+      pivot: {x: .0845775306, y: .424467325}
+    - name: Hellhound_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 710
+        width: 285
+        height: 163
+      alignment: 9
+      pivot: {x: .775197864, y: .860880673}
+    - name: Hellhound_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 587
+        width: 89
+        height: 153
+      alignment: 9
+      pivot: {x: .394123197, y: .955069721}
+    - name: Hellhound_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 551
+        width: 72
+        height: 153
+      alignment: 9
+      pivot: {x: .407239288, y: .936519444}
+    - name: Hellhound_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1467
+        y: 494
+        width: 65
+        height: 133
+      alignment: 9
+      pivot: {x: .411406994, y: .948715329}
+    - name: Hellhound_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1827
+        y: 526
+        width: 78
+        height: 133
+      alignment: 9
+      pivot: {x: .44802621, y: .942848146}
+    - name: Hellhound_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 395
+        width: 247
+        height: 65
+      alignment: 9
+      pivot: {x: .818377435, y: .703251779}
+    - name: Hellhound_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 393
+        width: 186
+        height: 73
+      alignment: 9
+      pivot: {x: .055305399, y: .908760786}
+    - name: Hellhound_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 359
+        width: 214
+        height: 59
+      alignment: 9
+      pivot: {x: .835138917, y: .704076707}
+    - name: Hellhound_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 1813
+        y: 357
+        width: 162
+        height: 65
+      alignment: 9
+      pivot: {x: .0647839233, y: .881108701}
+    - name: Hellhound_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 103
+        width: 105
+        height: 141
+      alignment: 9
+      pivot: {x: .893742144, y: .938338041}
+    - name: Hellhound_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 189
+        width: 78
+        height: 104
+      alignment: 9
+      pivot: {x: .855712891, y: .932894766}
+    - name: Hellhound_SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 1380
+        y: 107
+        width: 91
+        height: 123
+      alignment: 9
+      pivot: {x: .868176162, y: .917098105}
+    - name: Hellhound_SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 1871
+        y: 182
+        width: 68
+        height: 92
+      alignment: 9
+      pivot: {x: .754051685, y: .89262557}
+    - name: Hellhound_SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 62
+        width: 101
+        height: 72
+      alignment: 9
+      pivot: {x: .904287815, y: .849000216}
+    - name: Hellhound_SpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 1769
+        y: 71
+        width: 89
+        height: 63
+      alignment: 9
+      pivot: {x: .899979174, y: .84900099}
+  spritePackingTag: 
+  userData: 
