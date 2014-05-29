@@ -58,7 +58,7 @@ public class EnemyAI : MonoBehaviour {
 		}
 		if(this.name == "Ninja(Clone)"){
 			float vx = this.rigidbody2D.velocity.x;
-			float vy = this.rigidbody2D.velocity.y;
+			//float vy = this.rigidbody2D.velocity.y;
 			if(this.transform.position.y > 14){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,-100));}
 			if(this.transform.position.y < 8){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,100));}
 		}
@@ -74,5 +74,6 @@ public class EnemyAI : MonoBehaviour {
 			this.rigidbody2D.velocity = new Vector2(0,this.rigidbody2D.velocity.y);
 			this.transform.position = startPos;
 				}; // Destroys the enemy after it goes beyond the screen to the left
+
 	}
 }

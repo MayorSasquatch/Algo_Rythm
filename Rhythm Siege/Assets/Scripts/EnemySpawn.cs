@@ -35,9 +35,9 @@ public class EnemySpawn : MonoBehaviour {
 		levelTime = 0f; 
 
 		for(int b= 0; b<6;b++){
-			enemyCache[0,b] = Instantiate(enemies[0], enemies[0].transform.position + new Vector3(30*b,0,0),transform.rotation) as GameObject;
-			enemyCache[1,b] = Instantiate(enemies[1], enemies[1].transform.position + new Vector3(30*b,0,0),transform.rotation) as GameObject;
-			enemyCache[2,b] = Instantiate(enemies[2], enemies[2].transform.position + new Vector3(30*b,0,0),transform.rotation) as GameObject;
+			enemyCache[0,b] = Instantiate(enemies[0], enemies[0].transform.position + new Vector3(30*(b+1),0,0),transform.rotation) as GameObject;
+			enemyCache[1,b] = Instantiate(enemies[1], enemies[1].transform.position + new Vector3(30*(b+1),0,0),transform.rotation) as GameObject;
+			enemyCache[2,b] = Instantiate(enemies[2], enemies[2].transform.position + new Vector3(30*(b+1),0,0),transform.rotation) as GameObject;
 		}
 		if (MainMenu.boss) {Instantiate(Resources.Load("Wizard"));}
 		if(MainMenu.tutorial){
@@ -179,7 +179,7 @@ public class EnemySpawn : MonoBehaviour {
 			float rate = 1024f/AudioSettings.outputSampleRate;
 			float time = (float)timeIndex * rate;
 			float[] temp = (float[])peaks[peaksIndex];
-			float diff = 1f/MainMenu.difficulty; Debug.Log (diff);
+			float diff = 1f/MainMenu.difficulty;
 			if((temp[0] != 0 || temp[1] != 0 || temp[2] != 0) && (time - tempTime >= (diff)) && time <= audio.clip.length)
 			{
 				spawnTimes.Add(time);
@@ -200,7 +200,7 @@ public class EnemySpawn : MonoBehaviour {
 			if(enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.velocity.x == 0f){
 				enemyCache[(int)spawnTypes[nextNote],a].transform.position = enemies[(int)spawnTypes[nextNote]].transform.position;
 				enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.AddForce(new Vector2(-(2100/(5-MainMenu.difficulty)),0)); 
-				Debug.Log ("vector good");
+				//Debug.Log ("vector good");
 				return;
 			}
 		}
