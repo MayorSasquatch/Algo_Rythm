@@ -3,14 +3,13 @@ using System.Collections;
 using System.IO;
 
 public class SongAnalyze : MonoBehaviour {
-	float levelTime, delaytime;
+	float levelTime ;
 	float time, deltatime, clock;
 	bool go;
 	bool[] tut; 
 	// Use this for initialization
 	void Start () {
-		levelTime = -8f;
-		delaytime = 0;
+		levelTime = -5f - (5f - MainMenu.difficulty);
 		time = Time.realtimeSinceStartup;
 
 		gameObject.GetComponent<AudioSource> ().audio.clip = MainMenu.song;
@@ -21,8 +20,7 @@ public class SongAnalyze : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		delaytime += Time.deltaTime;
-		if(delaytime >= 8f && go){this.audio.Play(); go = false;}
+		if(levelTime >= 0f && go){this.audio.Play(); go = false;}
 		levelTime += Time.deltaTime;
 			deltatime = Time.realtimeSinceStartup - time;
 			time = Time.realtimeSinceStartup;

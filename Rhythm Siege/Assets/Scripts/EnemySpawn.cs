@@ -179,8 +179,8 @@ public class EnemySpawn : MonoBehaviour {
 			float rate = 1024f/AudioSettings.outputSampleRate;
 			float time = (float)timeIndex * rate;
 			float[] temp = (float[])peaks[peaksIndex];
-			
-			if((temp[0] != 0 || temp[1] != 0 || temp[2] != 0) && (time - tempTime > 1f) && time <= audio.clip.length)
+			float diff = 1f/MainMenu.difficulty; Debug.Log (diff);
+			if((temp[0] != 0 || temp[1] != 0 || temp[2] != 0) && (time - tempTime >= (diff)) && time <= audio.clip.length)
 			{
 				spawnTimes.Add(time);
 				//noteWriter.WriteLine((float)peaks[i]);
@@ -199,7 +199,8 @@ public class EnemySpawn : MonoBehaviour {
 		for (int a = 0; a<6; a++) {
 			if(enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.velocity.x == 0f){
 				enemyCache[(int)spawnTypes[nextNote],a].transform.position = enemies[(int)spawnTypes[nextNote]].transform.position;
-				enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.AddForce(new Vector2(-708.3333f,0));
+				enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.AddForce(new Vector2(-(2100/(5-MainMenu.difficulty)),0)); 
+				Debug.Log ("vector good");
 				return;
 			}
 		}

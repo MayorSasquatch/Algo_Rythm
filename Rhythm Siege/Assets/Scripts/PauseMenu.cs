@@ -23,7 +23,7 @@ public class PauseMenu : MonoBehaviour {
 			clock += deltatime;
 			if(clock >= 3){
 
-				if (Time.timeSinceLevelLoad >= 8f){GameObject.Find("audioanalyser").audio.Play();}
+				if (Time.timeSinceLevelLoad >= 5f + (5f-MainMenu.difficulty)){GameObject.Find("audioanalyser").audio.Play();}
 
 				GameObject.Find("Floor").audio.Play();
 				Time.timeScale = 1;

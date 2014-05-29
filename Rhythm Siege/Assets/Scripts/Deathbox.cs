@@ -55,8 +55,8 @@ public class Deathbox : MonoBehaviour {
 		}
 		if(Input.GetMouseButton(0)){
 			direction = (Vector2)Input.mousePosition - startPos; Debug.Log("held left click.");
-			if(direction.x > Screen.width/3){gesture = "right swipe";directionChosen = true;}
-			else if(direction.y > Screen.height/3){gesture = "down swipe";directionChosen = true;}}
+			if(direction.x > Screen.width/3){gesture = "right swipe";directionChosen = true;startPos = (Vector2)Input.mousePosition;}
+			else if(direction.y > Screen.height/3){gesture = "down swipe";directionChosen = true;startPos = (Vector2)Input.mousePosition;}}
 
 		if (Input.GetMouseButtonUp(0)) {
 			directionChosen = true;
@@ -92,7 +92,7 @@ public class Deathbox : MonoBehaviour {
 		}
 	}
 	void OnTriggerStay2D(Collider2D enemys){
-		Debug.Log ("gauhyahahahahahhuj");
+
 		enemy = enemys;
 
 		}
