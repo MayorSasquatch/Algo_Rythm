@@ -20,8 +20,8 @@ public class Options : MonoBehaviour {
 		}
 	
 		setAxeValues();
-		playerAxeValues[0] = 1;
-		print(playerAxeValues[6]);
+		//playerAxeValues[0] = 1;
+		//print(playerAxeValues[6]);
 
 	}
 
@@ -29,6 +29,7 @@ public class Options : MonoBehaviour {
 		for(int a = 0; a < 10; ++a)
 		{
 			playerAxeValues[a] = PlayerPrefs.GetInt("Axe_Values " + a);
+			playerAxeValues[a] = 1;
 		}
 	}
 

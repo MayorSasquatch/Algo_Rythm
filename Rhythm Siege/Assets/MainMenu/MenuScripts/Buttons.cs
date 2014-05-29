@@ -101,6 +101,11 @@ public class Buttons : MonoBehaviour {
 			DontDestroyOnLoad( GameObject.Find("PlayMenu"));
 			Application.LoadLevel("scene");
 		}
+		else if(colliderTag == "SaveCloseButton")
+		{
+			optionsStuff.SetActive(false);
+			mainMenuStuff.SetActive(true);
+		}
 
 
 

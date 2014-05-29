@@ -14,7 +14,7 @@ public class HammerPics : MonoBehaviour {
 	void Start () {
 
 		if(PlayerPrefs.GetInt("Started") == 0)
-			print ("=0haha");
+			//print ("=0haha");
 		PlayerPrefs.SetInt("Started", 1);
 	
 
@@ -29,8 +29,8 @@ public class HammerPics : MonoBehaviour {
 	void Update () {
 
 		if(Options.getAxeValue(hammerNum) == 0)
-		   sr.sprite = qMark;
-		   else
-		sr.sprite = hammerTypes[hammerNum];
+		   	sr.sprite = qMark;
+		else
+			sr.sprite = hammerTypes[hammerNum];
 	}
 }

@@ -4,26 +4,28 @@ using System.Collections;
 public class ChangeHammers : MonoBehaviour {
 	public TextMesh hammerNumber;
 	public TextMesh hammerPrice;
+
+	public static int changeNum;
 	// Use this for initialization
 	void Start () {
 	
 	}
 	void OnMouseDown(){
-			
-			
-			if(this.gameObject.name == "Left")
+		print("PRESSIN BUTTONZ BITCHEZZZ!");
+			if(this.gameObject.name == "Left_Button")
 			{
 				HammerPics.hammerNum--;
 				if(HammerPics.hammerNum < 0)
 					HammerPics.hammerNum = 0;
-			}else if(this.gameObject.name == "Right")
+			}else if(this.gameObject.name == "Right_Button")
 			{
 				HammerPics.hammerNum++;
 				if(HammerPics.hammerNum > 9)
 					HammerPics.hammerNum = 9;
 			}
 		//hammerNumber.text = "" + HammerPics.hammerNum;
-		print (HammerPics.hammerNum);
+		changeNum = HammerPics.hammerNum;
+		//print (HammerPics.hammerNum);
 
 	}
 	// Update is called once per frame

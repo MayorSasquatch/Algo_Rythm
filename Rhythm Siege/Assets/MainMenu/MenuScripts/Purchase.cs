@@ -11,6 +11,7 @@ public class Purchase : MonoBehaviour {
 	}
 	void OnMouseDown(){
 		print ("BUY");
+		PlayerPrefs.SetInt("HammerType", ChangeHammers.changeNum);
 			/*
 			 * set value of the hammer to 1 for unlock or 0 for lock;
 			 * if(money == price)
