@@ -13,6 +13,7 @@ public class SongAnalyze : MonoBehaviour {
 		time = Time.realtimeSinceStartup;
 
 		gameObject.GetComponent<AudioSource> ().audio.clip = MainMenu.song;
+		this.audio.Play (); this.audio.Pause ();
 		go = true;
 		tut = new bool[10];
 		for(int i = 0; i<tut.Length; i++){tut[i] = false;}
@@ -35,6 +36,8 @@ public class SongAnalyze : MonoBehaviour {
 					menu.transform.position = new Vector3(-10.42073f,-1.591948f,-7.1f);
 				    MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
 				    PlayerPrefs.SetInt("Currency", MainMenu.curency);
+					PlayerPrefs.SetInt(MainMenu.song.name + "capitanamerica",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
+					PlayerPrefs.SetInt(MainMenu.song.name + "capitanamericacombo",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
 				    PlayerPrefs.Save();
 					Destroy(GameObject.Find("audioanalyser"));
 				}

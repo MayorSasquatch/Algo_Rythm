@@ -21,7 +21,7 @@ public class KnightHealth : MonoBehaviour {
 	void Update () {
 		GameObject.Find ("Health").transform.localScale = new Vector3(1.812499f,3f*curHealth,1f);
 
-		//deltatime = Time.realtimeSinceStartup - time;
+		deltatime = Time.realtimeSinceStartup - time;
 		time = Time.realtimeSinceStartup; 
 		if(curHealth <= 0){
 			clock += deltatime;
@@ -35,6 +35,8 @@ public class KnightHealth : MonoBehaviour {
 				Destroy(GameObject.Find("Knight"));
 				MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
 				PlayerPrefs.SetInt("Currency", MainMenu.curency);
+				PlayerPrefs.SetInt(MainMenu.song.name + "capitanamerica",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
+				PlayerPrefs.SetInt(MainMenu.song.name + "capitanamericacombo",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti );
 				PlayerPrefs.Save();
 			}
 			else if(clock > 2){}
@@ -61,7 +63,8 @@ public class KnightHealth : MonoBehaviour {
 		if(hit.gameObject.tag == "Enemy"){ 
 			AdjustHealth(-1); // If the player is hit by an enemy, lose health
 			GameObject.Find ("Deathbox").GetComponent<Deathbox> ().multi = 1;
-			hit.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Attack");
+			hit.transform.GetComponentInChildren<Animator>().SetTrigger("Attack");
 		}
 	}
+
 }

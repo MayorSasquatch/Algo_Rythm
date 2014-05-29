@@ -6,16 +6,19 @@ public class Deathbox : MonoBehaviour {
 	Vector2 direction;
 	bool directionChosen;
 	string gesture;
-	public int score, multi;
+	public int score, multi, bestMulti;
 	Collider2D enemy;
 	// Use this for initialization
 	void Start () {
 		score = 0;
 		multi = 1;
+		bestMulti = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (multi > bestMulti) {
+			bestMulti = multi;}
 		GameObject.Find("Score").guiText.text = (score.ToString().PadLeft(8,'0')+" x"+ multi.ToString());
 		/*  // code for touch functionaltiy
 		if (Input.touchCount > 0) {
@@ -91,9 +94,9 @@ public class Deathbox : MonoBehaviour {
 			enemy = null;
 		}
 	}
+
 	void OnTriggerStay2D(Collider2D enemys){
 
 		enemy = enemys;
-
 		}
 }

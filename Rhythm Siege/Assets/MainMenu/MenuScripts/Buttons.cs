@@ -21,7 +21,7 @@ public class Buttons : MonoBehaviour {
 						GameObject.Find ("SongName").guiText.text = MainMenu.songName;
 						if (PlayerPrefs.HasKey (MainMenu.song.name + "capitanamerica")) {
 								GameObject.Find ("HighScoreText").guiText.text = PlayerPrefs.GetInt (MainMenu.song.name + "capitanamerica").ToString();
-								GameObject.Find ("HighComboText").guiText.text = PlayerPrefs.GetInt (MainMenu.song.name + "capitanamerica").ToString();
+								GameObject.Find ("HighComboText").guiText.text = PlayerPrefs.GetInt (MainMenu.song.name + "capitanamericacombo").ToString();
 						} else {
 								GameObject.Find ("HighScoreText").guiText.text = " ";
 								GameObject.Find ("HighComboText").guiText.text = " ";
@@ -91,7 +91,7 @@ public class Buttons : MonoBehaviour {
 		}
 		else if(this.name == "Start_Button")
 		{
-			Debug.Log ("working");
+			//Debug.Log ("working");
 			playMenuStuff.SetActive(true);
 			GameObject temp = (GameObject) playMenuStuff.transform.GetChild(4).gameObject;
 			temp.SetActive(false);
