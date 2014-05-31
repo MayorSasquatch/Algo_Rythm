@@ -32,6 +32,12 @@ public class EnemySpawn : MonoBehaviour {
 	int lowCount, midCount = 0;
 	// Use this for initialization
 	void Start () {
+		if (GameObject.Find ("PlayMenu") != null) { 
+						GameObject.Find ("PlayMenu").transform.position = new Vector3 (-15.23258f,6.411677f, -27.89924f);
+						GameObject.Find ("PlayMenu").transform.localScale = new Vector3 (1.253784f,1.253784f,1.253784f);
+				}
+		GameObject.Find ("Score").guiText.fontSize = 1;
+		GameObject.Find ("Multi").guiText.fontSize = 1;
 		levelTime = 0f; 
 
 		for(int b= 0; b<6;b++){
@@ -98,7 +104,11 @@ public class EnemySpawn : MonoBehaviour {
 		}
 		// end analysis code
 		//start spawn code
-		if(levelTime >= 5 && GameObject.Find("PlayMenu") != null){ Destroy(GameObject.Find("PlayMenu"));}
+		if(levelTime >= 5 && GameObject.Find("PlayMenu") != null){ 
+			GameObject.Find ("PlayMenu").transform.position = new Vector3 (-150.23258f,6.411677f, -27.89924f); 
+			GameObject.Find("Score").guiText.fontSize = 40;
+			GameObject.Find ("Multi").guiText.fontSize = 50;
+		}
 		if(levelTime >= 5 && nextNote < spawnTimes.Count){
 			//float temp = (float)spawnTimes[nextNote];//retrieve time to check agaisnt
 			if(levelTime - 5 >= (float)spawnTimes[nextNote])//check for time passing

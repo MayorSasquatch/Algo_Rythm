@@ -49,7 +49,7 @@ public class Buttons : MonoBehaviour {
 			print ("OPTIONS");
 			state = true;
 			stateString = "Options";
-			titleStuff.SetActive(false);
+			mainMenuStuff.SetActive(false);
 
 
 			optionsStuff.SetActive(true);
@@ -93,18 +93,17 @@ public class Buttons : MonoBehaviour {
 		{
 			//Debug.Log ("working");
 			playMenuStuff.SetActive(true);
-			GameObject temp = (GameObject) playMenuStuff.transform.GetChild(4).gameObject;
+			GameObject temp = GameObject.Find ("PlayButtons");
 			temp.SetActive(false);
-			temp = (GameObject)playMenuStuff.transform.GetChild(3).gameObject;
-			temp.SetActive(true);
+			mainMenuStuff.SetActive(true);
+
 			SelectionScreenStuff.SetActive(false);
 			DontDestroyOnLoad( GameObject.Find("PlayMenu"));
 			Application.LoadLevel("scene");
 		}
 		else if(colliderTag == "SaveCloseButton")
 		{
-			optionsStuff.SetActive(false);
-			mainMenuStuff.SetActive(true);
+			Application.LoadLevel("RS");
 		}
 
 

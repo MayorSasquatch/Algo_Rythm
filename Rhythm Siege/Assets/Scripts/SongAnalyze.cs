@@ -33,7 +33,7 @@ public class SongAnalyze : MonoBehaviour {
 					GameObject.Find("Floor").audio.Pause();
 					Instantiate(Resources.Load("Backdrop"));
 					GameObject menu = (GameObject)Instantiate(Resources.Load("MainMenuButton"));
-					menu.transform.position = new Vector3(-10.42073f,-1.591948f,-7.1f);
+					Instantiate(Resources.Load("Retry"));
 				    MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
 				    PlayerPrefs.SetInt("Currency", MainMenu.curency);
 					PlayerPrefs.SetInt(MainMenu.song.name + "capitanamerica",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );

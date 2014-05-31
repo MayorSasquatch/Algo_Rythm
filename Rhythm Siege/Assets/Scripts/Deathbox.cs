@@ -19,7 +19,8 @@ public class Deathbox : MonoBehaviour {
 	void Update () {
 		if (multi > bestMulti) {
 			bestMulti = multi;}
-		GameObject.Find("Score").guiText.text = (score.ToString().PadLeft(8,'0')+" x"+ multi.ToString());
+		GameObject.Find("Score").guiText.text = (score.ToString().PadLeft(8,'0'));
+		GameObject.Find("Multi").guiText.text = (" x"+ multi.ToString());
 		/*  // code for touch functionaltiy
 		if (Input.touchCount > 0) {
 			var touch = Input.GetTouch(0);

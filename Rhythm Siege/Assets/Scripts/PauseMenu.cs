@@ -6,11 +6,13 @@ public class PauseMenu : MonoBehaviour {
 
 	float time, deltatime, clock, delaytime;
 	bool resume; 
+	GameObject loading;
 	// Use this for initialization
 	void Start () {
 		time = Time.realtimeSinceStartup;
 		resume = false;
 		delaytime = 0;
+		loading = GameObject.Find ("PlayMenu");
 	}
 
 	void Update(){

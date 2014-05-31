@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour {
 	void Start(){
 		boss = false;
 		tutorial  = false;
-		difficulty = 1f;
+		difficulty = 2f;
 		if (!PlayerPrefs.HasKey ("Currency")) {
 						PlayerPrefs.SetInt ("Currency", 0);		
 				} else {

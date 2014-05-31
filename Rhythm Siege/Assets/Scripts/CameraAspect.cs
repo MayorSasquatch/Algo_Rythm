@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class CameraAspect : MonoBehaviour {
-
+	Vector2 startPos;
+	Vector2 direction;
 	// Use this for initialization
 	void Start () {
 		// set the desired aspect ratio (the values in this example are
@@ -48,6 +49,22 @@ public class CameraAspect : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Application.loadedLevelName == "RS" && GameObject.Find ("OptionsScreen").activeSelf) {
+			Scroll();
+				}
 	}
+	void Scroll(){
+				if (Input.GetMouseButtonDown (0)) {
+						startPos = (Vector2)Input.mousePosition;
+				}
+				if (Input.GetMouseButton (0)) {
+						direction = (Vector2)Input.mousePosition - startPos; 
+						this.rigidbody2D.AddForce (new Vector2 (0, direction.y));
+		
+						if (Input.GetMouseButtonUp (0)) {
+								this.rigidbody2D.velocity = new Vector2 (0, 0);
+
+						}
+				}
+		}
 }

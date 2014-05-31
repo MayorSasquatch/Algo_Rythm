@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour {
 				break;
 			case 2:
 				Vector2 a = (new Vector2(-22,2) - (Vector2)this.transform.position);
-				a = a/.02f/3;
+				a = a/.02f/(5f-MainMenu.difficulty);
 				a.y = 0;
 				this.rigidbody2D.AddForce(a);
 				state = 3;

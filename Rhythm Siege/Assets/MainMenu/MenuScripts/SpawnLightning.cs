@@ -5,18 +5,30 @@ public class SpawnLightning : MonoBehaviour {
 
 	public int maxSpawnTime;
 	public int minSpawnTime;
+	bool isactive;
+	int frequency;
+	float time;
 	void Start () {
-		InvokeRepeating ("ShowLightning", Random.Range(1,5), Random.Range(minSpawnTime,maxSpawnTime));
+		isactive = false;
+		frequency = Random.Range (1, 5);
+		time = 0;
 	}
-	IEnumerator Hide(){
-		yield return new WaitForSeconds(.1f);
-		this.renderer.enabled = false;
-	}
-	void ShowLightning(){
 
-		this.renderer.enabled = true;
-		StartCoroutine(Hide ());
-	}
+	void Update(){
+		time += Time.deltaTime;
+		if (time > frequency && isactive == false) {
+			this.renderer.enabled = true;
+			isactive = true;
+			time = 0;
+		}
+		if (time > .1f && isactive == true) {
+			this.renderer.enabled = false;
+			isactive = false;
+			time = 0;
+				}
+		}
+
 	// Update is called once per frame
-	
+
+
 }

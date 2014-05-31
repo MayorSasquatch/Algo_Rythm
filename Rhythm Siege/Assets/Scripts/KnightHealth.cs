@@ -20,6 +20,26 @@ public class KnightHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		GameObject.Find ("Health").transform.localScale = new Vector3(1.812499f,3f*curHealth,1f);
+		switch ((int)curHealth) {
+		case 6:
+		case 5:
+			GameObject.Find ("Health").renderer.material.color = Color.green;
+			GameObject.Find ("SkullImage").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite> ("Hard_Image");
+			break;
+		case 4:
+		case 3:
+			GameObject.Find ("Health").renderer.material.color = Color.yellow;
+			GameObject.Find ("SkullImage").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite> ("Medium_Image");
+			break;
+		case 2:
+		case 1:
+			GameObject.Find ("Health").renderer.material.color = Color.red;
+			GameObject.Find ("SkullImage").GetComponent<SpriteRenderer>().sprite = Resources.Load <Sprite>("Easy_Image");
+			break;
+		case 0:
+			GameObject.Find ("SkullImage").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Dead_Image");
+			break;
+				}
 
 		deltatime = Time.realtimeSinceStartup - time;
 		time = Time.realtimeSinceStartup; 
@@ -31,7 +51,7 @@ public class KnightHealth : MonoBehaviour {
 				GameObject.Find("Floor").audio.Pause();
 				Instantiate(Resources.Load("Backdrop"));
 				GameObject menu = (GameObject)Instantiate(Resources.Load("MainMenuButton"));
-				menu.transform.position = new Vector3(-10.42073f,-1.591948f,-7.1f);
+				Instantiate(Resources.Load("Retry"));
 				Destroy(GameObject.Find("Knight"));
 				MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
 				PlayerPrefs.SetInt("Currency", MainMenu.curency);
