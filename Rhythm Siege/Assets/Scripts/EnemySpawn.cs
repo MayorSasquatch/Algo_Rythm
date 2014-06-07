@@ -210,6 +210,7 @@ public class EnemySpawn : MonoBehaviour {
 			if(enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.velocity.x == 0f){
 				enemyCache[(int)spawnTypes[nextNote],a].transform.position = enemies[(int)spawnTypes[nextNote]].transform.position;
 				enemyCache[(int)spawnTypes[nextNote],a].rigidbody2D.AddForce(new Vector2(-(2100/(5-MainMenu.difficulty)),0)); 
+				enemyCache[(int)spawnTypes[nextNote],a].GetComponentInChildren<Animator>().speed = 1; 
 				//Debug.Log ("vector good");
 				return;
 			}

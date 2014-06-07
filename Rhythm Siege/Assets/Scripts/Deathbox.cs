@@ -59,28 +59,28 @@ public class Deathbox : MonoBehaviour {
 		}
 		if(Input.GetMouseButton(0)){
 			direction = (Vector2)Input.mousePosition - startPos; Debug.Log("held left click.");
-			if(direction.x > Screen.width/3){gesture = "right swipe";directionChosen = true;startPos = (Vector2)Input.mousePosition;}
+			if(direction.x > Screen.width/4){gesture = "right swipe";directionChosen = true;startPos = (Vector2)Input.mousePosition;}
 			else if(direction.y > Screen.height/3){gesture = "down swipe";directionChosen = true;startPos = (Vector2)Input.mousePosition;}}
 
 		if (Input.GetMouseButtonUp(0)) {
 			directionChosen = true;
 			Debug.Log("lifted left click.");
 			if(Mathf.Abs(direction.x) < Screen.width/20 && Mathf.Abs(direction.y) < Screen.height/20){gesture = "tap";}
-			else if(direction.x > Screen.width/3){gesture = "right swipe";}
+			else if(direction.x > Screen.width/4){gesture = "right swipe";}
 			else if(direction.y > Screen.height/3){gesture = "down swipe";}
 			else {gesture = "none";}
 		}
-
+		if(enemy != null){
 		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture)) {
 			
 			if(enemy.name == "Wizard(Clone)"){
+				GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("mid");
 				enemy.rigidbody2D.velocity = new Vector2(0,enemy.rigidbody2D.velocity.y);
 				enemy.rigidbody2D.AddForce(new Vector2(300,0));
 				enemy.GetComponent<EnemyAI>().state = 3;
 			}
 			else{
-				enemy.rigidbody2D.velocity = new Vector2(0,enemy.rigidbody2D.velocity.y);
-				enemy.transform.position = enemy.GetComponent<EnemyAI>().startPos;
+					kill ();
 			}
 			multi++;
 			score += 100*multi;
@@ -94,10 +94,27 @@ public class Deathbox : MonoBehaviour {
 			}
 			enemy = null;
 		}
+		}
 	}
 
 	void OnTriggerStay2D(Collider2D enemys){
-
 		enemy = enemys;
 		}
+
+	void kill(){
+		switch(enemy.name){
+		case "Groundgrunt(Clone)":
+			GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("low");
+			break;
+		case "Wyvern(Clone)":
+			GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("mid");
+			break;
+		case "Ninja(Clone)":
+			GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("top");
+			break;
+		}
+		enemy.GetComponentInChildren<Animator>().SetTrigger("death");
+		enemy.GetComponent<EnemyAI>().death();
+
+	}
 }

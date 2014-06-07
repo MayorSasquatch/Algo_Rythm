@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour {
 		if (this.name == "Wizard(Clone)") {
 			this.rigidbody2D.AddForce(new Vector2(100,90));
 				}
-		if (this.name == "Ninja(Clone)") {
+		if (this.name == "Ninja(Clone)" || this.name == "Groundgrunt(Clone)") {
 			this.rigidbody2D.AddForce(new Vector2(0,100));
 		}
 
@@ -59,8 +59,14 @@ public class EnemyAI : MonoBehaviour {
 		if(this.name == "Ninja(Clone)"){
 			float vx = this.rigidbody2D.velocity.x;
 			//float vy = this.rigidbody2D.velocity.y;
-			if(this.transform.position.y > 14){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,-100));}
-			if(this.transform.position.y < 8){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,100));}
+			if(this.transform.position.y > 14 && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,-100));}
+			if(this.transform.position.y < 8 && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,100));}
+		}
+		if(this.name == "Groundgrunt(Clone)"){
+			float vx = this.rigidbody2D.velocity.x;
+			//float vy = this.rigidbody2D.velocity.y;
+			if(this.transform.position.y > -6.2f && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,-100));}
+			if(this.transform.position.y < -8.9f && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,100));}
 		}
 
 
@@ -75,5 +81,13 @@ public class EnemyAI : MonoBehaviour {
 			this.transform.position = startPos;
 				}; // Destroys the enemy after it goes beyond the screen to the left
 
+	}
+	public void death(){
+		this.rigidbody2D.velocity = new Vector2(0,-50);
+		Invoke("kill", .5f);
+	}
+	void kill(){
+		this.rigidbody2D.velocity = new Vector2(0,0);
+		this.transform.position = startPos;
 	}
 }
