@@ -16,7 +16,10 @@ public class MainMenu : MonoBehaviour {
 	void Start(){
 		boss = false;
 		tutorial  = false;
-		difficulty = 1f;
+		if (PlayerPrefs.HasKey ("Difficulty")) {
+						difficulty = PlayerPrefs.GetFloat ("Difficulty");
+				} else 
+						difficulty = 2.0f;
 		if (!PlayerPrefs.HasKey ("Currency")) {
 						PlayerPrefs.SetInt ("Currency", 0);		
 				} else {

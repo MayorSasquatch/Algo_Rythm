@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MainMenu\MenuScripts\DifficultySelect.cs">
+    <Files>
+      <File FileName="Assets\MainMenu\MenuScripts\Options.cs" Line="39" Column="1" />
+      <File FileName="Assets\MainMenu\MenuScripts\HammerPics.cs" Line="1" Column="1" />
+      <File FileName="Assets\MainMenu\MenuScripts\DifficultySelect.cs" Line="26" Column="30" />
+      <File FileName="Assets\MainMenu\MenuScripts\TestRay.cs" Line="19" Column="66" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

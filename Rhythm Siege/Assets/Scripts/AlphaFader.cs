@@ -16,12 +16,12 @@ public class AlphaFader : MonoBehaviour {
 			print("UP");
 			if(hp > 9 && this.gameObject.tag == "Green")
 			{
-				renderer.material.color -= new Color(0,0,0,.33f);
+				renderer.material.color -= new Color(1,1,1,.33f);
 				--hp;
 			}
 			else if(hp > 6 && hp < 10 && this.gameObject.tag == "Yellow")
 			{
-				renderer.material.color -= new Color(0,0,0,.33f);
+				renderer.material.color -= new Color(1,1,1,.33f);
 				--hp;
 			}
 			/*

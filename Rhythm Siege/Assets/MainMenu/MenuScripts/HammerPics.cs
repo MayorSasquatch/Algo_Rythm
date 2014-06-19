@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class HammerPics : MonoBehaviour {
@@ -12,15 +12,12 @@ public class HammerPics : MonoBehaviour {
 	SpriteRenderer sr;
 	// Use this for initialization
 	void Start () {
-
+		//hammerNum  = PlayerPrefs.GetInt ("HammerType");
 		if(PlayerPrefs.GetInt("Started") == 0)
 			//print ("=0haha");
 		PlayerPrefs.SetInt("Started", 1);
 	
-
-
-
-		hammerNum = 0;
+		//hammerNum = 0;
 		sr = gameObject.GetComponent<SpriteRenderer>();
 		sr.sprite = hammerTypes[hammerNum];
 	}

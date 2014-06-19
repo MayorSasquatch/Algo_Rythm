@@ -15,6 +15,7 @@ public class Buttons : MonoBehaviour {
 	public GameObject playMenuStuff;
 	public GameObject SelectionScreenStuff;
 
+	public static string menuState;
 	// Use this for initialization
 	void Update () {
 		if (MainMenu.song != null && this.name == "Back_Button") {
@@ -35,6 +36,7 @@ public class Buttons : MonoBehaviour {
 		if(colliderTag == "PlayButton")
 		{
 			print ("PLAY");
+			menuState = "PLAY";
 			//state = true;
 			stateString = "Play";
 			titleStuff.SetActive(false);
@@ -47,6 +49,7 @@ public class Buttons : MonoBehaviour {
 		else if(colliderTag == "OptionsButton")
 		{
 			print ("OPTIONS");
+			menuState = "OPTIONS";
 			state = true;
 			stateString = "Options";
 			mainMenuStuff.SetActive(false);
@@ -58,6 +61,7 @@ public class Buttons : MonoBehaviour {
 		else if(colliderTag == "CreditsButton")
 		{
 			print ("CREDITS");
+			menuState = "CREDITS";
 			state = true;
 			stateString = "Credits";
 			titleStuff.SetActive(false);

@@ -49,7 +49,7 @@ public class CameraAspect : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Application.loadedLevelName == "RS" && GameObject.Find ("OptionsScreen").activeSelf) {
+		if (Application.loadedLevelName == "RS" && Buttons.menuState == "OPTIONS") {
 			Scroll();
 				}
 	}
