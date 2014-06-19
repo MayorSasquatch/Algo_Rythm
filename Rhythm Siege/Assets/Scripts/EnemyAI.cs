@@ -56,13 +56,13 @@ public class EnemyAI : MonoBehaviour {
 
 			
 		}
-		if(this.name == "Ninja(Clone)"){
+		if(this.name == "Ninja(Clone)" && this.rigidbody2D.velocity.x < 1){
 			float vx = this.rigidbody2D.velocity.x;
 			//float vy = this.rigidbody2D.velocity.y;
 			if(this.transform.position.y > 14 && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,-100));}
 			if(this.transform.position.y < 8 && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,100));}
 		}
-		if(this.name == "Groundgrunt(Clone)"){
+		if(this.name == "Groundgrunt(Clone)" && this.rigidbody2D.velocity.x < 1){
 			float vx = this.rigidbody2D.velocity.x;
 			//float vy = this.rigidbody2D.velocity.y;
 			if(this.transform.position.y > -6.2f && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,-100));}
@@ -83,7 +83,7 @@ public class EnemyAI : MonoBehaviour {
 
 	}
 	public void death(){
-		this.rigidbody2D.velocity = new Vector2(0,-50);
+		this.rigidbody2D.velocity = new Vector2(1,-50);
 		Invoke("kill", .5f);
 	}
 	void kill(){

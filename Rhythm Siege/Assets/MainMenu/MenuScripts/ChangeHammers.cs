@@ -15,11 +15,11 @@ public class ChangeHammers : MonoBehaviour {
 	public static int changeNum;
 	// Use this for initialization
 	void Start () {
-
+		changeButton ();
 	
 	}
 	void OnMouseDown(){
-		print (Options.getAxeValue(HammerPics.hammerNum));
+		//print (Options.getAxeValue(HammerPics.hammerNum));
 			if(this.gameObject.name == "Left_Button")
 			{
 				HammerPics.hammerNum--;
@@ -33,24 +33,27 @@ public class ChangeHammers : MonoBehaviour {
 			}
 		//hammerNumber.text = "" + HammerPics.hammerNum;
 		changeNum = HammerPics.hammerNum;
+
+		changeButton ();
 		//print (HammerPics.hammerNum);
 
 	}
-	// Update is called once per frame
-	void Update () {
+
+	public void changeButton () {
+
 		playerGold.text = "" + Purchase.playerGold;
 		hammerNumber.text = "" + (HammerPics.hammerNum+1);
-
-		if(Options.getAxeValue(HammerPics.hammerNum) == 0)
+		
+		if(Options.getAxeValue(HammerPics.hammerNum) == 0) //purchase button
 		{
 			selectHold.SetActive(false);
 			purchaseHold.SetActive(true);
 			equipHold.SetActive(false);
 			priceHoldStuff.SetActive(true);
 			hammerPrice.text = "" + Purchase.price[HammerPics.hammerNum];
-
+			
 		}
-		else
+		else //equip button
 		{
 			purchaseHold.SetActive(false);
 			equipHold.SetActive(true);
@@ -59,8 +62,14 @@ public class ChangeHammers : MonoBehaviour {
 				selectHold.SetActive(true);
 			else 
 				selectHold.SetActive(false);
-			hammerPrice.text = "" + (HammerPics.hammerNum + 1);
-
+			print(Purchase.playerHammerNum);
+			//hammerPrice.text = "" + (HammerPics.hammerNum + 1);
+			
 		}
+	}
+	// Update is called once per frame
+	void Update () {
+
+		changeButton ();
 	}
 }

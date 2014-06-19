@@ -8,6 +8,7 @@ public class Purchase : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerGold = PlayerPrefs.GetInt("Currency"); //change to player gold value
+		playerHammerNum = PlayerPrefs.GetInt ("HammerType");
 		price = new int[10];
 		/*
 		for(int a = 0; a < 10; ++a)
@@ -27,23 +28,24 @@ public class Purchase : MonoBehaviour {
 
 	}
 	void OnMouseDown(){
-		print ("BUY");
 		if(this.name == "Purchase_Button")
 		{
 			print("Purchase");
 			if(playerGold >= price[ChangeHammers.changeNum])
 			{
 				print ("Bought");
-				PlayerPrefs.SetInt("HammerType", ChangeHammers.changeNum);
+				//PlayerPrefs.SetInt("HammerType", ChangeHammers.changeNum);
+				PlayerPrefs.SetInt("Axe_Values " + HammerPics.hammerNum, 1);
 				Options.playerAxeValues[ChangeHammers.changeNum] = 1;
 				playerGold -= price[ChangeHammers.changeNum];
+				PlayerPrefs.SetInt("Currency", playerGold);
 			}
 		}
 		if(this.name == "Equip_Button")
 		{
 		   print("Equip");
 		   PlayerPrefs.SetInt("HammerType", ChangeHammers.changeNum);
-			playerHammerNum = ChangeHammers.changeNum;
+		   playerHammerNum = ChangeHammers.changeNum;
 		}
 			/*
 			 * set value of the hammer to 1 for unlock or 0 for lock;

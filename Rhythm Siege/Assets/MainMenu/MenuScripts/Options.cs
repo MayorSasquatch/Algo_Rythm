@@ -8,7 +8,7 @@ public class Options : MonoBehaviour {
 	void Start () {
 		Buttons.menuState = "OPTIONS";
 		playerAxeValues = new int[10];
-
+		PlayerPrefs.SetInt ("Axe_Values " + 0, 1);
 		if(PlayerPrefs.GetInt("Started") == 0)
 		{
 			PlayerPrefs.SetInt("Started", 0);
@@ -30,7 +30,7 @@ public class Options : MonoBehaviour {
 		for(int a = 0; a < 10; ++a)
 		{
 			playerAxeValues[a] = PlayerPrefs.GetInt("Axe_Values " + a);
-			playerAxeValues[0] = 1;
+			//playerAxeValues[0] = 1;
 		}
 	}
 
