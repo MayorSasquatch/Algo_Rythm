@@ -40,6 +40,7 @@ public class EnemyAI : MonoBehaviour {
 				if(this.transform.position.y < 0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,100));}
 				break;
 			case 2:
+				this.GetComponentInChildren<Animator>().SetTrigger("tired");
 				Vector2 a = (new Vector2(-22,2) - (Vector2)this.transform.position);
 				a = a/.02f/(5f-MainMenu.difficulty);
 				a.y = 0;
@@ -49,7 +50,8 @@ public class EnemyAI : MonoBehaviour {
 			case 3:
 				if(this.transform.position.y > 8){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,-100));}
 				if(this.transform.position.y < 0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,100));}
-				if(this.transform.position.x <-22f){this.rigidbody2D.velocity = new Vector2(0,vy); this.rigidbody2D.AddForce(new Vector2(300,0));}
+				if(this.transform.position.x <-22f){this.rigidbody2D.velocity = new Vector2(0,vy); this.rigidbody2D.AddForce(new Vector2(300,0));
+					this.GetComponentInChildren<Animator>().SetTrigger("rest");}
 				if(this.transform.position.x > 13f){this.rigidbody2D.velocity = new Vector2(0,vy); state = 1;}
 				break;
 			}

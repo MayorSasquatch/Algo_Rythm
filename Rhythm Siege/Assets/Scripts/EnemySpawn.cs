@@ -44,17 +44,23 @@ public class EnemySpawn : MonoBehaviour {
 			enemyCache[0,b] = Instantiate(enemies[0], enemies[0].transform.position + new Vector3(30*(b+1),0,0),transform.rotation) as GameObject;
 			enemyCache[1,b] = Instantiate(enemies[1], enemies[1].transform.position + new Vector3(30*(b+1),0,0),transform.rotation) as GameObject;
 			enemyCache[2,b] = Instantiate(enemies[2], enemies[2].transform.position + new Vector3(30*(b+1),0,0),transform.rotation) as GameObject;
+			if(MainMenu.boss) {
+				enemyCache[0,b].GetComponentInChildren<Animator>().SetBool("spell",true);
+				enemyCache[1,b].GetComponentInChildren<Animator>().SetBool("spell",true);
+				enemyCache[2,b].GetComponentInChildren<Animator>().SetBool("spell",true);
+			}
 		}
 		if (MainMenu.boss) {Instantiate(Resources.Load("Wizard"));}
 		if(MainMenu.tutorial){
+			MainMenu.difficulty = 1f;
 			Instantiate(Resources.Load("TutorialText"));
-			spawnTimes.Add(4f);
+			spawnTimes.Add(5f);
 			spawnTypes.Add(0);
 
-			spawnTimes.Add(8f);
+			spawnTimes.Add(10f);
 			spawnTypes.Add(1);
 
-			spawnTimes.Add(12f);
+			spawnTimes.Add(15f);
 			spawnTypes.Add(2);
 		}
 

@@ -48,58 +48,48 @@ public class SongAnalyze : MonoBehaviour {
 		}
 
 	void Tutorial(){
-		if(!tut[0]){GameObject.Find ("TutorialText(Clone)").guiText.text = "Enemies will run at you from the right"; tut[0]=true;}
-		if(levelTime >= 4f && !tut[1]){
-			Time.timeScale = 0;
-			GameObject.Find("audioanalyser").audio.Pause();
-			GameObject.Find("Floor").audio.Pause();
+		if(levelTime >= -4 && !tut[0]){GameObject.Find ("TutorialText(Clone)").guiText.text = "Enemies will run at you from the right"; tut[0]=true;}
+		if(levelTime >= 1f && !tut[1]){
 			GameObject hand = (GameObject)Instantiate(Resources.Load("Hand"));
+			hand.GetComponentInChildren<Animator>().SetTrigger("tap");
 			GameObject.Find ("TutorialText(Clone)").guiText.text = "Tap to defeat Hellhounds when they reach the white light";
 			tut[1]=true;
 		}
-		if(levelTime >= 8f && !tut[2]){
-			Time.timeScale = 0;
-			GameObject.Find("audioanalyser").audio.Pause();
-			GameObject.Find("Floor").audio.Pause();
-			GameObject hand = (GameObject)Instantiate(Resources.Load("Hand"));
+		if(levelTime >= 6f && !tut[2]){
+			GameObject.Find("Hand(Clone)").GetComponentInChildren<Animator>().SetTrigger("rswipe");
 			GameObject.Find ("TutorialText(Clone)").guiText.text = "Swipe right to defeat Orcs";
 			tut[2]=true;
 		}
-		if(levelTime >= 12f && !tut[3]){
-			Time.timeScale = 0;
-			GameObject.Find("audioanalyser").audio.Pause();
-			GameObject.Find("Floor").audio.Pause();
-			GameObject hand = (GameObject)Instantiate(Resources.Load("Hand"));
+		if(levelTime >= 11f && !tut[3]){
+			GameObject.Find("Hand(Clone)").GetComponentInChildren<Animator>().SetTrigger("uswipe");
 			GameObject.Find ("TutorialText(Clone)").guiText.text = "Swipe up to defeat Drakes";
 			tut[3]=true;
 		}
 		if(levelTime >= 16f && !tut[4]){
-
-
 			GameObject.Find ("TutorialText(Clone)").guiText.text = "When you miss an enemy they'll hit you";
+			GameObject.Find("Hand(Clone)").GetComponentInChildren<Animator>().SetTrigger("point");
+			GameObject.Find("Hand(Clone)").transform.position = new Vector3(-28.18708f,7.576175f,-23.84875f);
 			tut[4]=true;
 		}
-		if(levelTime >= 20f && !tut[5]){
-
-
+		if(levelTime >= 21f && !tut[5]){
 			GameObject.Find ("TutorialText(Clone)").guiText.text = "Five hits and your're done for";
+			GameObject.Find("Hand(Clone)").transform.eulerAngles = new Vector3(0,0, -90.17902f);
 			tut[5]=true;
 		}
-		if(levelTime >= 24f && !tut[6]){
-			
-		
+		if(levelTime >= 26f && !tut[6]){
+
 			GameObject.Find ("TutorialText(Clone)").guiText.text = "Defeat 10 enemies in a row to get health back";
 			tut[6]=true;
 		}
-		if(levelTime >= 28f && !tut[7]){
+		if(levelTime >= 31f && !tut[7]){
 			
-		
+			GameObject.Find("Hand(Clone)").transform.eulerAngles = new Vector3(0,0,187.8691f);
 			GameObject.Find ("TutorialText(Clone)").guiText.text = "Defeat enemies in a row to get a combo";
 			tut[7]=true;
 		}
-		if(levelTime >= 32f && !tut[8]){
-			
-			
+		if(levelTime >= 36f && !tut[8]){
+			GameObject.Find("Hand(Clone)").transform.position = new Vector3(-20.90291f,11.5765f,-23.84875f);
+			GameObject.Find("Hand(Clone)").transform.eulerAngles = new Vector3(0,0,213.533f);
 			GameObject.Find ("TutorialText(Clone)").guiText.text = "The higher your combo the more points you get!";
 			tut[8]=true;
 		}

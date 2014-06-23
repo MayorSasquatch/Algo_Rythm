@@ -44,6 +44,7 @@ public class KnightHealth : MonoBehaviour {
 		deltatime = Time.realtimeSinceStartup - time;
 		time = Time.realtimeSinceStartup; 
 		if(curHealth <= 0){
+
 			clock += deltatime;
 			if(clock >= 3){
 				Time.timeScale = 0;
@@ -75,7 +76,11 @@ public class KnightHealth : MonoBehaviour {
 		}
 
 		if(curHealth > maxHealth) curHealth = maxHealth;
-		if(curHealth < 0) curHealth = 0;
+		if (curHealth < 0) {
+			curHealth = 0;
+			this.GetComponent<Animator>().SetBool("dead",true);
+			this.rigidbody2D.AddForce(new Vector2(-20,0));
+				}
 	}
 
 	void OnTriggerEnter2D(Collider2D hit){

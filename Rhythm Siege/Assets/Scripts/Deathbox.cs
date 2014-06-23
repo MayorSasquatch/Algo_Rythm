@@ -7,7 +7,6 @@ public class Deathbox : MonoBehaviour {
 	bool directionChosen;
 	string gesture;
 	public int score, multi, bestMulti;
-	Collider2D enemy;
 	// Use this for initialization
 	void Start () {
 		score = 0;
@@ -70,51 +69,41 @@ public class Deathbox : MonoBehaviour {
 			else if(direction.y > Screen.height/3){gesture = "down swipe";}
 			else {gesture = "none";}
 		}
-		if(enemy != null){
-		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture)) {
+
+	}
+
+	void OnTriggerStay2D(Collider2D enemy){
+		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture) && enemy.rigidbody2D.velocity.x < 0) {
 			
 			if(enemy.name == "Wizard(Clone)"){
+				score += 1000*multi;
 				GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("mid");
 				enemy.rigidbody2D.velocity = new Vector2(0,enemy.rigidbody2D.velocity.y);
 				enemy.rigidbody2D.AddForce(new Vector2(300,0));
 				enemy.GetComponent<EnemyAI>().state = 3;
+				enemy.GetComponentInChildren<Animator>().SetTrigger("rest");
 			}
 			else{
-					kill ();
+				switch(enemy.name){
+				case "Groundgrunt(Clone)":
+					GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("low");
+					break;
+				case "Wyvern(Clone)":
+					GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("mid");
+					break;
+				case "Ninja(Clone)":
+					GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("top");
+					break;
+				}
+				enemy.GetComponentInChildren<Animator>().SetTrigger("death");
+				enemy.GetComponent<EnemyAI>().death();
 			}
 			multi++;
 			score += 100*multi;
 			if(multi%10 == 0) GameObject.Find("Knight").GetComponent<KnightHealth>().AdjustHealth(1f);
-			if(MainMenu.tutorial){
-				GameObject.Find("audioanalyser").audio.Play();
-				GameObject.Find("Floor").audio.Play();
-				Time.timeScale = 1;
-				Destroy(GameObject.Find ("Hand(Clone)"));
-				GameObject.Find ("TutorialText(Clone)").guiText.text = "";
-			}
+			
 			enemy = null;
 		}
 		}
-	}
 
-	void OnTriggerStay2D(Collider2D enemys){
-		enemy = enemys;
-		}
-
-	void kill(){
-		switch(enemy.name){
-		case "Groundgrunt(Clone)":
-			GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("low");
-			break;
-		case "Wyvern(Clone)":
-			GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("mid");
-			break;
-		case "Ninja(Clone)":
-			GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("top");
-			break;
-		}
-		enemy.GetComponentInChildren<Animator>().SetTrigger("death");
-		enemy.GetComponent<EnemyAI>().death();
-
-	}
 }
