@@ -50,18 +50,18 @@ public class PauseMenu : MonoBehaviour {
 			Instantiate(Resources.Load("MainMenuButton"));
 			Instantiate(Resources.Load("Retry"));
 		}
-		else if(this.name == "MainMenuButton(Clone)"){
+		else if(this.name == "MainMenuButton(Clone)" || this.name == "MainMenuButton" ){
 			SongSelect.path = null;
 			Time.timeScale = 1;
 			Application.LoadLevel("RS");
 		}
-		else if(this.name == "ResumeButton(Clone)"){
+		else if(this.name == "ResumeButton(Clone)" || this.name == "ResumeButton"){
 			resume = true;
 			clock = 0f;
 			Instantiate(Resources.Load("Countdown"));
 
 		}
-		else if(this.name == "Retry(Clone)"){
+		else if(this.name == "Retry(Clone)" || this.name == "Retry"){
 			Time.timeScale = 1;
 			Application.LoadLevel("scene");
 		}

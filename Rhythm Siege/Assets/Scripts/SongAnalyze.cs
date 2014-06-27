@@ -31,14 +31,24 @@ public class SongAnalyze : MonoBehaviour {
 					Time.timeScale = 0;
 					GameObject.Find("audioanalyser").audio.Pause();
 					GameObject.Find("Floor").audio.Pause();
-					Instantiate(Resources.Load("Backdrop"));
-					GameObject menu = (GameObject)Instantiate(Resources.Load("MainMenuButton"));
-					Instantiate(Resources.Load("Retry"));
-				    MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
-				    PlayerPrefs.SetInt("Currency", MainMenu.curency);
-					PlayerPrefs.SetInt(MainMenu.song.name + "capitanamerica",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
-					PlayerPrefs.SetInt(MainMenu.song.name + "capitanamericacombo",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
-				    PlayerPrefs.Save();
+					Instantiate(Resources.Load("SplashScreen"));
+					Destroy(GameObject.Find("Knight"));
+					GameObject.Find ("Scoretext").GetComponent<TextMesh>().text = "Score: "+ GameObject.Find ("Deathbox").GetComponent<Deathbox>().score;
+					GameObject.Find ("multitext").GetComponent<TextMesh>().text = "Multiplier: "+ GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti;
+					MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
+					PlayerPrefs.SetInt("Currency", MainMenu.curency);
+					if(PlayerPrefs.HasKey(MainMenu.song.name + "capitanamerica")){
+					if(PlayerPrefs.GetInt(MainMenu.song.name + "capitanamerica") < GameObject.Find ("Deathbox").GetComponent<Deathbox>().score){
+						PlayerPrefs.SetInt(MainMenu.song.name + "capitanamerica",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
+					}
+					GameObject.Find ("ScoreHightext").GetComponent<TextMesh>().text = "High Score: "+ PlayerPrefs.GetInt(MainMenu.song.name + "capitanamerica");
+					
+					if(PlayerPrefs.GetInt(MainMenu.song.name + "capitanamericacombo") < GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti){
+						PlayerPrefs.SetInt(MainMenu.song.name + "capitanamericacombo",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
+					}
+					GameObject.Find ("multihightext").GetComponent<TextMesh>().text = "Max Multi: "+ PlayerPrefs.GetInt(MainMenu.song.name + "capitanamericacombo");
+					}
+					PlayerPrefs.Save();
 					Destroy(GameObject.Find("audioanalyser"));
 				}
 				else if(clock > 2){}

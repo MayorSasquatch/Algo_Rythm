@@ -14,7 +14,7 @@ public class KnightHealth : MonoBehaviour {
 	void Start () {
 		hitTime = 0;
 		time = Time.realtimeSinceStartup;
-
+		clock = 0f;
 	}
 
 	// Update is called once per frame
@@ -44,20 +44,33 @@ public class KnightHealth : MonoBehaviour {
 		deltatime = Time.realtimeSinceStartup - time;
 		time = Time.realtimeSinceStartup; 
 		if(curHealth <= 0){
-
+			if(clock == 0f){			
+				this.GetComponent<Animator>().SetTrigger("dead");
+				this.transform.parent.rigidbody2D.AddForce(new Vector2(-2100,0));
+			}
+			Debug.Log (clock);
 			clock += deltatime;
 			if(clock >= 3){
 				Time.timeScale = 0;
 				GameObject.Find("audioanalyser").audio.Pause();
 				GameObject.Find("Floor").audio.Pause();
-				Instantiate(Resources.Load("Backdrop"));
-				GameObject menu = (GameObject)Instantiate(Resources.Load("MainMenuButton"));
-				Instantiate(Resources.Load("Retry"));
+				Instantiate(Resources.Load("SplashScreen"));
 				Destroy(GameObject.Find("Knight"));
+				GameObject.Find ("Scoretext").GetComponent<TextMesh>().text = "Score: "+ GameObject.Find ("Deathbox").GetComponent<Deathbox>().score;
+				GameObject.Find ("multitext").GetComponent<TextMesh>().text = "Multiplier: "+ GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti;
 				MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
 				PlayerPrefs.SetInt("Currency", MainMenu.curency);
-				PlayerPrefs.SetInt(MainMenu.song.name + "capitanamerica",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
-				PlayerPrefs.SetInt(MainMenu.song.name + "capitanamericacombo",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti );
+				if(PlayerPrefs.HasKey(MainMenu.song.name + "capitanamerica")){
+					if(PlayerPrefs.GetInt(MainMenu.song.name + "capitanamerica") < GameObject.Find ("Deathbox").GetComponent<Deathbox>().score){
+						PlayerPrefs.SetInt(MainMenu.song.name + "capitanamerica",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
+					}
+					GameObject.Find ("ScoreHightext").GetComponent<TextMesh>().text = "High Score: "+ PlayerPrefs.GetInt(MainMenu.song.name + "capitanamerica");
+
+					if(PlayerPrefs.GetInt(MainMenu.song.name + "capitanamericacombo") < GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti){
+						PlayerPrefs.SetInt(MainMenu.song.name + "capitanamericacombo",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
+					}
+					GameObject.Find ("multihightext").GetComponent<TextMesh>().text = "Max Multi: "+ PlayerPrefs.GetInt(MainMenu.song.name + "capitanamericacombo");
+				}
 				PlayerPrefs.Save();
 			}
 			else if(clock > 2){}
