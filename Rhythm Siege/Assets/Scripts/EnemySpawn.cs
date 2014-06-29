@@ -110,7 +110,7 @@ public class EnemySpawn : MonoBehaviour {
 		}
 		// end analysis code
 		//start spawn code
-		if(levelTime >= 5 && GameObject.Find("PlayMenu") != null){ 
+		if(levelTime >= 5 &&levelTime < 7 && GameObject.Find("PlayMenu") != null){ 
 			GameObject.Find ("PlayMenu").transform.position = new Vector3 (-150.23258f,6.411677f, -27.89924f); 
 			GameObject.Find("Score").guiText.fontSize = 40;
 			GameObject.Find ("Multi").guiText.fontSize = 50;

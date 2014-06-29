@@ -24,9 +24,9 @@ public class Buttons : MonoBehaviour {
 	void Update () {
 		if (MainMenu.song != null && this.name == "Back_Button") {
 						GameObject.Find ("SongName").guiText.text = MainMenu.songName;
-						if (PlayerPrefs.HasKey (MainMenu.song.name + "capitanamerica")) {
-								GameObject.Find ("HighScoreText").guiText.text = PlayerPrefs.GetInt (MainMenu.song.name + "capitanamerica").ToString();
-								GameObject.Find ("HighComboText").guiText.text = PlayerPrefs.GetInt (MainMenu.song.name + "capitanamericacombo").ToString();
+			if (PlayerPrefs.HasKey (MainMenu.songName + "capitanamerica"+MainMenu.difficulty)) {
+				GameObject.Find ("HighScoreText").guiText.text = PlayerPrefs.GetInt (MainMenu.songName + "capitanamerica"+MainMenu.difficulty.ToString()).ToString();
+				GameObject.Find ("HighComboText").guiText.text = PlayerPrefs.GetInt (MainMenu.songName + "capitanamericacombo"+MainMenu.difficulty.ToString()).ToString();
 						} else {
 								GameObject.Find ("HighScoreText").guiText.text = " ";
 								GameObject.Find ("HighComboText").guiText.text = " ";

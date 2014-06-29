@@ -7,7 +7,6 @@ public class KnightHealth : MonoBehaviour {
 	public float curHealth;
 	public float maxHealth;
 	public float hitCooldown;
-
 	private float hitTime;
 
 	// Use this for initialization
@@ -15,6 +14,7 @@ public class KnightHealth : MonoBehaviour {
 		hitTime = 0;
 		time = Time.realtimeSinceStartup;
 		clock = 0f;
+
 	}
 
 	// Update is called once per frame
@@ -51,25 +51,36 @@ public class KnightHealth : MonoBehaviour {
 			Debug.Log (clock);
 			clock += deltatime;
 			if(clock >= 3){
-				Time.timeScale = 0;
-				GameObject.Find("audioanalyser").audio.Pause();
-				GameObject.Find("Floor").audio.Pause();
+				GameObject.Find("BG_BG").GetComponent<NewBehaviourScript>().speedchange(0f);
+				GameObject.Find("BG_FG").GetComponent<NewBehaviourScript>().speedchange(0f);
+				string scorekey =(MainMenu.songName + "capitanamerica" + MainMenu.difficulty.ToString());
+				string scorekeycombo = (MainMenu.songName + "capitanamericacombo"+MainMenu.difficulty.ToString());
+				GameObject.Find("Multi").SetActive(false);
+				GameObject.Find("Score").SetActive(false);
 				Instantiate(Resources.Load("SplashScreen"));
 				Destroy(GameObject.Find("Knight"));
-				GameObject.Find ("Scoretext").GetComponent<TextMesh>().text = "Score: "+ GameObject.Find ("Deathbox").GetComponent<Deathbox>().score;
-				GameObject.Find ("multitext").GetComponent<TextMesh>().text = "Multiplier: "+ GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti;
+				Destroy(GameObject.Find ("Successs_Window"));
+				GameObject.Find ("Scoretext").GetComponent<TextMesh>().text =  GameObject.Find ("Deathbox").GetComponent<Deathbox>().score.ToString();
+				GameObject.Find ("multitext").GetComponent<TextMesh>().text =  GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti.ToString();
 				MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
+				GameObject.Find ("Goldtext").GetComponent<TextMesh>().text = (GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/2000).ToString();
 				PlayerPrefs.SetInt("Currency", MainMenu.curency);
-				if(PlayerPrefs.HasKey(MainMenu.song.name + "capitanamerica")){
-					if(PlayerPrefs.GetInt(MainMenu.song.name + "capitanamerica") < GameObject.Find ("Deathbox").GetComponent<Deathbox>().score){
-						PlayerPrefs.SetInt(MainMenu.song.name + "capitanamerica",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
+				if(PlayerPrefs.HasKey(scorekey)){
+					if(PlayerPrefs.GetInt(scorekey) < GameObject.Find ("Deathbox").GetComponent<Deathbox>().score){
+						PlayerPrefs.SetInt(scorekey,(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
 					}
-					GameObject.Find ("ScoreHightext").GetComponent<TextMesh>().text = "High Score: "+ PlayerPrefs.GetInt(MainMenu.song.name + "capitanamerica");
+					GameObject.Find ("ScoreHightext").GetComponent<TextMesh>().text =  PlayerPrefs.GetInt(scorekey).ToString();
 
-					if(PlayerPrefs.GetInt(MainMenu.song.name + "capitanamericacombo") < GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti){
-						PlayerPrefs.SetInt(MainMenu.song.name + "capitanamericacombo",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
+					if(PlayerPrefs.GetInt(scorekeycombo) < GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti){
+						PlayerPrefs.SetInt(scorekeycombo,(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
 					}
-					GameObject.Find ("multihightext").GetComponent<TextMesh>().text = "Max Multi: "+ PlayerPrefs.GetInt(MainMenu.song.name + "capitanamericacombo");
+					GameObject.Find ("multihightext").GetComponent<TextMesh>().text =  PlayerPrefs.GetInt(scorekeycombo).ToString();
+				}
+				else{
+					PlayerPrefs.SetInt(scorekey,(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
+					GameObject.Find ("ScoreHightext").GetComponent<TextMesh>().text =  PlayerPrefs.GetInt(scorekey).ToString();
+					PlayerPrefs.SetInt(scorekeycombo,(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
+					GameObject.Find ("multihightext").GetComponent<TextMesh>().text =  PlayerPrefs.GetInt(scorekeycombo).ToString();
 				}
 				PlayerPrefs.Save();
 			}
@@ -78,23 +89,23 @@ public class KnightHealth : MonoBehaviour {
 		}
 	}
 
-	public void AdjustHealth(float adj){
-
-		if(adj > 0) curHealth += adj;
-		else {
-			if(Time.time - hitTime > hitCooldown){
-				curHealth += adj;
-				hitTime = Time.time;
-			}
+public void AdjustHealth(float adj){
+	
+	if(adj > 0) curHealth += adj;
+	else {
+		if(Time.time - hitTime > hitCooldown){
+			curHealth += adj;
+			hitTime = Time.time;
 		}
-
-		if(curHealth > maxHealth) curHealth = maxHealth;
-		if (curHealth < 0) {
-			curHealth = 0;
-			this.GetComponent<Animator>().SetBool("dead",true);
-			this.rigidbody2D.AddForce(new Vector2(-20,0));
-				}
 	}
+	
+	if(curHealth > maxHealth) curHealth = maxHealth;
+	if (curHealth < 0) {
+		curHealth = 0;
+		this.GetComponent<Animator>().SetBool("dead",true);
+			//GameObject.Find("KnightWrap").rigidbody2D.AddForce(new Vector3(-1000,-200,0) );
+	}
+}
 
 	void OnTriggerEnter2D(Collider2D hit){
 		//Debug.Log("Hit");

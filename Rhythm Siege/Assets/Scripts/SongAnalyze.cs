@@ -21,34 +21,44 @@ public class SongAnalyze : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(levelTime >= 0f && go){this.audio.Play(); go = false;}
+		if(levelTime >= 0f && go){this.audio.Play(); go = false; Destroy(GameObject.Find("MainMenuSong"));}
 		levelTime += Time.deltaTime;
 			deltatime = Time.realtimeSinceStartup - time;
 			time = Time.realtimeSinceStartup;
-			if(levelTime >= this.audio.clip.length){
+			if(levelTime >= this.audio.clip.length && GameObject.Find("Knight") != null){
 				clock += deltatime;
 				if(clock >= 3){
-					Time.timeScale = 0;
-					GameObject.Find("audioanalyser").audio.Pause();
-					GameObject.Find("Floor").audio.Pause();
-					Instantiate(Resources.Load("SplashScreen"));
-					Destroy(GameObject.Find("Knight"));
-					GameObject.Find ("Scoretext").GetComponent<TextMesh>().text = "Score: "+ GameObject.Find ("Deathbox").GetComponent<Deathbox>().score;
-					GameObject.Find ("multitext").GetComponent<TextMesh>().text = "Multiplier: "+ GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti;
-					MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
-					PlayerPrefs.SetInt("Currency", MainMenu.curency);
-					if(PlayerPrefs.HasKey(MainMenu.song.name + "capitanamerica")){
-					if(PlayerPrefs.GetInt(MainMenu.song.name + "capitanamerica") < GameObject.Find ("Deathbox").GetComponent<Deathbox>().score){
-						PlayerPrefs.SetInt(MainMenu.song.name + "capitanamerica",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
+				string scorekey = (MainMenu.songName + "capitanamerica" + MainMenu.difficulty.ToString());
+				Debug.Log(scorekey);
+				string scorekeycombo = (MainMenu.songName + "capitanamericacombo"+MainMenu.difficulty.ToString());
+				GameObject.Find("Multi").SetActive(false);
+				GameObject.Find("Score").SetActive(false);
+				Instantiate(Resources.Load("SplashScreen"));
+				Destroy(GameObject.Find("Knight"));
+				Destroy(GameObject.Find ("Fail_Window"));
+				GameObject.Find ("Scoretext").GetComponent<TextMesh>().text =  GameObject.Find ("Deathbox").GetComponent<Deathbox>().score.ToString();
+				GameObject.Find ("multitext").GetComponent<TextMesh>().text =  GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti.ToString();
+				MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/2000;
+				GameObject.Find ("Goldtext").GetComponent<TextMesh>().text = (GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/2000).ToString();
+				PlayerPrefs.SetInt("Currency", MainMenu.curency);
+				if(PlayerPrefs.HasKey(scorekey)){
+					if(PlayerPrefs.GetInt(scorekey) < GameObject.Find ("Deathbox").GetComponent<Deathbox>().score){
+						PlayerPrefs.SetInt(scorekey,(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
 					}
-					GameObject.Find ("ScoreHightext").GetComponent<TextMesh>().text = "High Score: "+ PlayerPrefs.GetInt(MainMenu.song.name + "capitanamerica");
+					GameObject.Find ("ScoreHightext").GetComponent<TextMesh>().text =  PlayerPrefs.GetInt(scorekey).ToString();
 					
-					if(PlayerPrefs.GetInt(MainMenu.song.name + "capitanamericacombo") < GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti){
-						PlayerPrefs.SetInt(MainMenu.song.name + "capitanamericacombo",(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
+					if(PlayerPrefs.GetInt(scorekeycombo) < GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti){
+						PlayerPrefs.SetInt(scorekeycombo,(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
 					}
-					GameObject.Find ("multihightext").GetComponent<TextMesh>().text = "Max Multi: "+ PlayerPrefs.GetInt(MainMenu.song.name + "capitanamericacombo");
-					}
-					PlayerPrefs.Save();
+					GameObject.Find ("multihightext").GetComponent<TextMesh>().text =  PlayerPrefs.GetInt(scorekeycombo).ToString();
+				}
+				else{
+					PlayerPrefs.SetInt(scorekey,(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score );
+					GameObject.Find ("ScoreHightext").GetComponent<TextMesh>().text =  PlayerPrefs.GetInt(scorekey).ToString();
+					PlayerPrefs.SetInt(scorekeycombo,(int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti);
+					GameObject.Find ("multihightext").GetComponent<TextMesh>().text =  PlayerPrefs.GetInt(scorekeycombo).ToString();
+				}
+				PlayerPrefs.Save();
 					Destroy(GameObject.Find("audioanalyser"));
 				}
 				else if(clock > 2){}

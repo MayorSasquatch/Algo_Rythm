@@ -92,4 +92,5 @@ public class EnemyAI : MonoBehaviour {
 		this.rigidbody2D.velocity = new Vector2(0,0);
 		this.transform.position = startPos;
 	}
+
 }

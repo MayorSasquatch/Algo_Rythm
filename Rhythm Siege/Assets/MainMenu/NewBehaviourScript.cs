@@ -12,4 +12,5 @@ public class NewBehaviourScript : MonoBehaviour {
 	void Update () {
 		renderer.material.mainTextureOffset += new Vector2(speed*Time.deltaTime, 0f);
 	}
+	public void speedchange(float s){speed = s;}
 }
