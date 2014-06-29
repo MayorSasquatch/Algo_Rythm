@@ -6,6 +6,8 @@ public class DifficultySelect : MonoBehaviour {
 	public  GameObject easySkull, mediumSkull, hardSkull;
 	public static float difficulty;
 	public static float diffNum;
+
+	public AudioSource swoosh;
 	// Use this for initialization
 	void Start () {
 		difficulty = MainMenu.difficulty - 1;
@@ -55,18 +57,21 @@ public class DifficultySelect : MonoBehaviour {
 		PlayerPrefs.SetFloat("Difficulty", diffNum);
 		if(difficulty == 0)
 		{
+			swoosh.Play();
 			easySkull.SetActive(true);
 			mediumSkull.SetActive(false);
 			hardSkull.SetActive(false);
 		}
 		else if(difficulty == 1)
 		{
+			swoosh.Play();
 			easySkull.SetActive(false);
 			mediumSkull.SetActive(true);
 			hardSkull.SetActive(false);
 		}
 		else if(difficulty == 2)
 		{
+			swoosh.Play();
 			easySkull.SetActive(false);
 			mediumSkull.SetActive(false);
 			hardSkull.SetActive(true);

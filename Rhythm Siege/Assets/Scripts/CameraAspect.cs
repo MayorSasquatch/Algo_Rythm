@@ -51,7 +51,7 @@ public class CameraAspect : MonoBehaviour {
 	void Update () {
 		if (Application.loadedLevelName == "RS" && Buttons.menuState == "OPTIONS") {
 			Scroll();
-				}
+		}
 	}
 	void Scroll(){
 				if (Input.GetMouseButtonDown (0)) {

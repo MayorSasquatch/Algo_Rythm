@@ -13,24 +13,36 @@ public class ChangeHammers : MonoBehaviour {
 
 
 	public static int changeNum;
+	public AudioSource swoosh;
+
 	// Use this for initialization
 	void Start () {
 		changeButton ();
-	
+
 	}
 	void OnMouseDown(){
 		//print (Options.getAxeValue(HammerPics.hammerNum));
 			if(this.gameObject.name == "Left_Button")
 			{
 				HammerPics.hammerNum--;
+				if(HammerPics.hammerNum > -1)
+					swoosh.Play();
 				if(HammerPics.hammerNum < 0)
 					HammerPics.hammerNum = 0;
+
+				
 			}else if(this.gameObject.name == "Right_Button")
 			{
 				HammerPics.hammerNum++;
+				
+				if(HammerPics.hammerNum < 10)
+					swoosh.Play();
 				if(HammerPics.hammerNum > 9)
 					HammerPics.hammerNum = 9;
+				if(HammerPics.hammerNum != 9)
+				swoosh.Play();
 			}
+
 		//hammerNumber.text = "" + HammerPics.hammerNum;
 		changeNum = HammerPics.hammerNum;
 
@@ -62,7 +74,7 @@ public class ChangeHammers : MonoBehaviour {
 				selectHold.SetActive(true);
 			else 
 				selectHold.SetActive(false);
-			print(Purchase.playerHammerNum);
+//			print(Purchase.playerHammerNum);
 			//hammerPrice.text = "" + (HammerPics.hammerNum + 1);
 			
 		}

@@ -15,7 +15,11 @@ public class Buttons : MonoBehaviour {
 	public GameObject playMenuStuff;
 	public GameObject SelectionScreenStuff;
 
+	public GameObject camPos;
+
 	public static string menuState;
+
+	public AudioSource buttonSound;
 	// Use this for initialization
 	void Update () {
 		if (MainMenu.song != null && this.name == "Back_Button") {
@@ -45,6 +49,8 @@ public class Buttons : MonoBehaviour {
 
 			playStuff.SetActive(true);
 			playMenuStuff.SetActive(true);
+
+			buttonSound.Play();
 		}
 		else if(colliderTag == "OptionsButton")
 		{
@@ -56,7 +62,7 @@ public class Buttons : MonoBehaviour {
 
 
 			optionsStuff.SetActive(true);
-
+			buttonSound.Play();
 		}
 		else if(colliderTag == "CreditsButton")
 		{
@@ -68,6 +74,7 @@ public class Buttons : MonoBehaviour {
 
 
 			creditsStuff.SetActive(true);
+			buttonSound.Play();
 		}
 		else if(colliderTag == "Level1Button")
 		{
@@ -108,12 +115,20 @@ public class Buttons : MonoBehaviour {
 		else if(colliderTag == "SaveCloseButton")
 		{
 			Application.LoadLevel("RS");
+			menuState = "MainMenu";
+			buttonSound.Play ();
+			//optionsStuff.SetActive(false);
+			//mainMenuStuff.SetActive(true);
+			//print (camPos.transform.position.x);
+			//Camera.current.transform.Translate(new Vector3(camPos.transform.position.x, camPos.transform.position.y, camPos.transform.position.z));
+
 		}
 
 
 
 
 	}
+
 	// Update is called once per frame
 
 }

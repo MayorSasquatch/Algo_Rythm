@@ -5,6 +5,9 @@ public class Purchase : MonoBehaviour {
 	public static int[] price;
 	public static int playerGold;
 	public static int playerHammerNum;
+	public AudioSource chaChing;
+	public AudioSource chang;
+
 	// Use this for initialization
 	void Start () {
 		playerGold = PlayerPrefs.GetInt("Currency"); //change to player gold value
@@ -39,13 +42,18 @@ public class Purchase : MonoBehaviour {
 				Options.playerAxeValues[ChangeHammers.changeNum] = 1;
 				playerGold -= price[ChangeHammers.changeNum];
 				PlayerPrefs.SetInt("Currency", playerGold);
+				chaChing.Play ();
 			}
+
 		}
 		if(this.name == "Equip_Button")
 		{
 		   print("Equip");
 		   PlayerPrefs.SetInt("HammerType", ChangeHammers.changeNum);
 		   playerHammerNum = ChangeHammers.changeNum;
+
+		   chang.Play ();
+		   
 		}
 			/*
 			 * set value of the hammer to 1 for unlock or 0 for lock;
