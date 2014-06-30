@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour {
 	public static AudioClip song;
 	public static string songName;
 	public static float difficulty;
+	public static string rootfolder;
 	public int menu;
 	public GameObject[] buttons;
 
@@ -25,5 +26,11 @@ public class MainMenu : MonoBehaviour {
 				} else {
 			curency = PlayerPrefs.GetInt("Currency");
 				}
+
+		if (!PlayerPrefs.HasKey ("rootfolder")) {
+			PlayerPrefs.SetString ("rootfolder", "");		
+		} else {
+			rootfolder = PlayerPrefs.GetString("rootfolder");
+		}
 	}
 }

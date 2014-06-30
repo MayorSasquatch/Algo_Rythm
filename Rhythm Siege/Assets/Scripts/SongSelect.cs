@@ -190,12 +190,16 @@ public class FileBrowser {
 		m_screenRect = screenRect;
 		m_browserType = FileBrowserType.File;
 		m_callback = callback;
-		SetNewDirectory(Directory.GetCurrentDirectory());
+		if (MainMenu.rootfolder != "") {
+			SetNewDirectory(MainMenu.rootfolder);
+				}else SetNewDirectory(Directory.GetCurrentDirectory());
 		SwitchDirectoryNow();
 	}
 
 	protected void SetNewDirectory(string directory) {
 		m_newDirectory = directory;
+		MainMenu.rootfolder = directory;
+		PlayerPrefs.SetString ("rootfolder", directory);
 	}
 	
 	protected void SwitchDirectoryNow() {
