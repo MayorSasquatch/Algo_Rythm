@@ -13,7 +13,7 @@ public class EnemySpawn : MonoBehaviour {
 	ArrayList spawnTimes = new ArrayList() ; //arraylists for dynamic storing of spawning data such at time to spawn
 	ArrayList spawnTypes = new ArrayList(); // and what type of enemy to spawn
 	int nextNote = 0;// incrimentor for the spawn check
-	float[] Wiztimes = new float[]{10f, 20f, 40f, 60f, 90f, 120f};
+	float[] Wiztimes = new float[]{20f, 40f, 60f, 80f, 100f, 140f};
 	int wizIndex = 0;
 
 	WWW www ;
@@ -51,6 +51,7 @@ public class EnemySpawn : MonoBehaviour {
 			}
 		}
 		if (MainMenu.boss) {Instantiate(Resources.Load("Wizard"));}
+		Debug.Log (MainMenu.boss);
 		if(MainMenu.tutorial){
 			MainMenu.difficulty = 1f;
 			Instantiate(Resources.Load("TutorialText"));

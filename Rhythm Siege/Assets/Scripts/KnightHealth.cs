@@ -60,6 +60,8 @@ public class KnightHealth : MonoBehaviour {
 				Instantiate(Resources.Load("SplashScreen"));
 				Destroy(GameObject.Find("Knight"));
 				Destroy(GameObject.Find ("Successs_Window"));
+				Destroy(GameObject.Find ("Deathbox"));
+				Destroy(GameObject.Find ("PauseButton"));
 				GameObject.Find ("Scoretext").GetComponent<TextMesh>().text =  GameObject.Find ("Deathbox").GetComponent<Deathbox>().score.ToString();
 				GameObject.Find ("multitext").GetComponent<TextMesh>().text =  GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti.ToString();
 				MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;

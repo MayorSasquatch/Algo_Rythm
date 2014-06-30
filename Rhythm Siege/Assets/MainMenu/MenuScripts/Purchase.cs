@@ -18,20 +18,20 @@ public class Purchase : MonoBehaviour {
 			price[a] = a * 100;
 	*/
 		price[0] = 0;
-		price[1] = 200;
-		price[2] = 400;
-		price[3] = 600;
-		price[4] = 800;
-		price[5] = 1200;
-		price[6] = 1600;
-		price[7] = 2000;
-		price[8] = 2500;
-		price[9] = 3000;
+		price[1] = 2000;
+		price[2] = 4000;
+		price[3] = 6000;
+		price[4] = 8000;
+		price[5] = 12000;
+		price[6] = 16000;
+		price[7] = 20000;
+		price[8] = 25000;
+		price[9] = 30000;
 
 
 	}
 	void OnMouseDown(){
-		if(this.name == "Purchase_Button")
+		if(this.name == "Purchase_Button" && ChangeHammers.changeNum != 8)
 		{
 			print("Purchase");
 			if(playerGold >= price[ChangeHammers.changeNum])

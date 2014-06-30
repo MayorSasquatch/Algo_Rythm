@@ -21,6 +21,7 @@ public class Buttons : MonoBehaviour {
 
 	public AudioSource buttonSound;
 	// Use this for initialization
+
 	void Update () {
 		if (MainMenu.song != null && this.name == "Back_Button") {
 						GameObject.Find ("SongName").guiText.text = MainMenu.songName;
@@ -39,6 +40,8 @@ public class Buttons : MonoBehaviour {
 
 		if(colliderTag == "PlayButton")
 		{
+			MainMenu.boss = false;
+			MainMenu.tutorial = false;
 			print ("PLAY");
 			menuState = "PLAY";
 			//state = true;
@@ -81,17 +84,36 @@ public class Buttons : MonoBehaviour {
 			/*
 			 * change text displayed in selection screen
 			 * */
+			MainMenu.songName = "Big Rock";
+			MainMenu.song = (AudioClip)Resources.Load("Big Rock");
+
+			while (!MainMenu.song.isReadyToPlay)
+			
 			print ("level1");
-			playMenuStuff.SetActive(false);
-			SelectionScreenStuff.SetActive(true);
+
+			titleStuff.SetActive(true);
+			//GameObject.Find("GUI Text").guiText.text = "";
+
 		}
 		else if(colliderTag == "Level2Button")
 		{
+			MainMenu.songName = "Summon the Rawk";
+			MainMenu.song = (AudioClip)Resources.Load("Summon the Rawk");
+			
+			//while (!MainMenu.song.isReadyToPlay)
+
+			
 			playMenuStuff.SetActive(false);
 			SelectionScreenStuff.SetActive(true);
 		}
 		else if(colliderTag == "Level3Button")
 		{
+			MainMenu.boss = true;
+			MainMenu.songName = "Zap Beat";
+			MainMenu.song = (AudioClip)Resources.Load("Zap Beat");
+			
+			//while (!MainMenu.song.isReadyToPlay)
+
 			playMenuStuff.SetActive(false);
 			SelectionScreenStuff.SetActive(true);
 		}
@@ -127,6 +149,11 @@ public class Buttons : MonoBehaviour {
 
 
 
+	}
+	public void next(){
+		SelectionScreenStuff.SetActive(true);
+		titleStuff.SetActive (false);
+		playMenuStuff.SetActive(false);
 	}
 
 	// Update is called once per frame

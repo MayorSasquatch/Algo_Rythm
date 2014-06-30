@@ -89,7 +89,10 @@ public class EnemyAI : MonoBehaviour {
 		Invoke("kill", .5f);
 	}
 	void kill(){
-		this.rigidbody2D.velocity = new Vector2(0,0);
+		if (this.name != "Wyvern(Clone)") {
+						this.rigidbody2D.velocity = new Vector2 (0, this.rigidbody2D.velocity.y);
+				}
+		else this.rigidbody2D.velocity = new Vector2 (0,0);
 		this.transform.position = startPos;
 	}
 

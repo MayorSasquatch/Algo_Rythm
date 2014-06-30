@@ -78,6 +78,8 @@ public class ChangeHammers : MonoBehaviour {
 			//hammerPrice.text = "" + (HammerPics.hammerNum + 1);
 			
 		}
+		if (changeNum == 8) {priceHoldStuff.SetActive(false);
+				}
 	}
 	// Update is called once per frame
 	void Update () {

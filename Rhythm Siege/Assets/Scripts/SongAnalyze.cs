@@ -3,7 +3,7 @@ using System.Collections;
 using System.IO;
 
 public class SongAnalyze : MonoBehaviour {
-	float levelTime ;
+	public float levelTime ;
 	float time, deltatime, clock;
 	bool go;
 	bool[] tut; 
@@ -34,6 +34,14 @@ public class SongAnalyze : MonoBehaviour {
 				GameObject.Find("Multi").SetActive(false);
 				GameObject.Find("Score").SetActive(false);
 				Instantiate(Resources.Load("SplashScreen"));
+				Destroy(GameObject.Find ("Deathbox"));
+				Destroy(GameObject.Find ("PauseButton"));
+				if(MainMenu.boss){GameObject.Find("SplashScreen(Clone)").transform.position += new Vector3(0,-300,0);
+					Instantiate(Resources.Load("CutsceneWrap"));
+					GameObject.Find ("Wizard(Clone)").GetComponentInChildren<Animator>().SetTrigger("tired");
+					PlayerPrefs.SetInt("Axe_Values 8", 1);
+					PlayerPrefs.Save();
+					}
 				Destroy(GameObject.Find("Knight"));
 				Destroy(GameObject.Find ("Fail_Window"));
 				GameObject.Find ("Scoretext").GetComponent<TextMesh>().text =  GameObject.Find ("Deathbox").GetComponent<Deathbox>().score.ToString();
@@ -112,6 +120,10 @@ public class SongAnalyze : MonoBehaviour {
 			GameObject.Find("Hand(Clone)").transform.eulerAngles = new Vector3(0,0,213.533f);
 			GameObject.Find ("TutorialText(Clone)").guiText.text = "The higher your combo the more points you get!";
 			tut[8]=true;
+		}
+		if(levelTime >= 40f && !tut[9]){
+			levelTime += 100000000000000;
+			tut[9]=true;
 		}
 	}
 }
