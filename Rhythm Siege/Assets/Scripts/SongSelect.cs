@@ -9,6 +9,8 @@ public class SongSelect : MonoBehaviour {
 	public GameObject SelectionScreenStuff;
 	public GUISkin customSkin;
 	static public string path;
+
+	public AudioSource buttonClang;
 	FileBrowser songBrowser;
 
 	protected Texture2D	directoryImage,
@@ -16,6 +18,7 @@ public class SongSelect : MonoBehaviour {
 	bool swtch = false;
 
 	void OnMouseDown(){
+		buttonClang.Play();
 		swtch = true;
 	}
 	void OnGUI(){

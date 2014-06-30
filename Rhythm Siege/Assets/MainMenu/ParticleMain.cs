@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ParticleMain : MonoBehaviour {
 	public Texture[] spriteTypes;
+	public Texture notOwned;
 	public ParticleSystem pSys;
 	
 	int hammNum;
@@ -19,8 +20,10 @@ public class ParticleMain : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		hammNum = ChangeHammers.changeNum;
-		mat.mainTexture = spriteTypes[hammNum];
-		
+		hammNum = HammerPics.hammerNum;
+		if(Options.getAxeValue(HammerPics.hammerNum) == 0)
+			mat.mainTexture = notOwned;
+		else 
+			mat.mainTexture = spriteTypes[hammNum];
 	}
 }

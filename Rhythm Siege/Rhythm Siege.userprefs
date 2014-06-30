@@ -1,16 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MainMenu\MenuScripts\ChangeHammers.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PauseMenu.cs">
     <Files>
-      <File FileName="Assets\MainMenu\MenuScripts\ChangeHammers.cs" Line="81" Column="21" />
-      <File FileName="Assets\MainMenu\MenuScripts\Purchase.cs" Line="1" Column="1" />
+      <File FileName="Assets\MainMenu\ParticleMain.cs" Line="30" Column="1" />
+      <File FileName="Assets\MainMenu\MenuScripts\BackButton.cs" Line="1" Column="1" />
       <File FileName="Assets\MainMenu\MenuScripts\Buttons.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\KnightHealth.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SongAnalyze.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SongSelect.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemyAI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\cutscene.cs" Line="32" Column="1" />
-      <File FileName="Assets\Scripts\EnemySpawn.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="66" Column="23" />
+      <File FileName="Assets\MainMenu\MenuScripts\Back.cs" Line="1" Column="1" />
+      <File FileName="Assets\MainMenu\Sounds\MusicScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemySpawn.cs" Line="116" Column="30" />
+      <File FileName="Assets\MainMenu\Fader\FadeToBlack.cs" Line="1" Column="1" />
+      <File FileName="Assets\Prefabs\Resources\Fade2.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

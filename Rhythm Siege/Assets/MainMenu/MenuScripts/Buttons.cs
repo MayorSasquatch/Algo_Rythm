@@ -90,7 +90,7 @@ public class Buttons : MonoBehaviour {
 			while (!MainMenu.song.isReadyToPlay)
 			
 			print ("level1");
-
+			buttonSound.Play ();
 			titleStuff.SetActive(true);
 			//GameObject.Find("GUI Text").guiText.text = "";
 
@@ -102,7 +102,7 @@ public class Buttons : MonoBehaviour {
 			
 			//while (!MainMenu.song.isReadyToPlay)
 
-			
+			buttonSound.Play ();
 			playMenuStuff.SetActive(false);
 			SelectionScreenStuff.SetActive(true);
 		}
@@ -113,7 +113,7 @@ public class Buttons : MonoBehaviour {
 			MainMenu.song = (AudioClip)Resources.Load("Zap Beat");
 			
 			//while (!MainMenu.song.isReadyToPlay)
-
+			buttonSound.Play ();
 			playMenuStuff.SetActive(false);
 			SelectionScreenStuff.SetActive(true);
 		}
@@ -132,6 +132,7 @@ public class Buttons : MonoBehaviour {
 
 			SelectionScreenStuff.SetActive(false);
 			DontDestroyOnLoad( GameObject.Find("PlayMenu"));
+			MusicScript.player = false;
 			Application.LoadLevel("scene");
 		}
 		else if(colliderTag == "SaveCloseButton")

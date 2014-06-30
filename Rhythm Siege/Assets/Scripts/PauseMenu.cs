@@ -3,12 +3,17 @@ using System.Collections;
 
 public class PauseMenu : MonoBehaviour {
 
+	public AudioSource buttonClang;
+	GameObject t_Pause;
+	PauseMenu pm;
 
 	float time, deltatime, clock, delaytime;
 	bool resume; 
 	GameObject loading;
 	// Use this for initialization
 	void Start () {
+		t_Pause = GameObject.Find("PauseButton");
+		pm = t_Pause.GetComponent<PauseMenu>();
 		time = Time.realtimeSinceStartup;
 		resume = false;
 		delaytime = 0;
@@ -45,6 +50,8 @@ public class PauseMenu : MonoBehaviour {
 	// Update is called once per frame
 	void OnMouseDown(){
 		if (this.name == "PauseButton") {
+			MusicScript.player = true;
+			pm.buttonClang.Play ();
 			Time.timeScale = 0;
 			GameObject.Find("audioanalyser").audio.Pause();
 			GameObject.Find("Floor").audio.Pause();
@@ -54,11 +61,14 @@ public class PauseMenu : MonoBehaviour {
 			GameObject.Find("PauseButton").transform.position += new Vector3(0,0, 200);
 		}
 		else if(this.name == "MainMenuButton(Clone)" || this.name == "MainMenuButton" ){
+			pm.buttonClang.Play ();
 			SongSelect.path = null;
 			Time.timeScale = 1;
 			Application.LoadLevel("RS");
 		}
 		else if(this.name == "ResumeButton(Clone)" || this.name == "ResumeButton"){
+			MusicScript.player = false;
+			pm.buttonClang.Play ();
 			resume = true;
 			clock = 0f;
 			Instantiate(Resources.Load("Countdown"));
@@ -68,6 +78,7 @@ public class PauseMenu : MonoBehaviour {
 
 		}
 		else if(this.name == "Retry(Clone)" || this.name == "Retry"){
+			pm.buttonClang.Play ();
 			Time.timeScale = 1;
 			Application.LoadLevel("scene");
 		}
