@@ -36,8 +36,8 @@ public class EnemySpawn : MonoBehaviour {
 						GameObject.Find ("PlayMenu").transform.position = new Vector3 (-15.23258f,6.411677f, -27.89924f);
 						GameObject.Find ("PlayMenu").transform.localScale = new Vector3 (1.253784f,1.253784f,1.253784f);
 				}
-		GameObject.Find ("Score").guiText.fontSize = 1;
-		GameObject.Find ("Multi").guiText.fontSize = 1;
+		//GameObject.Find ("Score").GetComponent<TextMesh>()= 0;
+		//GameObject.Find ("Multi").GetComponent<TextMesh>() = 0;
 		levelTime = 0f; 
 
 		for(int b= 0; b<6;b++){
@@ -113,8 +113,8 @@ public class EnemySpawn : MonoBehaviour {
 		//start spawn code
 		if(levelTime >= 5 &&levelTime < 7 && GameObject.Find("PlayMenu") != null){ 
 			GameObject.Find ("PlayMenu").transform.position = new Vector3 (-150.23258f,6.411677f, -27.89924f); 
-			GameObject.Find("Score").guiText.fontSize = 40;
-			GameObject.Find ("Multi").guiText.fontSize = 50;
+			GameObject.Find("Score").GetComponent<TextMesh>().characterSize = 6;
+			GameObject.Find ("Multi").GetComponent<TextMesh>().characterSize = 7;
 		}
 		if(levelTime >= 5 && nextNote < spawnTimes.Count){
 			//float temp = (float)spawnTimes[nextNote];//retrieve time to check agaisnt

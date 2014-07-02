@@ -117,6 +117,17 @@ public class Buttons : MonoBehaviour {
 			playMenuStuff.SetActive(false);
 			SelectionScreenStuff.SetActive(true);
 		}
+		else if(this.name == "Tutorial_Button")
+		{
+			MainMenu.tutorial = true;
+			MainMenu.songName = "Pump";
+			MainMenu.song = (AudioClip)Resources.Load("Pump");
+			
+			//while (!MainMenu.song.isReadyToPlay)
+			buttonSound.Play ();
+			playMenuStuff.SetActive(false);
+			SelectionScreenStuff.SetActive(true);
+		}
 		else if(this.name == "Back_Button")
 		{
 			playMenuStuff.SetActive(true);

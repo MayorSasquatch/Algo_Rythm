@@ -237,7 +237,9 @@ public class FileBrowser {
 		}
 		
 		if (BrowserType == FileBrowserType.File || SelectionPattern == null) {
-			m_directories = Directory.GetDirectories(m_currentDirectory);
+			try {m_directories = Directory.GetDirectories(m_currentDirectory);}
+			catch(UnauthorizedAccessException){MainMenu.rootfolder = "";}
+
 			m_nonMatchingDirectories = new string[0];
 		} else {
 			m_directories = Directory.GetDirectories(m_currentDirectory, SelectionPattern);

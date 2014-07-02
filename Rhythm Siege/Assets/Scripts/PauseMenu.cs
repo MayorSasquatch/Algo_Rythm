@@ -38,7 +38,7 @@ public class PauseMenu : MonoBehaviour {
 				Destroy(GameObject.Find ("Countdown(Clone)"));
 				Destroy(GameObject.Find ("ResumeButton(Clone)"));
 				Destroy(GameObject.Find ("Retry(Clone)"));
-				GameObject.Find("PauseButton").transform.position -= new Vector3(0,0, 200);
+				GameObject.Find("PauseButton").transform.position -= new Vector3(0,200, 0);
 
 			}
 			else if(clock > 2){GameObject.Find ("Countdown(Clone)").guiText.text = "1";}
@@ -58,7 +58,7 @@ public class PauseMenu : MonoBehaviour {
 			Instantiate(Resources.Load("ResumeButton"));
 			Instantiate(Resources.Load("MainMenuButton"));
 			Instantiate(Resources.Load("Retry"));
-			GameObject.Find("PauseButton").transform.position += new Vector3(0,0, 200);
+			GameObject.Find("PauseButton").transform.position += new Vector3(0,200, 0);
 		}
 		else if(this.name == "MainMenuButton(Clone)" || this.name == "MainMenuButton" ){
 			pm.buttonClang.Play ();

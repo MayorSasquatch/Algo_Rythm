@@ -48,7 +48,7 @@ public class KnightHealth : MonoBehaviour {
 				this.GetComponent<Animator>().SetTrigger("dead");
 				this.transform.parent.rigidbody2D.AddForce(new Vector2(-2100,0));
 			}
-			Debug.Log (clock);
+		//	Debug.Log (clock);
 			clock += deltatime;
 			if(clock >= 3){
 				GameObject.Find("BG_BG").GetComponent<NewBehaviourScript>().speedchange(0f);

@@ -18,8 +18,8 @@ public class Deathbox : MonoBehaviour {
 	void Update () {
 		if (multi > bestMulti) {
 			bestMulti = multi;}
-		GameObject.Find("Score").guiText.text = (score.ToString().PadLeft(8,'0'));
-		GameObject.Find("Multi").guiText.text = (" x"+ multi.ToString());
+		GameObject.Find("Score").GetComponent<TextMesh>().text =  (score.ToString().PadLeft(8,'0'));
+		GameObject.Find("Multi").GetComponent<TextMesh>().text = (" x"+ multi.ToString());
 		/*  // code for touch functionaltiy
 		if (Input.touchCount > 0) {
 			var touch = Input.GetTouch(0);
@@ -67,7 +67,7 @@ public class Deathbox : MonoBehaviour {
 			if(Mathf.Abs(direction.x) < Screen.width/20 && Mathf.Abs(direction.y) < Screen.height/20){gesture = "tap";}
 			else if(direction.x > Screen.width/4){gesture = "right swipe";}
 			else if(direction.y > Screen.height/3){gesture = "down swipe";}
-			else {gesture = "none";}
+			else {gesture = "tap";}
 		}
 
 	}
