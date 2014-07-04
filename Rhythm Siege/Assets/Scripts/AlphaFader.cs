@@ -13,7 +13,7 @@ public class AlphaFader : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown ("up"))
 		{
-			print("UP");
+
 			if(hp > 9 && this.gameObject.tag == "Green")
 			{
 				renderer.material.color -= new Color(1,1,1,.33f);
@@ -31,7 +31,7 @@ public class AlphaFader : MonoBehaviour {
 				--hp;
 			}
 */
-			print (hp);
+
 		}
 		if(Input.GetKeyDown("down"))
 		{

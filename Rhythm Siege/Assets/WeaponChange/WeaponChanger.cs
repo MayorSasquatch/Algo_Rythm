@@ -14,16 +14,12 @@ public class WeaponChanger : MonoBehaviour {
 	void Start () {
 
 		hammerNum  = PlayerPrefs.GetInt ("HammerType");
-		print ("Weapon Change" + hammerNum);
+
 		sr = this.GetComponent<SpriteRenderer>();
 		sr.sprite = hammerTypes[hammerNum];
 		//this.GetComponent<SpriteRenderer> ().sprite = testSprite;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		//sr.sprite = hammerTypes[hammerNum];
-		//this.GetComponent<SpriteRenderer> ().sprite = hammerTypes [hammerNum];
-		//this.GetComponent<SpriteRenderer> ().sprite = testSprite;
-	}
+
 }

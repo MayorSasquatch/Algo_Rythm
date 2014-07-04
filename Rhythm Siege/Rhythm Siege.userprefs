@@ -1,16 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SongAnalyze.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Plugins\Android\AndroidManifest.xml">
     <Files>
-      <File FileName="Assets\MainMenu\MenuScripts\Buttons.cs" Line="125" Column="23" />
-      <File FileName="Assets\Scripts\KnightHealth.cs" Line="16" Column="1" />
-      <File FileName="Assets\Scripts\SongAnalyze.cs" Line="19" Column="14" />
+      <File FileName="Assets\Plugins\Android\AndroidManifest.xml" Line="4" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Users\Nadroj\Documents\GitHub\Algo_Rythm\Rhythm Siege\Assets\Plugins\Chartboost\CBManager.cs" line="28" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -6,13 +6,9 @@ public class CombatSounds : MonoBehaviour {
 	public AudioSource wizardHit;
 	public AudioSource wizardTired;
 
+	public AudioSource swordClanger;
+
 	//public static bool playHit, playWizardHit, playWizardTired;
 	// Use this for initialization
-	void Start () {
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
 }

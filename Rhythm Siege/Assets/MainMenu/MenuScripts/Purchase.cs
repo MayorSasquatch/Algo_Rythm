@@ -33,7 +33,7 @@ public class Purchase : MonoBehaviour {
 	void OnMouseDown(){
 		if(this.name == "Purchase_Button" && ChangeHammers.changeNum != 8)
 		{
-			print("Purchase");
+
 			if(playerGold >= price[ChangeHammers.changeNum])
 			{
 				print ("Bought");
@@ -48,7 +48,7 @@ public class Purchase : MonoBehaviour {
 		}
 		if(this.name == "Equip_Button")
 		{
-		   print("Equip");
+		  
 		   PlayerPrefs.SetInt("HammerType", ChangeHammers.changeNum);
 		   playerHammerNum = ChangeHammers.changeNum;
 

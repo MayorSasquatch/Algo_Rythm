@@ -16,7 +16,7 @@ public class HammerPics : MonoBehaviour {
 
 
 		hammerNum  = PlayerPrefs.GetInt ("HammerType");
-		print (hammerNum + " " + Purchase.playerHammerNum);
+
 		if(hammerNum == Purchase.playerHammerNum)
 			selectHold.SetActive(true);
 		else 

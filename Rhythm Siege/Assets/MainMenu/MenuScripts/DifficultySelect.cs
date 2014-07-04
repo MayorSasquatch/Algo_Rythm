@@ -11,7 +11,7 @@ public class DifficultySelect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		difficulty = MainMenu.difficulty - 1;
-		print (difficulty);
+
 		if(difficulty == 0f)
 		{
 			easySkull.SetActive(true);
@@ -38,19 +38,19 @@ public class DifficultySelect : MonoBehaviour {
 	void OnMouseDown(){
 		if(this.gameObject.name == "Easy_Setting")
 		{
-			print ("easy");
+
 			difficulty = 0f;
 			diffNum = 1.0f;
 		}
 		if(this.gameObject.name == "Medium_Setting")
 		{
-			print ("medium");
+
 			difficulty = 1f;
 			diffNum = 2.0f;
 		}
 		if(this.gameObject.name == "Hard_Setting")
 		{
-			print ("hard");
+
 			difficulty = 2f;
 			diffNum = 3.0f;
 		}
@@ -78,7 +78,5 @@ public class DifficultySelect : MonoBehaviour {
 		}
 	}
 	// Update is called once per frame
-	void Update () {
 
-	}
 }

@@ -45,7 +45,7 @@ public class Buttons : MonoBehaviour {
 		{
 			MainMenu.boss = false;
 			MainMenu.tutorial = false;
-			print ("PLAY");
+
 			menuState = "PLAY";
 			//state = true;
 			stateString = "Play";
@@ -60,7 +60,7 @@ public class Buttons : MonoBehaviour {
 		}
 		else if(colliderTag == "OptionsButton")
 		{
-			print ("OPTIONS");
+
 			menuState = "OPTIONS";
 			state = true;
 			stateString = "Options";
@@ -72,7 +72,7 @@ public class Buttons : MonoBehaviour {
 		}
 		else if(colliderTag == "CreditsButton")
 		{
-			print ("CREDITS");
+
 			menuState = "CREDITS";
 			state = true;
 			stateString = "Credits";
@@ -92,7 +92,7 @@ public class Buttons : MonoBehaviour {
 			MainMenu.boss = false;
 			while (!MainMenu.song.isReadyToPlay)
 			
-			print ("level1");
+			
 			buttonSound.Play ();
 			titleStuff.SetActive(true);
 			//GameObject.Find("GUI Text").guiText.text = "";

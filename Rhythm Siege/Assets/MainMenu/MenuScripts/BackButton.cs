@@ -9,10 +9,6 @@ public class BackButton : MonoBehaviour {
 	public GameObject optionStuff;
 
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown (KeyCode.Escape) && creditStuff.activeSelf == true)
