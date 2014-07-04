@@ -31,7 +31,7 @@ public class cutscene : MonoBehaviour {
 		if(Application.loadedLevelName == "scene"){
 			GameObject.Find ("SplashScreen(Clone)").transform.position -= new Vector3 (0, -300, 0);
 			Destroy(GameObject.Find("CutsceneWrap(Clone)"));
-				}
+		}
 
 
 	}

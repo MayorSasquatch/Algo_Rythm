@@ -59,7 +59,7 @@ public class CameraAspect : MonoBehaviour {
 				}
 				if (Input.GetMouseButton (0)) {
 						direction = (Vector2)Input.mousePosition - startPos; 
-						this.rigidbody2D.AddForce (new Vector2 (0, direction.y));
+						this.rigidbody2D.AddForce (new Vector2 (0, -direction.y));
 		
 						if (Input.GetMouseButtonUp (0)) {
 								this.rigidbody2D.velocity = new Vector2 (0, 0);

@@ -9,7 +9,8 @@ public class SongSelect : MonoBehaviour {
 	public GameObject SelectionScreenStuff;
 	public GUISkin customSkin;
 	static public string path;
-
+	Vector2 startPos;
+	Vector2 direction;
 	public AudioSource buttonClang;
 	FileBrowser songBrowser;
 
@@ -18,6 +19,7 @@ public class SongSelect : MonoBehaviour {
 	bool swtch = false;
 
 	void OnMouseDown(){
+		MainMenu.boss = false;
 		buttonClang.Play();
 		swtch = true;
 	}
@@ -66,6 +68,16 @@ public class SongSelect : MonoBehaviour {
 			playMenuStuff.SetActive(false);
 			SelectionScreenStuff.SetActive(true);
 			path = null;
+		}
+
+		if (Input.GetMouseButtonDown (0)) {
+			startPos = (Vector2)Input.mousePosition;
+		}
+		if (Input.GetMouseButton (0)) {
+			direction = (Vector2)Input.mousePosition - startPos; 
+			direction.x = 0f;
+			if (songBrowser != null)songBrowser.Scroll(direction.normalized*20f);
+
 		}
 	}
 }
@@ -190,9 +202,11 @@ public class FileBrowser {
 		m_screenRect = screenRect;
 		m_browserType = FileBrowserType.File;
 		m_callback = callback;
-		if (MainMenu.rootfolder != "") {
-			SetNewDirectory(MainMenu.rootfolder);
-				}else SetNewDirectory(Directory.GetCurrentDirectory());
+		//Debug.Log (MainMenu.rootfolder);
+		if (MainMenu.rootfolder == "" || MainMenu.rootfolder == null) {
+			SetNewDirectory(Directory.GetCurrentDirectory());}
+			else SetNewDirectory(MainMenu.rootfolder);
+
 		SwitchDirectoryNow();
 	}
 
@@ -239,6 +253,7 @@ public class FileBrowser {
 		if (BrowserType == FileBrowserType.File || SelectionPattern == null) {
 			try {m_directories = Directory.GetDirectories(m_currentDirectory);}
 			catch(UnauthorizedAccessException){MainMenu.rootfolder = "";}
+			catch(DirectoryNotFoundException){MainMenu.rootfolder = "";}
 
 			m_nonMatchingDirectories = new string[0];
 		} else {
@@ -404,7 +419,10 @@ public class FileBrowser {
 			SwitchDirectoryNow();
 		}
 	}
-	
+	public void Scroll(Vector2 scroll ){
+		m_scrollPosition += scroll;
+	}
+
 	protected void FileDoubleClickCallback(int i) {
 		if (BrowserType == FileBrowserType.File) {
 			m_callback(Path.Combine(m_currentDirectory, m_files[i]));
@@ -451,7 +469,9 @@ public class GUILayoutx {
 				callback(i);
 				Event.current.Use();
 			} else if (Event.current.type == EventType.repaint) {
+
 				elementStyle.Draw(elementRect, list[i], hover, false, i == selected, false);
+				//Debug.Log(i + "  "+ selected);
 			}
 		}
 		return selected;
@@ -471,20 +491,24 @@ public class GUILayoutx {
 	
 	public static int SelectionList(int selected, string[] list, GUIStyle elementStyle, DoubleClickCallback callback) {
 		for (int i = 0; i < list.Length; ++i) {
-			Rect elementRect = GUILayoutUtility.GetRect(new GUIContent(list[i]), elementStyle);
+			Rect elementRect;
+		    elementRect = GUILayoutUtility.GetRect(new GUIContent(list[i]), elementStyle);
 			bool hover = elementRect.Contains(Event.current.mousePosition);
 			if (hover && Event.current.type == EventType.MouseDown && Event.current.clickCount == 1) // added " && Event.current.clickCount == 1"
 			{
 				selected = i;
 				Event.current.Use();
+			
 			}
 			else if (hover && callback != null && Event.current.type == EventType.MouseDown && Event.current.clickCount == 2) //Changed from MouseUp to MouseDown
 			{
-				Debug.Log("Works !");
+				//Debug.Log("Works !");
 				callback(i);
 				Event.current.Use();
 			} else if (Event.current.type == EventType.repaint) {
-				elementStyle.Draw(elementRect, list[i], hover, false, i == selected, false);
+
+				elementStyle.Draw(elementRect, list[i], hover, true, i == selected, false);
+
 			}
 		}
 		return selected;

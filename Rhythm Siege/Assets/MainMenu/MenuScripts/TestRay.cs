@@ -16,7 +16,7 @@ public class TestRay : MonoBehaviour {
 			
 			if(hit.collider != null)
 			{
-				Debug.Log ("Target Position: " + hit.collider.gameObject.name);
+				//Debug.Log ("Target Position: " + hit.collider.gameObject.name);
 			}
 		}
 	

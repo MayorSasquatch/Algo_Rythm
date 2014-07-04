@@ -7,9 +7,13 @@ public class ParticleScript : MonoBehaviour {
 
 	int hammNum;
 
+	Deathbox d;
 	Material mat;
 	// Use this for initialization
 	void Start () {
+		d = GameObject.Find("Deathbox").GetComponent<Deathbox>();
+
+
 		hammNum = PlayerPrefs.GetInt("HammerType");
 		mat = this.GetComponent<ParticleSystemRenderer>().material;
 
@@ -20,7 +24,10 @@ public class ParticleScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+		if(d.getMulti() == 10)
+			pSys.Play ();
+		if(d.getMulti() < 10)
+			pSys.Stop();
 			
 
 	}

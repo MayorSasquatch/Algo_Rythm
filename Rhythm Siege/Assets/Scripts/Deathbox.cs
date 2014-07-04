@@ -7,6 +7,8 @@ public class Deathbox : MonoBehaviour {
 	bool directionChosen;
 	string gesture;
 	public int score, multi, bestMulti;
+
+
 	// Use this for initialization
 	void Start () {
 		score = 0;
@@ -53,7 +55,7 @@ public class Deathbox : MonoBehaviour {
 
 		if(Input.GetMouseButtonDown(0)){
 			startPos = (Vector2)Input.mousePosition;
-			Debug.Log("Pressed left click.");
+			//Debug.Log("Pressed left click.");
 			directionChosen = false;
 		}
 		if(Input.GetMouseButton(0)){
@@ -63,7 +65,7 @@ public class Deathbox : MonoBehaviour {
 
 		if (Input.GetMouseButtonUp(0)) {
 			directionChosen = true;
-			Debug.Log("lifted left click.");
+			//Debug.Log("lifted left click.");
 			if(Mathf.Abs(direction.x) < Screen.width/20 && Mathf.Abs(direction.y) < Screen.height/20){gesture = "tap";}
 			else if(direction.x > Screen.width/4){gesture = "right swipe";}
 			else if(direction.y > Screen.height/3){gesture = "down swipe";}
@@ -76,6 +78,9 @@ public class Deathbox : MonoBehaviour {
 		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture) && enemy.rigidbody2D.velocity.x < 0) {
 			
 			if(enemy.name == "Wizard(Clone)"){
+				//hit wizard
+				GameObject.Find("CombatSoundHold").GetComponent<CombatSounds>().wizardHit.Play();
+
 				score += 1000*multi;
 				GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("mid");
 				enemy.rigidbody2D.velocity = new Vector2(0,enemy.rigidbody2D.velocity.y);
@@ -104,6 +109,11 @@ public class Deathbox : MonoBehaviour {
 			
 			enemy = null;
 		}
-		}
+	}
+
+	public int getMulti()
+	{
+		return multi;
+	}
 
 }

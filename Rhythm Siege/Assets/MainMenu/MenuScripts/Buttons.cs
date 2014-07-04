@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Chartboost;
 public class Buttons : MonoBehaviour {
 
 	private string colliderTag;
@@ -24,13 +24,16 @@ public class Buttons : MonoBehaviour {
 
 	void Update () {
 		if (MainMenu.song != null && this.name == "Back_Button") {
-						GameObject.Find ("SongName").guiText.text = MainMenu.songName;
+						GameObject.Find ("SongName").GetComponent<TextMesh>().text = MainMenu.songName;
 			if (PlayerPrefs.HasKey (MainMenu.songName + "capitanamerica"+MainMenu.difficulty)) {
-				GameObject.Find ("HighScoreText").guiText.text = PlayerPrefs.GetInt (MainMenu.songName + "capitanamerica"+MainMenu.difficulty.ToString()).ToString();
-				GameObject.Find ("HighComboText").guiText.text = PlayerPrefs.GetInt (MainMenu.songName + "capitanamericacombo"+MainMenu.difficulty.ToString()).ToString();
+				string scorekey = MainMenu.songName + "capitanamerica"+MainMenu.difficulty.ToString();
+				//Debug.Log(scorekey);
+				string combokey = MainMenu.songName + "capitanamericacombo"+MainMenu.difficulty.ToString();
+				GameObject.Find ("HighScoreText").GetComponent<TextMesh>().text = PlayerPrefs.GetInt (scorekey).ToString();
+				GameObject.Find ("HighComboText").GetComponent<TextMesh>().text = PlayerPrefs.GetInt (combokey).ToString();
 						} else {
-								GameObject.Find ("HighScoreText").guiText.text = " ";
-								GameObject.Find ("HighComboText").guiText.text = " ";
+				GameObject.Find ("HighScoreText").GetComponent<TextMesh>().text = "";
+				GameObject.Find ("HighComboText").GetComponent<TextMesh>().text = "";
 						}
 				}
 	}
@@ -86,7 +89,7 @@ public class Buttons : MonoBehaviour {
 			 * */
 			MainMenu.songName = "Big Rock";
 			MainMenu.song = (AudioClip)Resources.Load("Big Rock");
-
+			MainMenu.boss = false;
 			while (!MainMenu.song.isReadyToPlay)
 			
 			print ("level1");
@@ -99,7 +102,7 @@ public class Buttons : MonoBehaviour {
 		{
 			MainMenu.songName = "Summon the Rawk";
 			MainMenu.song = (AudioClip)Resources.Load("Summon the Rawk");
-			
+			MainMenu.boss = false;
 			//while (!MainMenu.song.isReadyToPlay)
 
 			buttonSound.Play ();
@@ -119,6 +122,7 @@ public class Buttons : MonoBehaviour {
 		}
 		else if(this.name == "Tutorial_Button")
 		{
+			MainMenu.boss = false;
 			MainMenu.tutorial = true;
 			MainMenu.songName = "Pump";
 			MainMenu.song = (AudioClip)Resources.Load("Pump");
@@ -127,14 +131,28 @@ public class Buttons : MonoBehaviour {
 			buttonSound.Play ();
 			playMenuStuff.SetActive(false);
 			SelectionScreenStuff.SetActive(true);
+			playMenuStuff.SetActive(true);
+			GameObject temp = GameObject.Find ("PlayButtons");
+			temp.SetActive(false);
+			mainMenuStuff.SetActive(true);
+
+			SelectionScreenStuff.SetActive(false);
+			DontDestroyOnLoad( GameObject.Find("PlayMenu"));
+			MusicScript.player = false;
+			
+			//CBBinding.showInterstitial(null);
+			
+			Application.LoadLevel("scene");
 		}
 		else if(this.name == "Back_Button")
 		{
+			buttonSound.Play ();
 			playMenuStuff.SetActive(true);
 			SelectionScreenStuff.SetActive(false);
 		}
 		else if(this.name == "Start_Button")
 		{
+			buttonSound.Play ();
 			//Debug.Log ("working");
 			playMenuStuff.SetActive(true);
 			GameObject temp = GameObject.Find ("PlayButtons");
@@ -144,6 +162,9 @@ public class Buttons : MonoBehaviour {
 			SelectionScreenStuff.SetActive(false);
 			DontDestroyOnLoad( GameObject.Find("PlayMenu"));
 			MusicScript.player = false;
+
+			CBBinding.showInterstitial(null);
+
 			Application.LoadLevel("scene");
 		}
 		else if(colliderTag == "SaveCloseButton")

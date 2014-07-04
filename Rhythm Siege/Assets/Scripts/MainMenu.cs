@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Chartboost;
+
 
 public class MainMenu : MonoBehaviour {
 	public static int curency;
@@ -15,6 +17,8 @@ public class MainMenu : MonoBehaviour {
 
 
 	void Start(){
+		CBBinding.init("53b5f04589b0bb7ee6ad564d", "4c9e683e37ae859d14c1596efc2a0b3e93eb27e8");
+
 		boss = false;
 		tutorial  = false;
 		if (PlayerPrefs.HasKey ("Difficulty")) {

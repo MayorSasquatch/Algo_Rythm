@@ -51,7 +51,6 @@ public class EnemySpawn : MonoBehaviour {
 			}
 		}
 		if (MainMenu.boss) {Instantiate(Resources.Load("Wizard"));}
-		Debug.Log (MainMenu.boss);
 		if(MainMenu.tutorial){
 			MainMenu.difficulty = 1f;
 			Instantiate(Resources.Load("TutorialText"));
@@ -112,6 +111,7 @@ public class EnemySpawn : MonoBehaviour {
 		// end analysis code
 		//start spawn code
 		if(levelTime >= 5 &&levelTime < 7 && GameObject.Find("PlayMenu") != null){ 
+			FadeToBlack.isFade = true;
 			GameObject.Find ("PlayMenu").transform.position = new Vector3 (-150.23258f,6.411677f, -27.89924f); 
 			GameObject.Find("Score").GetComponent<TextMesh>().characterSize = 6;
 			GameObject.Find ("Multi").GetComponent<TextMesh>().characterSize = 7;
@@ -121,8 +121,12 @@ public class EnemySpawn : MonoBehaviour {
 			if(levelTime - 5 >= (float)spawnTimes[nextNote])//check for time passing
 			{
 				if(MainMenu.boss && levelTime - 5 >= Wiztimes[wizIndex]){
+					//play tired
+					GameObject.Find("CombatSoundHold").GetComponent<CombatSounds>().wizardTired.Play();
+
 					GameObject.Find ("Wizard(Clone)").GetComponent<EnemyAI>().state  = 2;
 					wizIndex++;
+
 				}
 				else {Spawn();}
 				//GameObject clone;//if the time of the spawn has passed spawns an enemy from prefab

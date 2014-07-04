@@ -44,7 +44,8 @@ public class KnightHealth : MonoBehaviour {
 		deltatime = Time.realtimeSinceStartup - time;
 		time = Time.realtimeSinceStartup; 
 		if(curHealth <= 0){
-			if(clock == 0f){			
+			if(clock == 0f){
+				Destroy(GameObject.Find ("PauseButton"));
 				this.GetComponent<Animator>().SetTrigger("dead");
 				this.transform.parent.rigidbody2D.AddForce(new Vector2(-2100,0));
 			}
@@ -55,13 +56,14 @@ public class KnightHealth : MonoBehaviour {
 				GameObject.Find("BG_FG").GetComponent<NewBehaviourScript>().speedchange(0f);
 				string scorekey =(MainMenu.songName + "capitanamerica" + MainMenu.difficulty.ToString());
 				string scorekeycombo = (MainMenu.songName + "capitanamericacombo"+MainMenu.difficulty.ToString());
+				//Debug.Log(scorekey);
 				GameObject.Find("Multi").SetActive(false);
 				GameObject.Find("Score").SetActive(false);
 				Instantiate(Resources.Load("SplashScreen"));
 				Destroy(GameObject.Find("Knight"));
 				Destroy(GameObject.Find ("Successs_Window"));
 				Destroy(GameObject.Find ("Deathbox"));
-				Destroy(GameObject.Find ("PauseButton"));
+
 				GameObject.Find ("Scoretext").GetComponent<TextMesh>().text =  GameObject.Find ("Deathbox").GetComponent<Deathbox>().score.ToString();
 				GameObject.Find ("multitext").GetComponent<TextMesh>().text =  GameObject.Find ("Deathbox").GetComponent<Deathbox>().bestMulti.ToString();
 				MainMenu.curency += (int)GameObject.Find ("Deathbox").GetComponent<Deathbox>().score/1000;
@@ -111,10 +113,14 @@ public void AdjustHealth(float adj){
 
 	void OnTriggerEnter2D(Collider2D hit){
 		//Debug.Log("Hit");
-		if(hit.gameObject.tag == "Enemy"){ 
+		if(hit.gameObject.tag == "Enemy"){
+			//play hit sound
+			if(GameObject.Find("CombatSoundHold").GetComponent<CombatSounds>().playerHit.isPlaying == false)
+			GameObject.Find("CombatSoundHold").GetComponent<CombatSounds>().playerHit.Play();
 			AdjustHealth(-1); // If the player is hit by an enemy, lose health
 			GameObject.Find ("Deathbox").GetComponent<Deathbox> ().multi = 1;
 			hit.transform.GetComponentInChildren<Animator>().SetTrigger("Attack");
+
 		}
 	}
 
