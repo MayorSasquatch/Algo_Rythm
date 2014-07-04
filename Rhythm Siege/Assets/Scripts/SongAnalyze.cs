@@ -33,6 +33,9 @@ public class SongAnalyze : MonoBehaviour {
 				clock += deltatime;
 				
 				if(clock >= 3){
+				if(MainMenu.songName == "Big Rock" && MainMenu.levelunlock < 2 ){ MainMenu.levelunlock = 2;}
+				else if(MainMenu.songName == "Summon the Rawk" && MainMenu.levelunlock < 3 ){ MainMenu.levelunlock = 3;}
+				PlayerPrefs.SetInt("levelunlock", MainMenu.levelunlock);
 				string scorekey = (MainMenu.songName + "capitanamerica" + MainMenu.difficulty.ToString());
 				//Debug.Log(scorekey);
 				string scorekeycombo = (MainMenu.songName + "capitanamericacombo"+MainMenu.difficulty.ToString());

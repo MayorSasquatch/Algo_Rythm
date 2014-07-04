@@ -69,13 +69,13 @@ public class Deathbox : MonoBehaviour {
 			if(Mathf.Abs(direction.x) < Screen.width/20 && Mathf.Abs(direction.y) < Screen.height/20){gesture = "tap";}
 			else if(direction.x > Screen.width/4){gesture = "right swipe";}
 			else if(direction.y > Screen.height/3){gesture = "down swipe";}
-			else {gesture = "tap";}
+			//else {gesture = "tap";}
 		}
 
 	}
 
 	void OnTriggerStay2D(Collider2D enemy){
-		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture) && enemy.rigidbody2D.velocity.x < 0) {
+		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture) && enemy.rigidbody2D.velocity.x < 0 && GameObject.Find("Knight").GetComponent<KnightHealth>().curHealth > 0) {
 			
 			if(enemy.name == "Wizard(Clone)"){
 				//hit wizard

@@ -22,6 +22,16 @@ public class Buttons : MonoBehaviour {
 	public AudioSource buttonSound;
 	// Use this for initialization
 
+	void Start(){
+		if (MainMenu.levelunlock < 2 && this.name  == "Level2_Button") {
+			this.GetComponent<SpriteRenderer>().color = new Color(255f,255f,255f,127f);	
+			//Debug.Log (this.name);
+		}
+		if (MainMenu.levelunlock < 3 && this.name == "Level3_Button") {
+			this.GetComponent<SpriteRenderer>().color = new Color(255f,255f,255f,127f);	
+		}
+	}
+
 	void Update () {
 		if (MainMenu.song != null && this.name == "Back_Button") {
 						GameObject.Find ("SongName").GetComponent<TextMesh>().text = MainMenu.songName;
@@ -36,6 +46,7 @@ public class Buttons : MonoBehaviour {
 				GameObject.Find ("HighComboText").GetComponent<TextMesh>().text = "";
 						}
 				}
+
 	}
 
 	void OnMouseDown() {
@@ -98,7 +109,7 @@ public class Buttons : MonoBehaviour {
 			//GameObject.Find("GUI Text").guiText.text = "";
 
 		}
-		else if(colliderTag == "Level2Button")
+		else if(colliderTag == "Level2Button"  && MainMenu.levelunlock > 1)
 		{
 			MainMenu.songName = "Summon the Rawk";
 			MainMenu.song = (AudioClip)Resources.Load("Summon the Rawk");
@@ -109,7 +120,7 @@ public class Buttons : MonoBehaviour {
 			playMenuStuff.SetActive(false);
 			SelectionScreenStuff.SetActive(true);
 		}
-		else if(colliderTag == "Level3Button")
+		else if(colliderTag == "Level3Button" && MainMenu.levelunlock > 2)
 		{
 			MainMenu.boss = true;
 			MainMenu.songName = "Zap Beat";

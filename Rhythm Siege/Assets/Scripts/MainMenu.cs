@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour {
 	public static string rootfolder;
 	public int menu;
 	public GameObject[] buttons;
+	public static int levelunlock;
 
 
 
@@ -35,6 +36,12 @@ public class MainMenu : MonoBehaviour {
 			PlayerPrefs.SetString ("rootfolder", "");		
 		} else {
 			rootfolder = PlayerPrefs.GetString("rootfolder");
+		}
+
+		if (!PlayerPrefs.HasKey ("levelunlock")) {
+			PlayerPrefs.SetInt ("levelunlock", 1);		
+		} else {
+			levelunlock = PlayerPrefs.GetInt("levelunlock");
 		}
 	}
 }
