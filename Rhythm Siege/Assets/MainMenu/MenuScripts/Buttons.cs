@@ -24,11 +24,11 @@ public class Buttons : MonoBehaviour {
 
 	void Start(){
 		if (MainMenu.levelunlock < 2 && this.name  == "Level2_Button") {
-			this.GetComponent<SpriteRenderer>().color = new Color(255f,255f,255f,127f);	
+			this.GetComponent<SpriteRenderer>().color = new Color(1,1,1,.5f);	
 			//Debug.Log (this.name);
 		}
 		if (MainMenu.levelunlock < 3 && this.name == "Level3_Button") {
-			this.GetComponent<SpriteRenderer>().color = new Color(255f,255f,255f,127f);	
+			this.GetComponent<SpriteRenderer>().color = new Color(1,1,1,.5f);	
 		}
 	}
 
