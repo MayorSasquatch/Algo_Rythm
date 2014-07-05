@@ -1,28 +1,76 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Deathbox : MonoBehaviour {
-	Vector2 startPos;
-	Vector2 direction;
-	bool directionChosen;
-	string gesture;
-	public int score, multi, bestMulti;
+public class Deathbox : MonoBehaviour
+{
+		Vector2 startPos;
+		Vector2 direction;
+		bool directionChosen;
+		string gesture;
+		public int score, multi, bestMulti;
 
 
-	// Use this for initialization
-	void Start () {
-		score = 0;
-		multi = 1;
-		bestMulti = 1;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (multi > bestMulti) {
-			bestMulti = multi;}
-		GameObject.Find("Score").GetComponent<TextMesh>().text =  (score.ToString().PadLeft(8,'0'));
-		GameObject.Find("Multi").GetComponent<TextMesh>().text = (" x"+ multi.ToString());
-		/*  // code for touch functionaltiy
+		// Use this for initialization
+		void Start ()
+		{
+				score = 0;
+				multi = 1;
+				bestMulti = 1;
+				InvokeRepeating ("reset", 0f, .3f);
+		}
+
+		void OnGUI ()
+		{
+				Event e = Event.current;
+
+				if (e.type != EventType.Used) {
+						if (e.button == 0 && e.type == EventType.MouseDown) {
+
+								startPos = (Vector2)e.mousePosition;
+								//Debug.Log("Pressed left click.");
+								directionChosen = false;
+								e.Use ();
+
+						}
+						if (e.button == 0 && e.type == EventType.MouseDrag) {
+								direction = (Vector2)e.mousePosition - startPos;
+								if (direction.x > Screen.width / 4) {
+										gesture = "right swipe";
+										directionChosen = true;
+										startPos = (Vector2)Input.mousePosition;
+										e.Use ();
+								} else if (-direction.y > Screen.height / 3) {
+
+										gesture = "down swipe";
+										directionChosen = true;
+										startPos = (Vector2)Input.mousePosition;
+										e.Use ();
+								}
+						}
+						if (e.button == 0 && e.type == EventType.MouseUp) {
+								direction = (Vector2)e.mousePosition - startPos;
+								directionChosen = true;
+								//Debug.Log("lifted left click.");
+								if(Mathf.Abs(direction.x) < Screen.width/20 && Mathf.Abs(direction.y) < Screen.height/20){gesture = "tap";}
+								else if(direction.x > Screen.width/4){gesture = "right swipe";}
+								else if(direction.y > Screen.height/3){gesture = "down swipe";}
+								e.Use ();
+								//else {gesture = "tap";}
+						}
+				}
+				}
+		
+		// Update is called once per frame
+
+		void Update ()
+		{
+				if (multi > bestMulti) {
+						bestMulti = multi;
+				}
+				GameObject.Find ("Score").GetComponent<TextMesh> ().text = (score.ToString ().PadLeft (8, '0'));
+				GameObject.Find ("Multi").GetComponent<TextMesh> ().text = (" x" + multi.ToString ());
+
+				/*  // code for touch functionaltiy
 		if (Input.touchCount > 0) {
 			var touch = Input.GetTouch(0);
 			
@@ -51,7 +99,7 @@ public class Deathbox : MonoBehaviour {
 			}
 		}
 	*/
-		directionChosen = false;
+				/*	directionChosen = false;
 
 		if(Input.GetMouseButtonDown(0)){
 			startPos = (Vector2)Input.mousePosition;
@@ -70,50 +118,58 @@ public class Deathbox : MonoBehaviour {
 			else if(direction.x > Screen.width/4){gesture = "right swipe";}
 			else if(direction.y > Screen.height/3){gesture = "down swipe";}
 			//else {gesture = "tap";}
+		} */
+
 		}
 
-	}
+		void OnTriggerStay2D (Collider2D enemy)
+		{
+				if ((directionChosen) && (gesture == enemy.GetComponent<EnemyAI> ().deathGesture) && enemy.rigidbody2D.velocity.x < 0 && GameObject.Find ("Knight").GetComponent<KnightHealth> ().curHealth > 0) {
+		
 
-	void OnTriggerStay2D(Collider2D enemy){
-		if ((directionChosen)&& (gesture == enemy.GetComponent<EnemyAI>().deathGesture) && enemy.rigidbody2D.velocity.x < 0 && GameObject.Find("Knight").GetComponent<KnightHealth>().curHealth > 0) {
+						if (enemy.name == "Wizard(Clone)") {
+								//hit wizard
+								GameObject.Find ("CombatSoundHold").GetComponent<CombatSounds> ().wizardHit.Play ();
+
+								score += 1000 * multi;
+								GameObject.Find ("Knight").GetComponent<Animator> ().SetTrigger ("mid");
+								enemy.rigidbody2D.velocity = new Vector2 (0, enemy.rigidbody2D.velocity.y);
+								enemy.rigidbody2D.AddForce (new Vector2 (300, 0));
+								enemy.GetComponent<EnemyAI> ().state = 3;
+								enemy.GetComponentInChildren<Animator> ().SetTrigger ("rest");
+						} else {
+								switch (enemy.name) {
+								case "Groundgrunt(Clone)":
+										GameObject.Find ("Knight").GetComponent<Animator> ().SetTrigger ("low");
+										break;
+								case "Wyvern(Clone)":
+										GameObject.Find ("Knight").GetComponent<Animator> ().SetTrigger ("mid");
+										break;
+								case "Ninja(Clone)":
+										GameObject.Find ("Knight").GetComponent<Animator> ().SetTrigger ("top");
+										break;
+								}
+								enemy.GetComponentInChildren<Animator> ().SetTrigger ("death");
+								enemy.GetComponent<EnemyAI> ().death ();
+						}
+						multi++;
+						score += 100 * multi;
+						if (multi % 10 == 0)
+								GameObject.Find ("Knight").GetComponent<KnightHealth> ().AdjustHealth (1f);
 			
-			if(enemy.name == "Wizard(Clone)"){
-				//hit wizard
-				GameObject.Find("CombatSoundHold").GetComponent<CombatSounds>().wizardHit.Play();
-
-				score += 1000*multi;
-				GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("mid");
-				enemy.rigidbody2D.velocity = new Vector2(0,enemy.rigidbody2D.velocity.y);
-				enemy.rigidbody2D.AddForce(new Vector2(300,0));
-				enemy.GetComponent<EnemyAI>().state = 3;
-				enemy.GetComponentInChildren<Animator>().SetTrigger("rest");
-			}
-			else{
-				switch(enemy.name){
-				case "Groundgrunt(Clone)":
-					GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("low");
-					break;
-				case "Wyvern(Clone)":
-					GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("mid");
-					break;
-				case "Ninja(Clone)":
-					GameObject.Find ("Knight").GetComponent<Animator>().SetTrigger("top");
-					break;
+						enemy = null;
 				}
-				enemy.GetComponentInChildren<Animator>().SetTrigger("death");
-				enemy.GetComponent<EnemyAI>().death();
-			}
-			multi++;
-			score += 100*multi;
-			if(multi%10 == 0) GameObject.Find("Knight").GetComponent<KnightHealth>().AdjustHealth(1f);
-			
-			enemy = null;
 		}
-	}
 
-	public int getMulti()
-	{
-		return multi;
-	}
+		public int getMulti ()
+		{
+				return multi;
+		}
+
+		void reset ()
+		{
+				directionChosen = false;
+				gesture = "";
+		}
 
 }

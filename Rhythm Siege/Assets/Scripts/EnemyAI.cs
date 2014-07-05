@@ -68,7 +68,7 @@ public class EnemyAI : MonoBehaviour {
 			float vx = this.rigidbody2D.velocity.x;
 			//float vy = this.rigidbody2D.velocity.y;
 			if(this.transform.position.y > -6.2f && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,-100));}
-			if(this.transform.position.y < -8.9f && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,100));}
+			if(this.transform.position.y < -8.5f && this.rigidbody2D.velocity.x !=0){this.rigidbody2D.velocity = new Vector2(vx,0); this.rigidbody2D.AddForce(new Vector2(0,100));}
 		}
 
 

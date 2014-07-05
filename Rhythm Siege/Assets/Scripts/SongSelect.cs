@@ -20,7 +20,7 @@ public class SongSelect : MonoBehaviour {
 
 	void OnMouseDown(){
 		MainMenu.boss = false;
-		buttonClang.Play();
+		if(songBrowser == null)buttonClang.Play();
 		swtch = true;
 	}
 	void OnGUI(){
@@ -56,6 +56,7 @@ public class SongSelect : MonoBehaviour {
 		songBrowser = null;
 		path = spath;
 		swtch = false;
+		buttonClang.Play();
 	}
 
 	void Update(){
