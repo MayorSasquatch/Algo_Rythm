@@ -6,7 +6,8 @@ public class MoveCredits : MonoBehaviour {
 	// Use this for initialization
 	void OnEnable() 
 	{
-		this.transform.position = new Vector2(0,-97.9449f);
+		//transform.position = new Vector3(7.29204f,-90f, -12.94136f);
+		transform.position = transform.TransformDirection(0.29204f,-85f, -12.94136f);
 	}
 	// Update is called once per frame
 	void Update () {

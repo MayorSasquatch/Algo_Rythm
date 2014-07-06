@@ -5,7 +5,7 @@ public class Buttons : MonoBehaviour {
 
 	private string colliderTag;
 	public static bool state = false;
-	public static string stateString = "";
+	public static string stateString;
 
 	public GameObject optionsStuff;
 	public GameObject creditsStuff;
