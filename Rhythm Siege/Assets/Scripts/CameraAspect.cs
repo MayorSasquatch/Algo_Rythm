@@ -48,12 +48,12 @@ public class CameraAspect : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/* void Update () {
 		if (Application.loadedLevelName == "RS" && Buttons.menuState == "OPTIONS") {
 			Scroll();
 		}
 	}
-	void Scroll(){
+	 void Scroll(){
 				if (Input.GetMouseButtonDown (0)) {
 						startPos = (Vector2)Input.mousePosition;
 				}
@@ -66,5 +66,5 @@ public class CameraAspect : MonoBehaviour {
 
 						}
 				}
-		}
+	} */
 }

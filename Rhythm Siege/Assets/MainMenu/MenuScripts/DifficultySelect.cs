@@ -34,6 +34,7 @@ public class DifficultySelect : MonoBehaviour {
 			diffNum = 3.0f;
 		}
 		PlayerPrefs.SetFloat("Difficulty", diffNum);
+
 	}
 	void OnMouseDown(){
 		if(this.gameObject.name == "Easy_Setting")
@@ -55,6 +56,8 @@ public class DifficultySelect : MonoBehaviour {
 			diffNum = 3.0f;
 		}
 		PlayerPrefs.SetFloat("Difficulty", diffNum);
+		MainMenu.difficulty = diffNum;
+		Debug.Log (MainMenu.difficulty);
 		if(difficulty == 0)
 		{
 			swoosh.Play();
