@@ -1,12 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Plugins\Android\AndroidManifest.xml">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SongSelect.cs">
     <Files>
-      <File FileName="Assets\MainMenu\MenuScripts\MoveCredits.cs" Line="10" Column="65" />
-      <File FileName="Assets\MainMenu\MenuScripts\BackButton.cs" Line="20" Column="185" />
-      <File FileName="Assets\MainMenu\MenuScripts\Buttons.cs" Line="16" Column="41" />
-      <File FileName="Assets\Scripts\cutscene.cs" Line="28" Column="3" />
-      <File FileName="Assets\Plugins\Android\AndroidManifest.xml" Line="29" Column="1" />
+      <File FileName="Assets\Scripts\SongSelect.cs" Line="158" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
