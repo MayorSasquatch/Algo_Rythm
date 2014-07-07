@@ -155,17 +155,51 @@ public class FileBrowser {
 		//m_browserType = FileBrowserType.File;
 		m_callback = callback;
 
-		m_newDirectory = "c:"; //Directory.GetCurrentDirectory();
-		DirectoryInfo DR = new DirectoryInfo (m_newDirectory);
-		fileinfo = DR.GetFiles("*mp3", SearchOption.AllDirectories);
-		Array.Sort(fileinfo,(x, y) => StringComparer.OrdinalIgnoreCase.Compare(x.Name, y.Name));
+		m_newDirectory = Path.GetPathRoot( Directory.GetCurrentDirectory());//"d:"; //Directory.GetCurrentDirectory();
+		fileinfo = ProcessFiles (m_newDirectory);
+		Array.Sort(fileinfo,(x, y) => StringComparer.OrdinalIgnoreCase.Compare(x.DirectoryName.Substring(x.DirectoryName.LastIndexOf("\\") + 1)+"\\"+x.Name, y.DirectoryName.Substring(y.DirectoryName.LastIndexOf("\\") + 1) +"\\"+y.Name));
 		filenames = new string[fileinfo.Length];
 		for (int i = 0; i<fileinfo.Length; i++) {
 			filenames[i] = fileinfo[i].Name;
 				}
 	}
 
+	public FileInfo[] ProcessFiles(string path)
+	{
+		ArrayList afiles = new ArrayList ();
+		Stack<string> stack;
+		FileInfo[] files;
+		string[] directories;
+		string dir;
 		
+		stack = new Stack<string>();
+		stack.Push(path);
+		
+		while (stack.Count > 0) {
+			
+			// Pop a directory
+			dir = stack.Pop();
+			try{
+				DirectoryInfo DR = new DirectoryInfo (dir);
+				files = DR.GetFiles("*mp3");
+				foreach(FileInfo file in files)
+				{
+					afiles.Add (file);
+				}
+			
+
+			directories = Directory.GetDirectories(dir);
+	
+			foreach(string directory in directories)
+			{
+				// Push each directory into stack
+				stack.Push(directory);
+			}
+			}
+			catch(UnauthorizedAccessException){}
+		}
+		return (FileInfo[])afiles.ToArray( typeof( FileInfo ));
+	}
 
 	
 	public void OnGUI() {
