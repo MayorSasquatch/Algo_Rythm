@@ -21,7 +21,7 @@ public class FadeOut : MonoBehaviour {
 		fades = GetComponentsInChildren<Renderer>();
 		foreach (Renderer r in fades){
 			if(r.material.color.a > 0)
-				r.material.color -= new Color(0,0,0,.005f);
+				r.material.color -= new Color(0,0,0,.02f);
 			
 			
 		}

@@ -23,6 +23,7 @@ public class Buttons : MonoBehaviour {
 	// Use this for initialization
 
 	void Start(){
+		
 		if (MainMenu.levelunlock < 2 && this.name  == "Level2_Button") {
 			this.GetComponent<SpriteRenderer>().color = new Color(1,1,1,.5f);	
 			//Debug.Log (this.name);
@@ -31,8 +32,8 @@ public class Buttons : MonoBehaviour {
 			this.GetComponent<SpriteRenderer>().color = new Color(1,1,1,.5f);	
 		}
 	}
-
 	void Update () {
+
 		if (MainMenu.song != null && this.name == "Back_Button") {
 						GameObject.Find ("SongName").GetComponent<TextMesh>().text = MainMenu.songName;
 			if (PlayerPrefs.HasKey (MainMenu.songName + "capitanamerica"+MainMenu.difficulty)) {
