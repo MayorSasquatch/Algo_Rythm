@@ -175,7 +175,7 @@ public class Buttons : MonoBehaviour {
 			DontDestroyOnLoad( GameObject.Find("PlayMenu"));
 			MusicScript.player = false;
 
-			CBBinding.showInterstitial(null);
+			MainMenu.deaths = 0;
 
 			Application.LoadLevel("scene");
 		}

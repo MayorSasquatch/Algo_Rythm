@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using Chartboost;
 public class KnightHealth : MonoBehaviour {
     float time, deltatime, clock;
 
@@ -87,6 +87,12 @@ public class KnightHealth : MonoBehaviour {
 					GameObject.Find ("multihightext").GetComponent<TextMesh>().text =  PlayerPrefs.GetInt(scorekeycombo).ToString();
 				}
 				PlayerPrefs.Save();
+				MainMenu.deaths++;
+				if(MainMenu.deaths == 3){
+					MainMenu.deaths = 0;
+					CBBinding.showInterstitial(null);
+
+				}
 			}
 			else if(clock > 2){}
 			else if(clock > 1){}

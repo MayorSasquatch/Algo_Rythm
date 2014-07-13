@@ -23,12 +23,12 @@ public class ParticleScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if(this.name == "WeaponParticles"){
 		if(d.getMulti() == 10)
 			pSys.Play ();
 		if(d.getMulti() < 10)
 			pSys.Stop();
-			
+		}
 
 	}
 }

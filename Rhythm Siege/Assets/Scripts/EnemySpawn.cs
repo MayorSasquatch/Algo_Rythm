@@ -115,6 +115,7 @@ public class EnemySpawn : MonoBehaviour {
 			GameObject.Find ("PlayMenu").transform.position = new Vector3 (-150.23258f,6.411677f, -27.89924f); 
 			GameObject.Find("Score").GetComponent<TextMesh>().characterSize = 6;
 			GameObject.Find ("Multi").GetComponent<TextMesh>().characterSize = 7;
+			GameObject.Find("PauseButton").transform.position = new Vector3(GameObject.Find("PauseButton").transform.position.x ,16.23082f,GameObject.Find("PauseButton").transform.position.z);
 		}
 		if(levelTime >= 5 && nextNote < spawnTimes.Count){
 			//float temp = (float)spawnTimes[nextNote];//retrieve time to check agaisnt

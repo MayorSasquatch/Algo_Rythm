@@ -27,6 +27,7 @@ public class Deathbox : MonoBehaviour
 						if (e.button == 0 && e.type == EventType.MouseDown) {
 
 								startPos = (Vector2)e.mousePosition;
+				GameObject.Find("FingerPart").transform.position = Camera.main.ScreenToWorldPoint( new Vector3 (Input.mousePosition.x,Input.mousePosition.y, 0f));
 								//Debug.Log("Pressed left click.");
 								directionChosen = false;
 								e.Use ();
@@ -34,6 +35,7 @@ public class Deathbox : MonoBehaviour
 						}
 						if (e.button == 0 && e.type == EventType.MouseDrag) {
 								direction = (Vector2)e.mousePosition - startPos;
+				GameObject.Find("FingerPart").transform.position = Camera.main.ScreenToWorldPoint( new Vector3 (Input.mousePosition.x,Input.mousePosition.y,0f));
 								if (direction.x > Screen.width / 4) {
 										gesture = "right swipe";
 										directionChosen = true;
@@ -50,6 +52,7 @@ public class Deathbox : MonoBehaviour
 						if (e.button == 0 && e.type == EventType.MouseUp) {
 								direction = (Vector2)e.mousePosition - startPos;
 								directionChosen = true;
+								GameObject.Find("FingerPart").transform.position = new Vector3(0,-22,-15);
 								//Debug.Log("lifted left click.");
 								if(Mathf.Abs(direction.x) < Screen.width/20 && Mathf.Abs(direction.y) < Screen.height/20){gesture = "tap";}
 								else if(direction.x > Screen.width/4){gesture = "right swipe";}

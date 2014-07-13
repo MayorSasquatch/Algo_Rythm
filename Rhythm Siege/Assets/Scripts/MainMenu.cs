@@ -14,12 +14,12 @@ public class MainMenu : MonoBehaviour {
 	public int menu;
 	public GameObject[] buttons;
 	public static int levelunlock;
-
+	public static int deaths;
 
 
 	void Start(){
 		CBBinding.init("53b5f04589b0bb7ee6ad564d", "4c9e683e37ae859d14c1596efc2a0b3e93eb27e8");
-
+		deaths = 0;
 		boss = false;
 		tutorial  = false;
 		if (PlayerPrefs.HasKey ("Difficulty")) {
