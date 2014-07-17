@@ -31,6 +31,7 @@ public class Buttons : MonoBehaviour {
 		if (MainMenu.levelunlock < 3 && this.name == "Level3_Button") {
 			this.GetComponent<SpriteRenderer>().color = new Color(1,1,1,.5f);	
 		}
+		if(PlayerPrefs.GetInt("warning")> 0){Destroy(GameObject.Find("CustomSong"));}
 	}
 	void Update () {
 
@@ -178,6 +179,15 @@ public class Buttons : MonoBehaviour {
 			MainMenu.deaths = 0;
 
 			Application.LoadLevel("scene");
+		}
+		else if(this.name == "CustomSong")
+		{
+			Instantiate(Resources.Load("warning"));
+			PlayerPrefs.SetInt("warning",1);
+		}
+		else if(this.name == "wback")
+		{
+			Destroy(GameObject.Find("warning(Clone)"));
 		}
 		else if(colliderTag == "SaveCloseButton")
 		{

@@ -31,11 +31,8 @@ public class SongSelect : MonoBehaviour {
 		GUI.skin.button.fontSize = (int)(Screen.width/40);
 		GUI.skin.label.fontSize = (int)(Screen.width/40);
 		GUI.skin.customStyles[0].fontSize = (int)(Screen.width/15);
-	
 		if (songBrowser != null && swtch) {
-				
 				songBrowser.OnGUI ();
-				
 		} else if(swtch){
 				OnGUImain();
 		}
@@ -60,6 +57,7 @@ public class SongSelect : MonoBehaviour {
 	}
 
 	void Update(){
+
 		if(path != null){
 			WWW www = new WWW ("file://" + SongSelect.path);
 			MainMenu.songName =  Path.GetFileNameWithoutExtension(SongSelect.path);
@@ -81,6 +79,7 @@ public class SongSelect : MonoBehaviour {
 
 		}
 	}
+
 }
 
 
@@ -110,7 +109,7 @@ public class FileBrowser {
 	protected FileInfo[] fileinfo;
 	protected string[] filenames;
 	protected string[] filenameshort;
-	protected bool loading;
+	public bool loading;
 	// Browser type. Defaults to File, but can be set to Folder
 
 	protected FileBrowserType m_browserType;
@@ -165,8 +164,7 @@ public class FileBrowser {
 		if (File.Exists (Application.persistentDataPath + "/library.txt")) {
 						readlist ();
 				} else {
-			getsongs();
-			makelist();
+			load();
 				}
 	}
 
@@ -207,7 +205,13 @@ public class FileBrowser {
 			m_name,
 			GUI.skin.window
 			);
+		GUILayout.BeginHorizontal();
+		GUILayout.FlexibleSpace();
+		if (GUILayout.Button("Reload Songs", GUILayout.Width(Screen.width*.3f),GUILayout.Height(Screen.height*.1f))) {
+			load ();
 
+		}
+		GUILayout.EndHorizontal();
 		m_scrollPosition = GUILayout.BeginScrollView(
 			m_scrollPosition,
 			false,
@@ -222,15 +226,11 @@ public class FileBrowser {
 			filenameshort,
 			FileDoubleClickCallback
 			);
-
 		GUILayout.EndScrollView();
+
 		GUILayout.BeginHorizontal();
 		GUILayout.FlexibleSpace();
-		if (GUILayout.Button("Reload Songs", GUILayout.Width(Screen.width*.3f),GUILayout.Height(Screen.height*.1f))) {
-			getsongs();
-			makelist();
 
-		}
 
 		if (GUILayout.Button("Cancel", GUILayout.Width(Screen.width*.3f),GUILayout.Height(Screen.height*.1f))) {
 			m_callback(null);
@@ -248,7 +248,13 @@ public class FileBrowser {
 		m_scrollPosition += scroll;
 	}
 
+	public void load(){
+	
+		getsongs();
+		makelist();
 
+
+	}
 	protected void FileDoubleClickCallback(int i) {
 		m_callback( filenames[m_selectedFile]);
 	}

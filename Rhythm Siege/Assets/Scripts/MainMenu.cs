@@ -43,5 +43,7 @@ public class MainMenu : MonoBehaviour {
 		} else {
 			levelunlock = PlayerPrefs.GetInt("levelunlock");
 		}
+		if (!PlayerPrefs.HasKey ("warning")) {
+			PlayerPrefs.SetInt ("warning", 0);}	
 	}
 }
