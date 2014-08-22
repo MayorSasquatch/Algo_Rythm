@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
-
+using Chartboost;
 public class SongAnalyze : MonoBehaviour {
 	public float levelTime ;
 	float time, deltatime, clock;
@@ -14,6 +14,7 @@ public class SongAnalyze : MonoBehaviour {
 
 		gameObject.GetComponent<AudioSource> ().audio.clip = MainMenu.song;
 		this.audio.Play (); this.audio.Pause ();
+		CBBinding.showInterstitial(null);
 		go = true;
 		tut = new bool[10];
 		clock = 0f;
